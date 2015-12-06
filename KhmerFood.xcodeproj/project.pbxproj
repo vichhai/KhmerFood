@@ -7,15 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ED31CE541C0FDE6C00F8A644 /* AppUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = ED31CE531C0FDE6C00F8A644 /* AppUtils.m */; };
 		EDAD81971C0D8851009E53F9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAD81961C0D8851009E53F9 /* main.m */; };
 		EDAD819A1C0D8851009E53F9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAD81991C0D8851009E53F9 /* AppDelegate.m */; };
-		EDAD819D1C0D8851009E53F9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAD819C1C0D8851009E53F9 /* ViewController.m */; };
 		EDAD81A01C0D8851009E53F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDAD819E1C0D8851009E53F9 /* Main.storyboard */; };
 		EDAD81A31C0D8851009E53F9 /* KhmerFood.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EDAD81A11C0D8851009E53F9 /* KhmerFood.xcdatamodeld */; };
 		EDAD81A51C0D8851009E53F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDAD81A41C0D8851009E53F9 /* Assets.xcassets */; };
 		EDAD81A81C0D8851009E53F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDAD81A61C0D8851009E53F9 /* LaunchScreen.storyboard */; };
 		EDAD81B31C0D8852009E53F9 /* KhmerFoodTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAD81B21C0D8852009E53F9 /* KhmerFoodTests.m */; };
 		EDAD81BE1C0D8852009E53F9 /* KhmerFoodUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAD81BD1C0D8852009E53F9 /* KhmerFoodUITests.m */; };
+		EDAD81CE1C0D89D6009E53F9 /* ShareDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAD81CD1C0D89D6009E53F9 /* ShareDataManager.m */; };
+		EDAD81D41C0D8BC6009E53F9 /* KFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAD81D31C0D8BC6009E53F9 /* KFViewController.m */; };
+		EDAD81D81C0D8C0B009E53F9 /* ConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAD81D71C0D8C0B009E53F9 /* ConnectionManager.m */; };
+		EDAD81DD1C0D8D65009E53F9 /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAD81DC1C0D8D65009E53F9 /* CoreDataManager.m */; };
+		EDCD2F3D1C0E66F20074E8A0 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = EDCD2F3C1C0E66F20074E8A0 /* Reachability.m */; };
+		EDCD2F401C0E7B720074E8A0 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDCD2F3F1C0E7B720074E8A0 /* HomeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,12 +42,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		EDAD81921C0D8851009E53F9 /* KhmerFood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KhmerFood.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED31CE521C0FDE6C00F8A644 /* AppUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppUtils.h; sourceTree = "<group>"; };
+		ED31CE531C0FDE6C00F8A644 /* AppUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppUtils.m; sourceTree = "<group>"; };
+		EDAD81921C0D8851009E53F9 /* Khmer Food.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Khmer Food.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDAD81961C0D8851009E53F9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		EDAD81981C0D8851009E53F9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EDAD81991C0D8851009E53F9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		EDAD819B1C0D8851009E53F9 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		EDAD819C1C0D8851009E53F9 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		EDAD819F1C0D8851009E53F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EDAD81A21C0D8851009E53F9 /* KhmerFood.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = KhmerFood.xcdatamodel; sourceTree = "<group>"; };
 		EDAD81A41C0D8851009E53F9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -53,6 +59,18 @@
 		EDAD81B91C0D8852009E53F9 /* KhmerFoodUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KhmerFoodUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDAD81BD1C0D8852009E53F9 /* KhmerFoodUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KhmerFoodUITests.m; sourceTree = "<group>"; };
 		EDAD81BF1C0D8852009E53F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EDAD81CC1C0D89D6009E53F9 /* ShareDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareDataManager.h; sourceTree = "<group>"; };
+		EDAD81CD1C0D89D6009E53F9 /* ShareDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareDataManager.m; sourceTree = "<group>"; };
+		EDAD81D21C0D8BC6009E53F9 /* KFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFViewController.h; sourceTree = "<group>"; };
+		EDAD81D31C0D8BC6009E53F9 /* KFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFViewController.m; sourceTree = "<group>"; };
+		EDAD81D61C0D8C0B009E53F9 /* ConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionManager.h; sourceTree = "<group>"; };
+		EDAD81D71C0D8C0B009E53F9 /* ConnectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionManager.m; sourceTree = "<group>"; };
+		EDAD81DB1C0D8D65009E53F9 /* CoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataManager.h; sourceTree = "<group>"; };
+		EDAD81DC1C0D8D65009E53F9 /* CoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataManager.m; sourceTree = "<group>"; };
+		EDCD2F3B1C0E66F20074E8A0 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		EDCD2F3C1C0E66F20074E8A0 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		EDCD2F3E1C0E7B720074E8A0 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		EDCD2F3F1C0E7B720074E8A0 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +98,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		ED31CE511C0FDE6200F8A644 /* AppUtils */ = {
+			isa = PBXGroup;
+			children = (
+				ED31CE521C0FDE6C00F8A644 /* AppUtils.h */,
+				ED31CE531C0FDE6C00F8A644 /* AppUtils.m */,
+			);
+			name = AppUtils;
+			sourceTree = "<group>";
+		};
 		EDAD81891C0D8851009E53F9 = {
 			isa = PBXGroup;
 			children = (
@@ -93,7 +120,7 @@
 		EDAD81931C0D8851009E53F9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EDAD81921C0D8851009E53F9 /* KhmerFood.app */,
+				EDAD81921C0D8851009E53F9 /* Khmer Food.app */,
 				EDAD81AE1C0D8852009E53F9 /* KhmerFoodTests.xctest */,
 				EDAD81B91C0D8852009E53F9 /* KhmerFoodUITests.xctest */,
 			);
@@ -105,13 +132,9 @@
 			children = (
 				EDAD81981C0D8851009E53F9 /* AppDelegate.h */,
 				EDAD81991C0D8851009E53F9 /* AppDelegate.m */,
-				EDAD819B1C0D8851009E53F9 /* ViewController.h */,
-				EDAD819C1C0D8851009E53F9 /* ViewController.m */,
+				EDCD2F3E1C0E7B720074E8A0 /* HomeViewController.h */,
+				EDCD2F3F1C0E7B720074E8A0 /* HomeViewController.m */,
 				EDAD819E1C0D8851009E53F9 /* Main.storyboard */,
-				EDAD81A41C0D8851009E53F9 /* Assets.xcassets */,
-				EDAD81A61C0D8851009E53F9 /* LaunchScreen.storyboard */,
-				EDAD81A91C0D8851009E53F9 /* Info.plist */,
-				EDAD81A11C0D8851009E53F9 /* KhmerFood.xcdatamodeld */,
 				EDAD81951C0D8851009E53F9 /* Supporting Files */,
 			);
 			path = KhmerFood;
@@ -120,6 +143,15 @@
 		EDAD81951C0D8851009E53F9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				ED31CE511C0FDE6200F8A644 /* AppUtils */,
+				EDAD81DA1C0D8D57009E53F9 /* CoredataManager */,
+				EDAD81D51C0D8BF6009E53F9 /* ConnectionManager */,
+				EDAD81CF1C0D8B4B009E53F9 /* KFViewController */,
+				EDAD81CB1C0D8993009E53F9 /* Singleton */,
+				EDAD81A41C0D8851009E53F9 /* Assets.xcassets */,
+				EDAD81A61C0D8851009E53F9 /* LaunchScreen.storyboard */,
+				EDAD81A91C0D8851009E53F9 /* Info.plist */,
+				EDAD81A11C0D8851009E53F9 /* KhmerFood.xcdatamodeld */,
 				EDAD81961C0D8851009E53F9 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -143,6 +175,44 @@
 			path = KhmerFoodUITests;
 			sourceTree = "<group>";
 		};
+		EDAD81CB1C0D8993009E53F9 /* Singleton */ = {
+			isa = PBXGroup;
+			children = (
+				EDAD81CC1C0D89D6009E53F9 /* ShareDataManager.h */,
+				EDAD81CD1C0D89D6009E53F9 /* ShareDataManager.m */,
+			);
+			name = Singleton;
+			sourceTree = "<group>";
+		};
+		EDAD81CF1C0D8B4B009E53F9 /* KFViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EDAD81D21C0D8BC6009E53F9 /* KFViewController.h */,
+				EDAD81D31C0D8BC6009E53F9 /* KFViewController.m */,
+			);
+			name = KFViewController;
+			sourceTree = "<group>";
+		};
+		EDAD81D51C0D8BF6009E53F9 /* ConnectionManager */ = {
+			isa = PBXGroup;
+			children = (
+				EDCD2F3B1C0E66F20074E8A0 /* Reachability.h */,
+				EDCD2F3C1C0E66F20074E8A0 /* Reachability.m */,
+				EDAD81D61C0D8C0B009E53F9 /* ConnectionManager.h */,
+				EDAD81D71C0D8C0B009E53F9 /* ConnectionManager.m */,
+			);
+			name = ConnectionManager;
+			sourceTree = "<group>";
+		};
+		EDAD81DA1C0D8D57009E53F9 /* CoredataManager */ = {
+			isa = PBXGroup;
+			children = (
+				EDAD81DB1C0D8D65009E53F9 /* CoreDataManager.h */,
+				EDAD81DC1C0D8D65009E53F9 /* CoreDataManager.m */,
+			);
+			name = CoredataManager;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -160,7 +230,7 @@
 			);
 			name = KhmerFood;
 			productName = KhmerFood;
-			productReference = EDAD81921C0D8851009E53F9 /* KhmerFood.app */;
+			productReference = EDAD81921C0D8851009E53F9 /* Khmer Food.app */;
 			productType = "com.apple.product-type.application";
 		};
 		EDAD81AD1C0D8852009E53F9 /* KhmerFoodTests */ = {
@@ -273,10 +343,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EDAD819D1C0D8851009E53F9 /* ViewController.m in Sources */,
+				EDAD81CE1C0D89D6009E53F9 /* ShareDataManager.m in Sources */,
+				EDAD81DD1C0D8D65009E53F9 /* CoreDataManager.m in Sources */,
+				EDCD2F3D1C0E66F20074E8A0 /* Reachability.m in Sources */,
 				EDAD81A31C0D8851009E53F9 /* KhmerFood.xcdatamodeld in Sources */,
 				EDAD819A1C0D8851009E53F9 /* AppDelegate.m in Sources */,
+				EDCD2F401C0E7B720074E8A0 /* HomeViewController.m in Sources */,
+				EDAD81D81C0D8C0B009E53F9 /* ConnectionManager.m in Sources */,
+				ED31CE541C0FDE6C00F8A644 /* AppUtils.m in Sources */,
 				EDAD81971C0D8851009E53F9 /* main.m in Sources */,
+				EDAD81D41C0D8BC6009E53F9 /* KFViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,8 +493,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = KhmerFood/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = come.khmerfood.dobut.KhmerFood;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = come.dobut.KhmerFood;
+				PRODUCT_NAME = "Khmer Food";
 			};
 			name = Debug;
 		};
@@ -428,8 +504,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = KhmerFood/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = come.khmerfood.dobut.KhmerFood;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = come.dobut.KhmerFood;
+				PRODUCT_NAME = "Khmer Food";
 			};
 			name = Release;
 		};
@@ -500,6 +576,7 @@
 				EDAD81C41C0D8852009E53F9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EDAD81C51C0D8852009E53F9 /* Build configuration list for PBXNativeTarget "KhmerFoodTests" */ = {
 			isa = XCConfigurationList;
@@ -508,6 +585,7 @@
 				EDAD81C71C0D8852009E53F9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EDAD81C81C0D8852009E53F9 /* Build configuration list for PBXNativeTarget "KhmerFoodUITests" */ = {
 			isa = XCConfigurationList;
@@ -516,6 +594,7 @@
 				EDAD81CA1C0D8852009E53F9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

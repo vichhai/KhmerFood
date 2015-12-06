@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EDAD81911C0D8851009E53F9"
-               BuildableName = "KhmerFood.app"
+               BuildableName = "Khmer Food.app"
                BlueprintName = "KhmerFood"
                ReferencedContainer = "container:KhmerFood.xcodeproj">
             </BuildableReference>
@@ -53,7 +53,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EDAD81911C0D8851009E53F9"
-            BuildableName = "KhmerFood.app"
+            BuildableName = "Khmer Food.app"
             BlueprintName = "KhmerFood"
             ReferencedContainer = "container:KhmerFood.xcodeproj">
          </BuildableReference>
@@ -76,7 +76,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EDAD81911C0D8851009E53F9"
-            BuildableName = "KhmerFood.app"
+            BuildableName = "Khmer Food.app"
             BlueprintName = "KhmerFood"
             ReferencedContainer = "container:KhmerFood.xcodeproj">
          </BuildableReference>
@@ -95,7 +95,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EDAD81911C0D8851009E53F9"
-            BuildableName = "KhmerFood.app"
+            BuildableName = "Khmer Food.app"
             BlueprintName = "KhmerFood"
             ReferencedContainer = "container:KhmerFood.xcodeproj">
          </BuildableReference>
