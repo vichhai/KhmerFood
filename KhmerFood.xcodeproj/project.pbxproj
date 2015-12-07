@@ -14,8 +14,6 @@
 		EDAD81A31C0D8851009E53F9 /* KhmerFood.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EDAD81A11C0D8851009E53F9 /* KhmerFood.xcdatamodeld */; };
 		EDAD81A51C0D8851009E53F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDAD81A41C0D8851009E53F9 /* Assets.xcassets */; };
 		EDAD81A81C0D8851009E53F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDAD81A61C0D8851009E53F9 /* LaunchScreen.storyboard */; };
-		EDAD81B31C0D8852009E53F9 /* KhmerFoodTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAD81B21C0D8852009E53F9 /* KhmerFoodTests.m */; };
-		EDAD81BE1C0D8852009E53F9 /* KhmerFoodUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAD81BD1C0D8852009E53F9 /* KhmerFoodUITests.m */; };
 		EDAD81CE1C0D89D6009E53F9 /* ShareDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAD81CD1C0D89D6009E53F9 /* ShareDataManager.m */; };
 		EDAD81D41C0D8BC6009E53F9 /* KFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAD81D31C0D8BC6009E53F9 /* KFViewController.m */; };
 		EDAD81D81C0D8C0B009E53F9 /* ConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAD81D71C0D8C0B009E53F9 /* ConnectionManager.m */; };
@@ -23,23 +21,6 @@
 		EDCD2F3D1C0E66F20074E8A0 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = EDCD2F3C1C0E66F20074E8A0 /* Reachability.m */; };
 		EDCD2F401C0E7B720074E8A0 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDCD2F3F1C0E7B720074E8A0 /* HomeViewController.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		EDAD81AF1C0D8852009E53F9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = EDAD818A1C0D8851009E53F9 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = EDAD81911C0D8851009E53F9;
-			remoteInfo = KhmerFood;
-		};
-		EDAD81BA1C0D8852009E53F9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = EDAD818A1C0D8851009E53F9 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = EDAD81911C0D8851009E53F9;
-			remoteInfo = KhmerFood;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		ED31CE521C0FDE6C00F8A644 /* AppUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppUtils.h; sourceTree = "<group>"; };
@@ -53,12 +34,6 @@
 		EDAD81A41C0D8851009E53F9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EDAD81A71C0D8851009E53F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EDAD81A91C0D8851009E53F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EDAD81AE1C0D8852009E53F9 /* KhmerFoodTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KhmerFoodTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		EDAD81B21C0D8852009E53F9 /* KhmerFoodTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KhmerFoodTests.m; sourceTree = "<group>"; };
-		EDAD81B41C0D8852009E53F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EDAD81B91C0D8852009E53F9 /* KhmerFoodUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KhmerFoodUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		EDAD81BD1C0D8852009E53F9 /* KhmerFoodUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KhmerFoodUITests.m; sourceTree = "<group>"; };
-		EDAD81BF1C0D8852009E53F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EDAD81CC1C0D89D6009E53F9 /* ShareDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareDataManager.h; sourceTree = "<group>"; };
 		EDAD81CD1C0D89D6009E53F9 /* ShareDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareDataManager.m; sourceTree = "<group>"; };
 		EDAD81D21C0D8BC6009E53F9 /* KFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFViewController.h; sourceTree = "<group>"; };
@@ -81,20 +56,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EDAD81AB1C0D8852009E53F9 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EDAD81B61C0D8852009E53F9 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -111,8 +72,6 @@
 			isa = PBXGroup;
 			children = (
 				EDAD81941C0D8851009E53F9 /* KhmerFood */,
-				EDAD81B11C0D8852009E53F9 /* KhmerFoodTests */,
-				EDAD81BC1C0D8852009E53F9 /* KhmerFoodUITests */,
 				EDAD81931C0D8851009E53F9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -121,8 +80,6 @@
 			isa = PBXGroup;
 			children = (
 				EDAD81921C0D8851009E53F9 /* Khmer Food.app */,
-				EDAD81AE1C0D8852009E53F9 /* KhmerFoodTests.xctest */,
-				EDAD81B91C0D8852009E53F9 /* KhmerFoodUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -155,24 +112,6 @@
 				EDAD81961C0D8851009E53F9 /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		EDAD81B11C0D8852009E53F9 /* KhmerFoodTests */ = {
-			isa = PBXGroup;
-			children = (
-				EDAD81B21C0D8852009E53F9 /* KhmerFoodTests.m */,
-				EDAD81B41C0D8852009E53F9 /* Info.plist */,
-			);
-			path = KhmerFoodTests;
-			sourceTree = "<group>";
-		};
-		EDAD81BC1C0D8852009E53F9 /* KhmerFoodUITests */ = {
-			isa = PBXGroup;
-			children = (
-				EDAD81BD1C0D8852009E53F9 /* KhmerFoodUITests.m */,
-				EDAD81BF1C0D8852009E53F9 /* Info.plist */,
-			);
-			path = KhmerFoodUITests;
 			sourceTree = "<group>";
 		};
 		EDAD81CB1C0D8993009E53F9 /* Singleton */ = {
@@ -233,42 +172,6 @@
 			productReference = EDAD81921C0D8851009E53F9 /* Khmer Food.app */;
 			productType = "com.apple.product-type.application";
 		};
-		EDAD81AD1C0D8852009E53F9 /* KhmerFoodTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = EDAD81C51C0D8852009E53F9 /* Build configuration list for PBXNativeTarget "KhmerFoodTests" */;
-			buildPhases = (
-				EDAD81AA1C0D8852009E53F9 /* Sources */,
-				EDAD81AB1C0D8852009E53F9 /* Frameworks */,
-				EDAD81AC1C0D8852009E53F9 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				EDAD81B01C0D8852009E53F9 /* PBXTargetDependency */,
-			);
-			name = KhmerFoodTests;
-			productName = KhmerFoodTests;
-			productReference = EDAD81AE1C0D8852009E53F9 /* KhmerFoodTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		EDAD81B81C0D8852009E53F9 /* KhmerFoodUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = EDAD81C81C0D8852009E53F9 /* Build configuration list for PBXNativeTarget "KhmerFoodUITests" */;
-			buildPhases = (
-				EDAD81B51C0D8852009E53F9 /* Sources */,
-				EDAD81B61C0D8852009E53F9 /* Frameworks */,
-				EDAD81B71C0D8852009E53F9 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				EDAD81BB1C0D8852009E53F9 /* PBXTargetDependency */,
-			);
-			name = KhmerFoodUITests;
-			productName = KhmerFoodUITests;
-			productReference = EDAD81B91C0D8852009E53F9 /* KhmerFoodUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -280,14 +183,6 @@
 				TargetAttributes = {
 					EDAD81911C0D8851009E53F9 = {
 						CreatedOnToolsVersion = 7.1.1;
-					};
-					EDAD81AD1C0D8852009E53F9 = {
-						CreatedOnToolsVersion = 7.1.1;
-						TestTargetID = EDAD81911C0D8851009E53F9;
-					};
-					EDAD81B81C0D8852009E53F9 = {
-						CreatedOnToolsVersion = 7.1.1;
-						TestTargetID = EDAD81911C0D8851009E53F9;
 					};
 				};
 			};
@@ -305,8 +200,6 @@
 			projectRoot = "";
 			targets = (
 				EDAD81911C0D8851009E53F9 /* KhmerFood */,
-				EDAD81AD1C0D8852009E53F9 /* KhmerFoodTests */,
-				EDAD81B81C0D8852009E53F9 /* KhmerFoodUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -319,20 +212,6 @@
 				EDAD81A81C0D8851009E53F9 /* LaunchScreen.storyboard in Resources */,
 				EDAD81A51C0D8851009E53F9 /* Assets.xcassets in Resources */,
 				EDAD81A01C0D8851009E53F9 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EDAD81AC1C0D8852009E53F9 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EDAD81B71C0D8852009E53F9 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,36 +235,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EDAD81AA1C0D8852009E53F9 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EDAD81B31C0D8852009E53F9 /* KhmerFoodTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EDAD81B51C0D8852009E53F9 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EDAD81BE1C0D8852009E53F9 /* KhmerFoodUITests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		EDAD81B01C0D8852009E53F9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = EDAD81911C0D8851009E53F9 /* KhmerFood */;
-			targetProxy = EDAD81AF1C0D8852009E53F9 /* PBXContainerItemProxy */;
-		};
-		EDAD81BB1C0D8852009E53F9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = EDAD81911C0D8851009E53F9 /* KhmerFood */;
-			targetProxy = EDAD81BA1C0D8852009E53F9 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		EDAD819E1C0D8851009E53F9 /* Main.storyboard */ = {
@@ -509,54 +359,6 @@
 			};
 			name = Release;
 		};
-		EDAD81C61C0D8852009E53F9 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = KhmerFoodTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = come.khmerfood.dobut.KhmerFoodTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KhmerFood.app/KhmerFood";
-			};
-			name = Debug;
-		};
-		EDAD81C71C0D8852009E53F9 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = KhmerFoodTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = come.khmerfood.dobut.KhmerFoodTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KhmerFood.app/KhmerFood";
-			};
-			name = Release;
-		};
-		EDAD81C91C0D8852009E53F9 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = KhmerFoodUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = come.khmerfood.dobut.KhmerFoodUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = KhmerFood;
-				USES_XCTRUNNER = YES;
-			};
-			name = Debug;
-		};
-		EDAD81CA1C0D8852009E53F9 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = KhmerFoodUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = come.khmerfood.dobut.KhmerFoodUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = KhmerFood;
-				USES_XCTRUNNER = YES;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -574,24 +376,6 @@
 			buildConfigurations = (
 				EDAD81C31C0D8852009E53F9 /* Debug */,
 				EDAD81C41C0D8852009E53F9 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		EDAD81C51C0D8852009E53F9 /* Build configuration list for PBXNativeTarget "KhmerFoodTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				EDAD81C61C0D8852009E53F9 /* Debug */,
-				EDAD81C71C0D8852009E53F9 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		EDAD81C81C0D8852009E53F9 /* Build configuration list for PBXNativeTarget "KhmerFoodUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				EDAD81C91C0D8852009E53F9 /* Debug */,
-				EDAD81CA1C0D8852009E53F9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
