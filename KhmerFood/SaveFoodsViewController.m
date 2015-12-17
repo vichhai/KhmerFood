@@ -12,13 +12,18 @@
 #import "UIColor+FlatColors.h"
 #import "CardView.h"
 
-@interface SaveFoodsViewController () <ZLSwipeableViewDataSource, ZLSwipeableViewDelegate>
+@interface SaveFoodsViewController () <ZLSwipeableViewDataSource, ZLSwipeableViewDelegate>{
+    
+}
+
 @property (weak, nonatomic) IBOutlet ZLSwipeableView *swipeableView;
+@property (strong, nonatomic) IBOutlet UILabel *lblWarning;
 
 @property (nonatomic, strong) NSArray *UserArr;
 
 @property (nonatomic) NSUInteger colorIndex;
 @property (nonatomic) NSUInteger TestMe11;
+
 @end
 
 @implementation SaveFoodsViewController
@@ -27,10 +32,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.colorIndex = 0;
-    self.TestMe11 = 0;
+    self.TestMe11   = 0;
     
     self.UserArr = @[@"user1",@"user2",@"user3",@"user4",@"user5"];
-
+    
     [self.swipeableView setNeedsLayout];
     [self.swipeableView layoutIfNeeded];
     
@@ -44,13 +49,13 @@
 //[self.swipeableView discardAllSwipeableViews];
 //[self.swipeableView loadNextSwipeableViewsIfNeeded];
 
+
 #pragma mark - ZLSwipeableViewDelegate
 - (void)swipeableView: (ZLSwipeableView *)swipeableView didSwipeLeft:(UIView *)view {
     NSLog(@"did swipe left");
     
     _TestMe11++;
     NSLog(@"--> %lu",(unsigned long)_TestMe11);
-    
     
     if(_UserArr.count == _TestMe11){
         self.colorIndex = 0;
@@ -64,7 +69,8 @@
 - (void)swipeableView: (ZLSwipeableView *)swipeableView didSwipeRight:(UIView *)view {
     NSLog(@"did swipe right");
     _TestMe11++;
-    NSLog(@"--> %lu",(unsigned long)_TestMe11);
+    //    NSLog(@"--> %lu",(unsigned long)_TestMe11);
+    //    NSLog(@"--> %@",_UserArr[_TestMe11-1]);
     
     if(_UserArr.count == _TestMe11){
         self.colorIndex = 0;
@@ -75,8 +81,52 @@
     }
 }
 - (void)swipeableView: (ZLSwipeableView *)swipeableView swipingView:(UIView *)view atLocation:(CGPoint)location {
-    //    NSLog(@"swiping at location: x %f, y%f", location.x, location.y);
-
+    //        NSLog(@"swiping at location: x %f, y%f", location.x, location.y);
+    
+    if(location.x > 200){
+        _lblWarning.text = @"Delete";
+        
+        UIAlertController * alert=   [UIAlertController
+                                      alertControllerWithTitle:@"Food's Name"
+                                      message:[NSString stringWithFormat:@"%@",_UserArr[_TestMe11]]
+                                      preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* yesButton = [UIAlertAction
+                                    actionWithTitle:@"Yes, please"
+                                    style:UIAlertActionStyleDefault
+                                    handler:^(UIAlertAction * action)
+                                    {
+                                        [self.swipeableView swipeTopViewToRight];
+                                        [alert dismissViewControllerAnimated:YES completion:nil];
+                                        
+                                    }];
+        UIAlertAction* noButton = [UIAlertAction
+                                   actionWithTitle:@"No, thanks"
+                                   style:UIAlertActionStyleDefault
+                                   handler:^(UIAlertAction * action)
+                                   {
+                                       [alert dismissViewControllerAnimated:YES completion:nil];
+                                       
+                                   }];
+        
+        [alert addAction:yesButton];
+        [alert addAction:noButton];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+        
+    }else{
+        _lblWarning.text = @"Next";
+    }
+    
+}
+- (IBAction)tapOnFoodAction:(UITapGestureRecognizer *)sender {
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Food"
+                                                    message:[NSString stringWithFormat:@"%@",_UserArr[_TestMe11]]
+                                                   delegate:self
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
 }
 
 #pragma mark - ZLSwipeableViewDataSource
@@ -85,12 +135,12 @@
         CardView *viewCard = [[CardView alloc] initWithFrame:swipeableView.bounds];
         viewCard.cardColor = [UIColor whiteColor];
         
-       
+        
         UIImageView *ImageME = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, swipeableView.bounds.size.width, swipeableView.bounds.size.height - 70)];
         ImageME.backgroundColor= [UIColor lightGrayColor];
         ImageME.image = [UIImage imageNamed:@"Test.png"];
         [viewCard addSubview:ImageME];
-    
+        
         
         UILabel *lblFoodName = [[UILabel alloc]initWithFrame:CGRectMake(10, swipeableView.bounds.size.height - 65, swipeableView.bounds.size.width - 40, 30)];
         lblFoodName.text = @"ខសាច់ជ្រូកបែបចិន";
@@ -100,8 +150,8 @@
         lblTypeName.text = @"ប្រភេទ ៖​ សម្ល";
         [viewCard addSubview:lblTypeName];
         
-
-//        NSLog(@"%@",[NSString stringWithFormat:@"%@",self.UserArr[self.colorIndex]]);
+        
+        //        NSLog(@"%@",[NSString stringWithFormat:@"%@",self.UserArr[self.colorIndex]]);
         
         self.colorIndex++;
         
