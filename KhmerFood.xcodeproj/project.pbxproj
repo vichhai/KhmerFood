@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		398055831C227D42002144AC /* SaveFoodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 398055821C227D42002144AC /* SaveFoodsViewController.m */; };
+		3980558F1C227E4E002144AC /* CardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 398055861C227E4E002144AC /* CardView.m */; };
+		398055901C227E4E002144AC /* UIColor+FlatColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 398055891C227E4E002144AC /* UIColor+FlatColors.m */; };
+		398055911C227E4E002144AC /* ZLPanGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3980558C1C227E4E002144AC /* ZLPanGestureRecognizer.m */; };
+		398055921C227E4E002144AC /* ZLSwipeableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3980558E1C227E4E002144AC /* ZLSwipeableView.m */; };
+		398055951C22861C002144AC /* Test.png in Resources */ = {isa = PBXBuildFile; fileRef = 398055941C22861C002144AC /* Test.png */; };
 		ED31CE541C0FDE6C00F8A644 /* AppUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = ED31CE531C0FDE6C00F8A644 /* AppUtils.m */; };
 		EDAD81971C0D8851009E53F9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAD81961C0D8851009E53F9 /* main.m */; };
 		EDAD819A1C0D8851009E53F9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAD81991C0D8851009E53F9 /* AppDelegate.m */; };
@@ -23,6 +29,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3980557E1C227CDA002144AC /* KhmerFood-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KhmerFood-Bridging-Header.h"; sourceTree = "<group>"; };
+		398055811C227D42002144AC /* SaveFoodsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveFoodsViewController.h; sourceTree = "<group>"; };
+		398055821C227D42002144AC /* SaveFoodsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveFoodsViewController.m; sourceTree = "<group>"; };
+		398055851C227E4E002144AC /* CardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardView.h; sourceTree = "<group>"; };
+		398055861C227E4E002144AC /* CardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardView.m; sourceTree = "<group>"; };
+		398055881C227E4E002144AC /* UIColor+FlatColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+FlatColors.h"; sourceTree = "<group>"; };
+		398055891C227E4E002144AC /* UIColor+FlatColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+FlatColors.m"; sourceTree = "<group>"; };
+		3980558B1C227E4E002144AC /* ZLPanGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPanGestureRecognizer.h; sourceTree = "<group>"; };
+		3980558C1C227E4E002144AC /* ZLPanGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPanGestureRecognizer.m; sourceTree = "<group>"; };
+		3980558D1C227E4E002144AC /* ZLSwipeableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLSwipeableView.h; sourceTree = "<group>"; };
+		3980558E1C227E4E002144AC /* ZLSwipeableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLSwipeableView.m; sourceTree = "<group>"; };
+		398055941C22861C002144AC /* Test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Test.png; sourceTree = "<group>"; };
 		ED31CE521C0FDE6C00F8A644 /* AppUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppUtils.h; sourceTree = "<group>"; };
 		ED31CE531C0FDE6C00F8A644 /* AppUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppUtils.m; sourceTree = "<group>"; };
 		EDAD81921C0D8851009E53F9 /* Khmer Food.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Khmer Food.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,6 +77,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		398055841C227E4E002144AC /* CardView_Lib */ = {
+			isa = PBXGroup;
+			children = (
+				398055851C227E4E002144AC /* CardView.h */,
+				398055861C227E4E002144AC /* CardView.m */,
+				398055871C227E4E002144AC /* UIColor+FlatColors */,
+				3980558A1C227E4E002144AC /* ZLSwipeableView */,
+			);
+			path = CardView_Lib;
+			sourceTree = "<group>";
+		};
+		398055871C227E4E002144AC /* UIColor+FlatColors */ = {
+			isa = PBXGroup;
+			children = (
+				398055881C227E4E002144AC /* UIColor+FlatColors.h */,
+				398055891C227E4E002144AC /* UIColor+FlatColors.m */,
+			);
+			path = "UIColor+FlatColors";
+			sourceTree = "<group>";
+		};
+		3980558A1C227E4E002144AC /* ZLSwipeableView */ = {
+			isa = PBXGroup;
+			children = (
+				3980558B1C227E4E002144AC /* ZLPanGestureRecognizer.h */,
+				3980558C1C227E4E002144AC /* ZLPanGestureRecognizer.m */,
+				3980558D1C227E4E002144AC /* ZLSwipeableView.h */,
+				3980558E1C227E4E002144AC /* ZLSwipeableView.m */,
+			);
+			path = ZLSwipeableView;
+			sourceTree = "<group>";
+		};
+		398055931C22861C002144AC /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				398055941C22861C002144AC /* Test.png */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
 		ED31CE511C0FDE6200F8A644 /* AppUtils */ = {
 			isa = PBXGroup;
 			children = (
@@ -91,8 +148,11 @@
 				EDAD81991C0D8851009E53F9 /* AppDelegate.m */,
 				EDCD2F3E1C0E7B720074E8A0 /* HomeViewController.h */,
 				EDCD2F3F1C0E7B720074E8A0 /* HomeViewController.m */,
+				398055811C227D42002144AC /* SaveFoodsViewController.h */,
+				398055821C227D42002144AC /* SaveFoodsViewController.m */,
 				EDAD819E1C0D8851009E53F9 /* Main.storyboard */,
 				EDAD81951C0D8851009E53F9 /* Supporting Files */,
+				3980557E1C227CDA002144AC /* KhmerFood-Bridging-Header.h */,
 			);
 			path = KhmerFood;
 			sourceTree = "<group>";
@@ -100,6 +160,8 @@
 		EDAD81951C0D8851009E53F9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				398055931C22861C002144AC /* Image */,
+				398055841C227E4E002144AC /* CardView_Lib */,
 				ED31CE511C0FDE6200F8A644 /* AppUtils */,
 				EDAD81DA1C0D8D57009E53F9 /* CoredataManager */,
 				EDAD81D51C0D8BF6009E53F9 /* ConnectionManager */,
@@ -178,6 +240,7 @@
 		EDAD818A1C0D8851009E53F9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = Donut;
 				TargetAttributes = {
@@ -212,6 +275,7 @@
 				EDAD81A81C0D8851009E53F9 /* LaunchScreen.storyboard in Resources */,
 				EDAD81A51C0D8851009E53F9 /* Assets.xcassets in Resources */,
 				EDAD81A01C0D8851009E53F9 /* Main.storyboard in Resources */,
+				398055951C22861C002144AC /* Test.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,12 +288,17 @@
 			files = (
 				EDAD81CE1C0D89D6009E53F9 /* ShareDataManager.m in Sources */,
 				EDAD81DD1C0D8D65009E53F9 /* CoreDataManager.m in Sources */,
+				398055901C227E4E002144AC /* UIColor+FlatColors.m in Sources */,
+				398055911C227E4E002144AC /* ZLPanGestureRecognizer.m in Sources */,
 				EDCD2F3D1C0E66F20074E8A0 /* Reachability.m in Sources */,
 				EDAD81A31C0D8851009E53F9 /* KhmerFood.xcdatamodeld in Sources */,
 				EDAD819A1C0D8851009E53F9 /* AppDelegate.m in Sources */,
+				398055831C227D42002144AC /* SaveFoodsViewController.m in Sources */,
+				3980558F1C227E4E002144AC /* CardView.m in Sources */,
 				EDCD2F401C0E7B720074E8A0 /* HomeViewController.m in Sources */,
 				EDAD81D81C0D8C0B009E53F9 /* ConnectionManager.m in Sources */,
 				ED31CE541C0FDE6C00F8A644 /* AppUtils.m in Sources */,
+				398055921C227E4E002144AC /* ZLSwipeableView.m in Sources */,
 				EDAD81971C0D8851009E53F9 /* main.m in Sources */,
 				EDAD81D41C0D8BC6009E53F9 /* KFViewController.m in Sources */,
 			);
@@ -341,10 +410,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = KhmerFood/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = come.dobut.KhmerFood;
 				PRODUCT_NAME = "Khmer Food";
+				SWIFT_OBJC_BRIDGING_HEADER = "KhmerFood/KhmerFood-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -352,10 +424,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = KhmerFood/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = come.dobut.KhmerFood;
 				PRODUCT_NAME = "Khmer Food";
+				SWIFT_OBJC_BRIDGING_HEADER = "KhmerFood/KhmerFood-Bridging-Header.h";
 			};
 			name = Release;
 		};
