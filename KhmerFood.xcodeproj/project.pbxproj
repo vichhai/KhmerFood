@@ -14,6 +14,9 @@
 		398055921C227E4E002144AC /* ZLSwipeableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3980558E1C227E4E002144AC /* ZLSwipeableView.m */; };
 		398055951C22861C002144AC /* Test.png in Resources */ = {isa = PBXBuildFile; fileRef = 398055941C22861C002144AC /* Test.png */; };
 		ED31CE541C0FDE6C00F8A644 /* AppUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = ED31CE531C0FDE6C00F8A644 /* AppUtils.m */; };
+		ED8C5A371C2291A600BE9001 /* CustomCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED8C5A361C2291A600BE9001 /* CustomCollectionViewCell.m */; };
+		ED8C5A3A1C2291B400BE9001 /* HomeCustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED8C5A391C2291B400BE9001 /* HomeCustomTableViewCell.m */; };
+		ED8C5A3F1C22932300BE9001 /* food.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ED8C5A3E1C22932300BE9001 /* food.jpg */; };
 		EDAD81971C0D8851009E53F9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAD81961C0D8851009E53F9 /* main.m */; };
 		EDAD819A1C0D8851009E53F9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAD81991C0D8851009E53F9 /* AppDelegate.m */; };
 		EDAD81A01C0D8851009E53F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDAD819E1C0D8851009E53F9 /* Main.storyboard */; };
@@ -43,6 +46,11 @@
 		398055941C22861C002144AC /* Test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Test.png; sourceTree = "<group>"; };
 		ED31CE521C0FDE6C00F8A644 /* AppUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppUtils.h; sourceTree = "<group>"; };
 		ED31CE531C0FDE6C00F8A644 /* AppUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppUtils.m; sourceTree = "<group>"; };
+		ED8C5A351C2291A600BE9001 /* CustomCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCollectionViewCell.h; sourceTree = "<group>"; };
+		ED8C5A361C2291A600BE9001 /* CustomCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCollectionViewCell.m; sourceTree = "<group>"; };
+		ED8C5A381C2291B400BE9001 /* HomeCustomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeCustomTableViewCell.h; sourceTree = "<group>"; };
+		ED8C5A391C2291B400BE9001 /* HomeCustomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCustomTableViewCell.m; sourceTree = "<group>"; };
+		ED8C5A3E1C22932300BE9001 /* food.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = food.jpg; sourceTree = "<group>"; };
 		EDAD81921C0D8851009E53F9 /* Khmer Food.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Khmer Food.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDAD81961C0D8851009E53F9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		EDAD81981C0D8851009E53F9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -112,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				398055941C22861C002144AC /* Test.png */,
+				ED8C5A3E1C22932300BE9001 /* food.jpg */,
 			);
 			path = Image;
 			sourceTree = "<group>";
@@ -123,6 +132,19 @@
 				ED31CE531C0FDE6C00F8A644 /* AppUtils.m */,
 			);
 			name = AppUtils;
+			sourceTree = "<group>";
+		};
+		ED8C5A3D1C2292B900BE9001 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				ED8C5A351C2291A600BE9001 /* CustomCollectionViewCell.h */,
+				ED8C5A361C2291A600BE9001 /* CustomCollectionViewCell.m */,
+				ED8C5A381C2291B400BE9001 /* HomeCustomTableViewCell.h */,
+				ED8C5A391C2291B400BE9001 /* HomeCustomTableViewCell.m */,
+				EDCD2F3E1C0E7B720074E8A0 /* HomeViewController.h */,
+				EDCD2F3F1C0E7B720074E8A0 /* HomeViewController.m */,
+			);
+			name = Home;
 			sourceTree = "<group>";
 		};
 		EDAD81891C0D8851009E53F9 = {
@@ -146,8 +168,7 @@
 			children = (
 				EDAD81981C0D8851009E53F9 /* AppDelegate.h */,
 				EDAD81991C0D8851009E53F9 /* AppDelegate.m */,
-				EDCD2F3E1C0E7B720074E8A0 /* HomeViewController.h */,
-				EDCD2F3F1C0E7B720074E8A0 /* HomeViewController.m */,
+				ED8C5A3D1C2292B900BE9001 /* Home */,
 				398055811C227D42002144AC /* SaveFoodsViewController.h */,
 				398055821C227D42002144AC /* SaveFoodsViewController.m */,
 				EDAD819E1C0D8851009E53F9 /* Main.storyboard */,
@@ -273,6 +294,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDAD81A81C0D8851009E53F9 /* LaunchScreen.storyboard in Resources */,
+				ED8C5A3F1C22932300BE9001 /* food.jpg in Resources */,
 				EDAD81A51C0D8851009E53F9 /* Assets.xcassets in Resources */,
 				EDAD81A01C0D8851009E53F9 /* Main.storyboard in Resources */,
 				398055951C22861C002144AC /* Test.png in Resources */,
@@ -293,10 +315,12 @@
 				EDCD2F3D1C0E66F20074E8A0 /* Reachability.m in Sources */,
 				EDAD81A31C0D8851009E53F9 /* KhmerFood.xcdatamodeld in Sources */,
 				EDAD819A1C0D8851009E53F9 /* AppDelegate.m in Sources */,
+				ED8C5A371C2291A600BE9001 /* CustomCollectionViewCell.m in Sources */,
 				398055831C227D42002144AC /* SaveFoodsViewController.m in Sources */,
 				3980558F1C227E4E002144AC /* CardView.m in Sources */,
 				EDCD2F401C0E7B720074E8A0 /* HomeViewController.m in Sources */,
 				EDAD81D81C0D8C0B009E53F9 /* ConnectionManager.m in Sources */,
+				ED8C5A3A1C2291B400BE9001 /* HomeCustomTableViewCell.m in Sources */,
 				ED31CE541C0FDE6C00F8A644 /* AppUtils.m in Sources */,
 				398055921C227E4E002144AC /* ZLSwipeableView.m in Sources */,
 				EDAD81971C0D8851009E53F9 /* main.m in Sources */,
