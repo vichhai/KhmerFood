@@ -97,10 +97,10 @@
             </objects>
             <point key="canvasLocation" x="988" y="1280"/>
         </scene>
-        <!--View Controller-->
+        <!--Test View Controller-->
         <scene sceneID="0N8-Mv-L3U">
             <objects>
-                <viewController id="Y7w-uT-poh" sceneMemberID="viewController">
+                <viewController id="Y7w-uT-poh" customClass="TestViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="v2O-lX-Mes"/>
                         <viewControllerLayoutGuide type="bottom" id="1IT-Ef-XPT"/>
@@ -108,9 +108,45 @@
                     <view key="view" contentMode="scaleToFill" id="Ss8-pg-p4V">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qGv-m5-qdo">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
+                            </imageView>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YJa-Df-ddu">
+                                <rect key="frame" x="0.0" y="150" width="320" height="369"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                            </webView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NhT-z0-vrN">
+                                <rect key="frame" x="20" y="101" width="280" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="ltg-tt-Yyx"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="YJa-Df-ddu" secondAttribute="trailing" id="3it-Zn-wdW"/>
+                            <constraint firstItem="qGv-m5-qdo" firstAttribute="centerX" secondItem="NhT-z0-vrN" secondAttribute="centerX" id="FSU-up-Azr"/>
+                            <constraint firstItem="qGv-m5-qdo" firstAttribute="leading" secondItem="Ss8-pg-p4V" secondAttribute="leading" id="JH7-2v-Drq"/>
+                            <constraint firstItem="qGv-m5-qdo" firstAttribute="top" secondItem="Ss8-pg-p4V" secondAttribute="top" id="NFo-kA-7sK"/>
+                            <constraint firstItem="NhT-z0-vrN" firstAttribute="leading" secondItem="Ss8-pg-p4V" secondAttribute="leadingMargin" constant="4" id="RUH-tV-3cF"/>
+                            <constraint firstItem="YJa-Df-ddu" firstAttribute="top" secondItem="qGv-m5-qdo" secondAttribute="bottom" id="TMb-1k-jpI"/>
+                            <constraint firstItem="NhT-z0-vrN" firstAttribute="top" secondItem="v2O-lX-Mes" secondAttribute="bottom" constant="81" id="Y5U-uS-5ii"/>
+                            <constraint firstItem="YJa-Df-ddu" firstAttribute="top" secondItem="NhT-z0-vrN" secondAttribute="bottom" constant="28" id="aUE-Pk-spd"/>
+                            <constraint firstItem="qGv-m5-qdo" firstAttribute="leading" secondItem="YJa-Df-ddu" secondAttribute="leading" id="ejZ-j2-5DX"/>
+                            <constraint firstItem="YJa-Df-ddu" firstAttribute="trailing" secondItem="qGv-m5-qdo" secondAttribute="trailing" id="txQ-al-qUk"/>
+                            <constraint firstItem="YJa-Df-ddu" firstAttribute="bottom" secondItem="1IT-Ef-XPT" secondAttribute="top" id="uhc-jg-Tkm"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="mostViewed" id="9CN-qv-ERw"/>
+                    <connections>
+                        <outlet property="imageMe" destination="qGv-m5-qdo" id="QME-nu-BgZ"/>
+                        <outlet property="lblName" destination="NhT-z0-vrN" id="Dlf-xg-KWM"/>
+                        <outlet property="webViewME" destination="YJa-Df-ddu" id="rmA-pb-oz0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Tv-ke-oBJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
