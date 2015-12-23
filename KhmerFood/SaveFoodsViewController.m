@@ -8,157 +8,147 @@
 
 #import "SaveFoodsViewController.h"
 
-#import "ZLSwipeableView.h"
-#import "UIColor+FlatColors.h"
-#import "CardView.h"
+#import "YSLDraggableCardContainer.h"
+#import "CardViewMe.h"
 
-@interface SaveFoodsViewController () <ZLSwipeableViewDataSource, ZLSwipeableViewDelegate>{
+#define RGB(r, g, b)	 [UIColor colorWithRed: (r) / 255.0 green: (g) / 255.0 blue: (b) / 255.0 alpha : 1]
+
+@interface SaveFoodsViewController () <YSLDraggableCardContainerDelegate, YSLDraggableCardContainerDataSource>{
     
 }
 
-@property (weak, nonatomic) IBOutlet ZLSwipeableView *swipeableView;
-@property (strong, nonatomic) IBOutlet UILabel *lblWarning;
-
-@property (nonatomic, strong) NSArray *UserArr;
-
-@property (nonatomic) NSUInteger colorIndex;
-@property (nonatomic) NSUInteger TestMe11;
+@property (nonatomic, strong) YSLDraggableCardContainer *container;
+@property (nonatomic, strong) NSMutableArray *datas;
 
 @end
 
 @implementation SaveFoodsViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad{
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-    self.colorIndex = 0;
-    self.TestMe11   = 0;
     
-    self.UserArr = @[@"user1",@"user2",@"user3",@"user4",@"user5"];
+    self.view.backgroundColor = RGB(235, 235, 235);
     
-    [self.swipeableView setNeedsLayout];
-    [self.swipeableView layoutIfNeeded];
+    _container = [[YSLDraggableCardContainer alloc]init];
     
-    self.swipeableView.dataSource = self;
-    self.swipeableView.delegate = self;
-}
-
-//[self.swipeableView swipeTopViewToLeft];
-//[self.swipeableView swipeTopViewToRight];
-// self.colorIndex = 0;
-//[self.swipeableView discardAllSwipeableViews];
-//[self.swipeableView loadNextSwipeableViewsIfNeeded];
-
-
-#pragma mark - ZLSwipeableViewDelegate
-- (void)swipeableView: (ZLSwipeableView *)swipeableView didSwipeLeft:(UIView *)view {
-    NSLog(@"did swipe left");
-    
-    _TestMe11++;
-    NSLog(@"--> %lu",(unsigned long)_TestMe11);
-    
-    if(_UserArr.count == _TestMe11){
-        self.colorIndex = 0;
-        _TestMe11 = 0;
-        [self.swipeableView discardAllSwipeableViews];
-        [self.swipeableView loadNextSwipeableViewsIfNeeded];
-        return;
-    }
-    
-}
-- (void)swipeableView: (ZLSwipeableView *)swipeableView didSwipeRight:(UIView *)view {
-    NSLog(@"did swipe right");
-    _TestMe11++;
-    //    NSLog(@"--> %lu",(unsigned long)_TestMe11);
-    //    NSLog(@"--> %@",_UserArr[_TestMe11-1]);
-    
-    if(_UserArr.count == _TestMe11){
-        self.colorIndex = 0;
-        _TestMe11 = 0;
-        [self.swipeableView discardAllSwipeableViews];
-        [self.swipeableView loadNextSwipeableViewsIfNeeded];
-        return;
-    }
-}
-- (void)swipeableView: (ZLSwipeableView *)swipeableView swipingView:(UIView *)view atLocation:(CGPoint)location {
-    //        NSLog(@"swiping at location: x %f, y%f", location.x, location.y);
-    
-    if(location.x > 200){
-        _lblWarning.text = @"Delete";
-        
-        UIAlertController * alert=   [UIAlertController
-                                      alertControllerWithTitle:@"Food's Name"
-                                      message:[NSString stringWithFormat:@"%@",_UserArr[_TestMe11]]
-                                      preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction* yesButton = [UIAlertAction
-                                    actionWithTitle:@"Yes, please"
-                                    style:UIAlertActionStyleDefault
-                                    handler:^(UIAlertAction * action)
-                                    {
-                                        [self.swipeableView swipeTopViewToRight];
-                                        [alert dismissViewControllerAnimated:YES completion:nil];
-                                        
-                                    }];
-        UIAlertAction* noButton = [UIAlertAction
-                                   actionWithTitle:@"No, thanks"
-                                   style:UIAlertActionStyleDefault
-                                   handler:^(UIAlertAction * action)
-                                   {
-                                       [alert dismissViewControllerAnimated:YES completion:nil];
-                                       
-                                   }];
-        
-        [alert addAction:yesButton];
-        [alert addAction:noButton];
-        
-        [self presentViewController:alert animated:YES completion:nil];
-        
+    if(self.view.frame.size.width >= 320){
+        _container.frame = CGRectMake(20, 0, self.view.frame.size.width, self.view.frame.size.height);
     }else{
-        _lblWarning.text = @"Next";
+        _container.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
     }
     
-}
-- (IBAction)tapOnFoodAction:(UITapGestureRecognizer *)sender {
+    _container.backgroundColor = [UIColor clearColor];
+    _container.dataSource = self;
+    _container.delegate = self;
+    _container.canDraggableDirection = YSLDraggableDirectionLeft | YSLDraggableDirectionRight ;
+    [self.view addSubview:_container];
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Food"
-                                                    message:[NSString stringWithFormat:@"%@",_UserArr[_TestMe11]]
-                                                   delegate:self
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [alert show];
+
+    [self loadData];
+    
+    [_container reloadCardContainer];
 }
 
-#pragma mark - ZLSwipeableViewDataSource
-- (UIView *)nextViewForSwipeableView:(ZLSwipeableView *)swipeableView {
-    if (self.colorIndex<self.UserArr.count) {
-        CardView *viewCard = [[CardView alloc] initWithFrame:swipeableView.bounds];
-        viewCard.cardColor = [UIColor whiteColor];
-        
-        
-        UIImageView *ImageME = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, swipeableView.bounds.size.width, swipeableView.bounds.size.height - 70)];
-        ImageME.backgroundColor= [UIColor lightGrayColor];
-        ImageME.image = [UIImage imageNamed:@"Test.png"];
-        [viewCard addSubview:ImageME];
-        
-        
-        UILabel *lblFoodName = [[UILabel alloc]initWithFrame:CGRectMake(10, swipeableView.bounds.size.height - 65, swipeableView.bounds.size.width - 40, 30)];
-        lblFoodName.text = @"ខសាច់ជ្រូកបែបចិន";
-        [viewCard addSubview:lblFoodName];
-        
-        UILabel *lblTypeName = [[UILabel alloc]initWithFrame:CGRectMake(10, swipeableView.bounds.size.height - 35, swipeableView.bounds.size.width - 40, 30)];
-        lblTypeName.text = @"ប្រភេទ ៖​ សម្ល";
-        [viewCard addSubview:lblTypeName];
-        
-        
-        //        NSLog(@"%@",[NSString stringWithFormat:@"%@",self.UserArr[self.colorIndex]]);
-        
-        self.colorIndex++;
-        
-        return viewCard;
+- (void)loadData{
+    _datas = [NSMutableArray array];
+    
+    for (int i = 0; i < 7; i++) {
+        NSDictionary *dict = @{@"image" : [NSString stringWithFormat:@"Test.png"],
+                               @"name" : @"Yo Testing Demo"};
+        [_datas addObject:dict];
     }
-    return nil;
 }
+
+
+#pragma mark -- YSLDraggableCardContainer DataSource
+- (UIView *)cardContainerViewNextViewWithIndex:(NSInteger)index{
+    NSDictionary *dict = _datas[index];
+    CardViewMe *view;
+     if(self.view.frame.size.width >= 320){
+         view = [[CardViewMe alloc]initWithFrame:CGRectMake(10, 64, self.view.frame.size.width - 60, self.view.frame.size.width - 60)];
+     }else{
+         view = [[CardViewMe alloc]initWithFrame:CGRectMake(10, 64, self.view.frame.size.width - 20, self.view.frame.size.width - 20)];
+     }
+    
+   
+    view.backgroundColor = [UIColor whiteColor];
+    view.imageView.image = [UIImage imageNamed:dict[@"image"]];
+    view.label.text = [NSString stringWithFormat:@"%@  %ld",dict[@"name"],(long)index];
+    view.labelName.text = [NSString stringWithFormat:@"%@  %ld",dict[@"name"],(long)index];
+    return view;
+}
+
+- (NSInteger)cardContainerViewNumberOfViewInIndex:(NSInteger)index{
+    return _datas.count;
+}
+
+#pragma mark -- YSLDraggableCardContainer Delegate
+- (void)cardContainerView:(YSLDraggableCardContainer *)cardContainerView didEndDraggingAtIndex:(NSInteger)index draggableView:(UIView *)draggableView draggableDirection:(YSLDraggableDirection)draggableDirection{
+    if (draggableDirection == YSLDraggableDirectionLeft) {
+        [cardContainerView movePositionWithDirection:draggableDirection
+                                         isAutomatic:NO];
+    }
+    
+    if (draggableDirection == YSLDraggableDirectionRight) {
+        [cardContainerView movePositionWithDirection:YSLDraggableDirectionDown isAutomatic:YES undoHandler:^{
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@""
+                                                                                     message:@"Do you want to reset?"
+                                                                              preferredStyle:UIAlertControllerStyleAlert];
+            
+            [alertController addAction:[UIAlertAction actionWithTitle:@"NO" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                [cardContainerView movePositionWithDirection:YSLDraggableDirectionRight isAutomatic:YES];
+            }]];
+            
+            [alertController addAction:[UIAlertAction actionWithTitle:@"YES" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+                [cardContainerView movePositionWithDirection:YSLDraggableDirectionDefault isAutomatic:YES];
+            }]];
+            
+            [self presentViewController:alertController animated:YES completion:nil];
+        }];
+        
+    }
+    
+}
+
+- (void)cardContainderView:(YSLDraggableCardContainer *)cardContainderView updatePositionWithDraggableView:(UIView *)draggableView draggableDirection:(YSLDraggableDirection)draggableDirection widthRatio:(CGFloat)widthRatio heightRatio:(CGFloat)heightRatio{
+    CardViewMe *view = (CardViewMe *)draggableView;
+    
+    if (draggableDirection == YSLDraggableDirectionDefault) {
+        view.selectedView.alpha = 0;
+    }
+    
+    if (draggableDirection == YSLDraggableDirectionLeft) {
+        view.selectedView.backgroundColor = RGB(215, 104, 91);
+        view.selectedView.alpha = widthRatio > 0.8 ? 0.8 : widthRatio;
+    }
+    
+    if (draggableDirection == YSLDraggableDirectionRight) {
+        view.selectedView.backgroundColor = RGB(114, 209, 142);
+        view.selectedView.alpha = widthRatio > 0.8 ? 0.8 : widthRatio;
+    }
+    
+    
+}
+
+- (void)cardContainerViewDidCompleteAll:(YSLDraggableCardContainer *)container;{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [container reloadCardContainer];
+    });
+}
+
+- (void)cardContainerView:(YSLDraggableCardContainer *)cardContainerView didSelectAtIndex:(NSInteger)index draggableView:(UIView *)draggableView{
+    NSLog(@"++ index : %ld",(long)index);
+}
+
+
+- (IBAction)btnShareAction:(UIButton *)sender {
+    
+    
+    
+    
+}
+
+
 
 
 @end

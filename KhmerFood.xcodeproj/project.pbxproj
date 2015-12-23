@@ -13,6 +13,9 @@
 		398055911C227E4E002144AC /* ZLPanGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3980558C1C227E4E002144AC /* ZLPanGestureRecognizer.m */; };
 		398055921C227E4E002144AC /* ZLSwipeableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3980558E1C227E4E002144AC /* ZLSwipeableView.m */; };
 		398055951C22861C002144AC /* Test.png in Resources */ = {isa = PBXBuildFile; fileRef = 398055941C22861C002144AC /* Test.png */; };
+		39901C1B1C2A51A000A4D6D6 /* YSLCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39901C171C2A51A000A4D6D6 /* YSLCardView.m */; };
+		39901C1C1C2A51A000A4D6D6 /* YSLDraggableCardContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 39901C191C2A51A000A4D6D6 /* YSLDraggableCardContainer.m */; };
+		39901C1F1C2A51CF00A4D6D6 /* CardViewMe.m in Sources */ = {isa = PBXBuildFile; fileRef = 39901C1E1C2A51CF00A4D6D6 /* CardViewMe.m */; };
 		ED31CE541C0FDE6C00F8A644 /* AppUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = ED31CE531C0FDE6C00F8A644 /* AppUtils.m */; };
 		ED8C5A371C2291A600BE9001 /* CustomCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED8C5A361C2291A600BE9001 /* CustomCollectionViewCell.m */; };
 		ED8C5A3A1C2291B400BE9001 /* HomeCustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED8C5A391C2291B400BE9001 /* HomeCustomTableViewCell.m */; };
@@ -44,6 +47,12 @@
 		3980558D1C227E4E002144AC /* ZLSwipeableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLSwipeableView.h; sourceTree = "<group>"; };
 		3980558E1C227E4E002144AC /* ZLSwipeableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLSwipeableView.m; sourceTree = "<group>"; };
 		398055941C22861C002144AC /* Test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Test.png; sourceTree = "<group>"; };
+		39901C161C2A51A000A4D6D6 /* YSLCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSLCardView.h; sourceTree = "<group>"; };
+		39901C171C2A51A000A4D6D6 /* YSLCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSLCardView.m; sourceTree = "<group>"; };
+		39901C181C2A51A000A4D6D6 /* YSLDraggableCardContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSLDraggableCardContainer.h; sourceTree = "<group>"; };
+		39901C191C2A51A000A4D6D6 /* YSLDraggableCardContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSLDraggableCardContainer.m; sourceTree = "<group>"; };
+		39901C1D1C2A51CF00A4D6D6 /* CardViewMe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardViewMe.h; sourceTree = "<group>"; };
+		39901C1E1C2A51CF00A4D6D6 /* CardViewMe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardViewMe.m; sourceTree = "<group>"; };
 		ED31CE521C0FDE6C00F8A644 /* AppUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppUtils.h; sourceTree = "<group>"; };
 		ED31CE531C0FDE6C00F8A644 /* AppUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppUtils.m; sourceTree = "<group>"; };
 		ED8C5A351C2291A600BE9001 /* CustomCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCollectionViewCell.h; sourceTree = "<group>"; };
@@ -88,6 +97,7 @@
 		398055841C227E4E002144AC /* CardView_Lib */ = {
 			isa = PBXGroup;
 			children = (
+				39901C131C2A51A000A4D6D6 /* CardMe */,
 				398055851C227E4E002144AC /* CardView.h */,
 				398055861C227E4E002144AC /* CardView.m */,
 				398055871C227E4E002144AC /* UIColor+FlatColors */,
@@ -123,6 +133,19 @@
 				ED8C5A3E1C22932300BE9001 /* food.jpg */,
 			);
 			path = Image;
+			sourceTree = "<group>";
+		};
+		39901C131C2A51A000A4D6D6 /* CardMe */ = {
+			isa = PBXGroup;
+			children = (
+				39901C1D1C2A51CF00A4D6D6 /* CardViewMe.h */,
+				39901C1E1C2A51CF00A4D6D6 /* CardViewMe.m */,
+				39901C161C2A51A000A4D6D6 /* YSLCardView.h */,
+				39901C171C2A51A000A4D6D6 /* YSLCardView.m */,
+				39901C181C2A51A000A4D6D6 /* YSLDraggableCardContainer.h */,
+				39901C191C2A51A000A4D6D6 /* YSLDraggableCardContainer.m */,
+			);
+			path = CardMe;
 			sourceTree = "<group>";
 		};
 		ED31CE511C0FDE6200F8A644 /* AppUtils */ = {
@@ -311,12 +334,15 @@
 				EDAD81CE1C0D89D6009E53F9 /* ShareDataManager.m in Sources */,
 				EDAD81DD1C0D8D65009E53F9 /* CoreDataManager.m in Sources */,
 				398055901C227E4E002144AC /* UIColor+FlatColors.m in Sources */,
+				39901C1B1C2A51A000A4D6D6 /* YSLCardView.m in Sources */,
 				398055911C227E4E002144AC /* ZLPanGestureRecognizer.m in Sources */,
 				EDCD2F3D1C0E66F20074E8A0 /* Reachability.m in Sources */,
 				EDAD81A31C0D8851009E53F9 /* KhmerFood.xcdatamodeld in Sources */,
+				39901C1C1C2A51A000A4D6D6 /* YSLDraggableCardContainer.m in Sources */,
 				EDAD819A1C0D8851009E53F9 /* AppDelegate.m in Sources */,
 				ED8C5A371C2291A600BE9001 /* CustomCollectionViewCell.m in Sources */,
 				398055831C227D42002144AC /* SaveFoodsViewController.m in Sources */,
+				39901C1F1C2A51CF00A4D6D6 /* CardViewMe.m in Sources */,
 				3980558F1C227E4E002144AC /* CardView.m in Sources */,
 				EDCD2F401C0E7B720074E8A0 /* HomeViewController.m in Sources */,
 				EDAD81D81C0D8C0B009E53F9 /* ConnectionManager.m in Sources */,
