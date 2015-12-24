@@ -9,8 +9,11 @@
 #import "KFViewController.h"
 #import "ConnectionManager.h"
 #import "AppUtils.h"
+//#import "GKFadeNavigationController.h"
+#import "UINavigationBar+Awesome.h"
+@interface HomeViewController : UITableViewController
 
-@interface HomeViewController : KFViewController
-
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageTopConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageButtomConstraint;
 
 @end

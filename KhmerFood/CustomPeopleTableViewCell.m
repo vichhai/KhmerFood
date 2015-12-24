@@ -1,18 +1,17 @@
 //
-//  HomeCustomTableViewCell.m
+//  CustomPeopleTableViewCell.m
 //  KhmerFood
 //
-//  Created by kvc on 12/17/15.
+//  Created by kvc on 12/24/15.
 //  Copyright © 2015 Donut. All rights reserved.
 //
 
-#import "HomeCustomTableViewCell.h"
-#import "CustomCollectionViewCell.h"
-@implementation HomeCustomTableViewCell
+#import "CustomPeopleTableViewCell.h"
+
+@implementation CustomPeopleTableViewCell
 
 - (void)awakeFromNib {
     // Initialization code
-    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

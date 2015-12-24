@@ -11,8 +11,8 @@
 #import <QuartzCore/QuartzCore.h>
 
 @interface HomeCustomTableViewCell : UITableViewCell
+
 @property (weak, nonatomic) IBOutlet UILabel *homeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *homeButton;
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @end
