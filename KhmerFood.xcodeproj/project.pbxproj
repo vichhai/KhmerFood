@@ -28,6 +28,13 @@
 		ED5A44681C2A6B560004DF8C /* CustomFoodDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED5A44671C2A6B560004DF8C /* CustomFoodDetailTableViewCell.m */; };
 		ED5A446A1C2A77C70004DF8C /* face.png in Resources */ = {isa = PBXBuildFile; fileRef = ED5A44691C2A77C70004DF8C /* face.png */; };
 		ED5A446E1C2A7A610004DF8C /* ProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED5A446D1C2A7A610004DF8C /* ProfileTableViewController.m */; };
+		ED793EFB1C3253A7006D79FE /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED793EF81C3253A7006D79FE /* FBSDKCoreKit.framework */; };
+		ED793EFC1C3253A7006D79FE /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED793EF91C3253A7006D79FE /* FBSDKLoginKit.framework */; };
+		ED793EFD1C3253A7006D79FE /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED793EFA1C3253A7006D79FE /* FBSDKShareKit.framework */; };
+		ED793F041C325481006D79FE /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED793F001C325481006D79FE /* Fabric.framework */; };
+		ED793F051C325481006D79FE /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED793F011C325481006D79FE /* TwitterKit.framework */; };
+		ED793F061C325481006D79FE /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ED793F021C325481006D79FE /* TwitterKitResources.bundle */; };
+		ED793F071C325481006D79FE /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED793F031C325481006D79FE /* TwitterCore.framework */; };
 		ED8301051C22A73700779E8D /* FirstRowCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED8301041C22A73700779E8D /* FirstRowCollectionViewCell.m */; };
 		ED83010B1C22ABAD00779E8D /* SecondCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED83010A1C22ABAD00779E8D /* SecondCollectionViewController.m */; };
 		ED8C5A371C2291A600BE9001 /* CustomCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED8C5A361C2291A600BE9001 /* CustomCollectionViewCell.m */; };
@@ -90,6 +97,13 @@
 		ED5A44691C2A77C70004DF8C /* face.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = face.png; sourceTree = "<group>"; };
 		ED5A446C1C2A7A610004DF8C /* ProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileTableViewController.h; sourceTree = "<group>"; };
 		ED5A446D1C2A7A610004DF8C /* ProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileTableViewController.m; sourceTree = "<group>"; };
+		ED793EF81C3253A7006D79FE /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		ED793EF91C3253A7006D79FE /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		ED793EFA1C3253A7006D79FE /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		ED793F001C325481006D79FE /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		ED793F011C325481006D79FE /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterKit.framework; sourceTree = "<group>"; };
+		ED793F021C325481006D79FE /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TwitterKitResources.bundle; sourceTree = "<group>"; };
+		ED793F031C325481006D79FE /* TwitterCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterCore.framework; sourceTree = "<group>"; };
 		ED8301031C22A73700779E8D /* FirstRowCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstRowCollectionViewCell.h; sourceTree = "<group>"; };
 		ED8301041C22A73700779E8D /* FirstRowCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstRowCollectionViewCell.m; sourceTree = "<group>"; };
 		ED8301091C22ABAD00779E8D /* SecondCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondCollectionViewController.h; sourceTree = "<group>"; };
@@ -133,6 +147,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED793EFC1C3253A7006D79FE /* FBSDKLoginKit.framework in Frameworks */,
+				ED793F071C325481006D79FE /* TwitterCore.framework in Frameworks */,
+				ED793F051C325481006D79FE /* TwitterKit.framework in Frameworks */,
+				ED793EFB1C3253A7006D79FE /* FBSDKCoreKit.framework in Frameworks */,
+				ED793EFD1C3253A7006D79FE /* FBSDKShareKit.framework in Frameworks */,
+				ED793F041C325481006D79FE /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,6 +295,27 @@
 			name = Profile;
 			sourceTree = "<group>";
 		};
+		ED793EF71C325392006D79FE /* Facebook */ = {
+			isa = PBXGroup;
+			children = (
+				ED793EF81C3253A7006D79FE /* FBSDKCoreKit.framework */,
+				ED793EF91C3253A7006D79FE /* FBSDKLoginKit.framework */,
+				ED793EFA1C3253A7006D79FE /* FBSDKShareKit.framework */,
+			);
+			name = Facebook;
+			sourceTree = "<group>";
+		};
+		ED793EFE1C3253AC006D79FE /* Twitter */ = {
+			isa = PBXGroup;
+			children = (
+				ED793F001C325481006D79FE /* Fabric.framework */,
+				ED793F011C325481006D79FE /* TwitterKit.framework */,
+				ED793F021C325481006D79FE /* TwitterKitResources.bundle */,
+				ED793F031C325481006D79FE /* TwitterCore.framework */,
+			);
+			name = Twitter;
+			sourceTree = "<group>";
+		};
 		ED8301021C22A62500779E8D /* CollectionView */ = {
 			isa = PBXGroup;
 			children = (
@@ -362,6 +403,8 @@
 		EDAD81951C0D8851009E53F9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				ED793EFE1C3253AC006D79FE /* Twitter */,
+				ED793EF71C325392006D79FE /* Facebook */,
 				ED4DDCB91C2919EA00DE5FBA /* CExpendHeader */,
 				ED4DDCB01C28D98B00DE5FBA /* FadeNavigationController */,
 				398055931C22861C002144AC /* Image */,
@@ -428,6 +471,7 @@
 				EDAD818E1C0D8851009E53F9 /* Sources */,
 				EDAD818F1C0D8851009E53F9 /* Frameworks */,
 				EDAD81901C0D8851009E53F9 /* Resources */,
+				ED793EFF1C325467006D79FE /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -480,6 +524,7 @@
 				EDAD81A81C0D8851009E53F9 /* LaunchScreen.storyboard in Resources */,
 				ED4DDCB51C28E47800DE5FBA /* menu_all_icon.png in Resources */,
 				ED8C5A3F1C22932300BE9001 /* food.jpg in Resources */,
+				ED793F061C325481006D79FE /* TwitterKitResources.bundle in Resources */,
 				EDAD81A01C0D8851009E53F9 /* Main.storyboard in Resources */,
 				398055951C22861C002144AC /* Test.png in Resources */,
 				EDE694951C2391D600A413A6 /* info.png in Resources */,
@@ -494,6 +539,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		ED793EFF1C325467006D79FE /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run b10c562e981369d49c15a906b3d127e399390dcc 28aac85dd157a9c8c523aa37870c8db1d16b6295aaf781425566873258dfaf6e";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EDAD818E1C0D8851009E53F9 /* Sources */ = {
@@ -639,6 +700,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/KhmerFood",
+				);
 				INFOPLIST_FILE = KhmerFood/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -654,6 +719,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/KhmerFood",
+				);
 				INFOPLIST_FILE = KhmerFood/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

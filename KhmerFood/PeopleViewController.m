@@ -8,9 +8,12 @@
 
 #import "PeopleViewController.h"
 #import "CustomPeopleTableViewCell.h"
+#import "UINavigationBar+Awesome.h"
 
 @interface PeopleViewController () <UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) IBOutlet UIView *coverView;
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *registerButton;
 
 @end
 
@@ -18,17 +21,15 @@
 
 #pragma mark : View life cycle
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self setupRegisterView];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:45/255.0 green:169/255.0 blue:122/255.0 alpha:1]];
-    
-    UILabel *titleLable =[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 25)];
-    [titleLable setFont:[UIFont systemFontOfSize:17]];
-    titleLable.textColor = [UIColor whiteColor];
-    titleLable.textAlignment = NSTextAlignmentCenter;
-    titleLable.text = @"អំពីខ្ញុំ";
-    self.navigationItem.titleView = titleLable;
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:60/255.0 green:208/255.0 blue:165/255.0 alpha:1]];
     
     [self setupSearch];
 }
@@ -39,6 +40,27 @@
 }
 
 #pragma mark : other methods
+
+-(void)setupRegisterView {
+    
+    for (int i = 0; i < 3; i++) {
+        [[[_registerButton objectAtIndex:i] layer]setBorderWidth:1.0];
+        [[[_registerButton objectAtIndex:i] layer]setBorderColor:[[UIColor whiteColor]CGColor]];
+        [[_registerButton objectAtIndex:i] setTag:2000 + i];
+        [[_registerButton objectAtIndex:i] addTarget:self action:@selector(registerButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+    self.coverView.frame = self.view.frame;
+    [self.view addSubview:self.coverView];
+    [self.view bringSubviewToFront:self.coverView];
+    self.coverView.hidden = false;
+    self.tableView.hidden = true;
+    
+    [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor clearColor]];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    self.navigationItem.titleView = nil;
+}
+
 -(void)setupSearch {
 
     UISearchBar *searchBar = [[UISearchBar alloc] init];
@@ -49,12 +71,26 @@
     
 }
 
+-(void)registerButtonClick:(UIButton *)sender {
+    [self.navigationController.navigationBar lt_reset];
+    
+    UILabel *titleLable =[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 25)];
+    [titleLable setFont:[UIFont systemFontOfSize:17]];
+    titleLable.textColor = [UIColor whiteColor];
+    titleLable.textAlignment = NSTextAlignmentCenter;
+    titleLable.text = @"អំពីខ្ញុំ";
+    self.navigationItem.titleView = titleLable;
+    
+//    [self.coverView removeFromSuperview];
+    self.tableView.hidden = false;
+    self.coverView.hidden = true;
+}
+
 #pragma mark : table view method
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     CustomPeopleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    
     return cell;
 
 }
