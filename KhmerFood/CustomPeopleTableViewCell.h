@@ -10,4 +10,6 @@
 
 @interface CustomPeopleTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIImageView *myImage;
+
 @end

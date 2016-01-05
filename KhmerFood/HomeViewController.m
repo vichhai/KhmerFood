@@ -65,7 +65,7 @@
 {
     
     if (scrollView.tag == 9999) {
-        UIColor * color = [UIColor colorWithRed:43/255.0 green:180/255.0 blue:142/255.0 alpha:1];
+        UIColor * color = NaviStandartColor;
         CGFloat offsetY = scrollView.contentOffset.y;
         if (offsetY > NAVBAR_CHANGE_POINT) {
             CGFloat alpha = MIN(1, 1 - ((NAVBAR_CHANGE_POINT + 64 - offsetY) / 64));
@@ -95,7 +95,7 @@
     NSLog(@"Kikilu");
 }
 
-#pragma mark: - notification action
+#pragma mark - notification action
 -(void)gotoDetailAction:(NSNotification *)note {
 
     NSDictionary *dic = [[NSDictionary alloc] initWithDictionary:note.userInfo];
@@ -103,7 +103,7 @@
     [self performSegueWithIdentifier:@"detail" sender:nil];
 }
 
-#pragma mark : other methods
+#pragma mark - other methods
 
 -(void)scrollingTimer{
     // access the scroll view with the tag
@@ -166,6 +166,11 @@
 
 -(void)tapDidTap:(id)sender {
     NSLog(@"sender is %f",((myScrollView.contentOffset.x + screenWidth) - (myScrollView.contentSize.width / 4))/screenWidth);
+}
+
+#pragma mark - button method
+- (IBAction)shareButtonMethod:(id)sender {
+    [self performSegueWithIdentifier:@"recommend" sender:nil];
 }
 
 

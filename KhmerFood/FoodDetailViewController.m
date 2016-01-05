@@ -87,7 +87,7 @@
 #pragma mark - scrollview delegate method
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    UIColor * color = [UIColor colorWithRed:43/255.0 green:180/255.0 blue:142/255.0 alpha:1];
+    UIColor * color = [UIColor colorWithRed:53/255.0 green:201/255.0 blue:147/255.0 alpha:1];
     CGFloat offsetY = scrollView.contentOffset.y;
     if (offsetY > NAVBAR_CHANGE_POINT) {
         CGFloat alpha = MIN(1, 1 - ((NAVBAR_CHANGE_POINT + 64 - offsetY) / 64));
@@ -114,5 +114,6 @@
 -(void)lettButtonClicked:(UIButton *)sender {
     [self.navigationController popViewControllerAnimated:true];
 }
+
 
 @end

@@ -18,6 +18,13 @@
 		ED019D1C1C2B8029008D6BBE /* x_button.png in Resources */ = {isa = PBXBuildFile; fileRef = ED019D1B1C2B8029008D6BBE /* x_button.png */; };
 		ED019D201C2B8991008D6BBE /* NameSettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED019D1F1C2B8991008D6BBE /* NameSettingTableViewController.m */; };
 		ED019D231C2B899D008D6BBE /* AccountSettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED019D221C2B899D008D6BBE /* AccountSettingTableViewController.m */; };
+		ED17090D1C3B451B00F92EC0 /* SearchingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED17090C1C3B451B00F92EC0 /* SearchingViewController.m */; };
+		ED1709151C3B457300F92EC0 /* JCCollectionViewTagFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = ED1709101C3B457300F92EC0 /* JCCollectionViewTagFlowLayout.m */; };
+		ED1709161C3B457300F92EC0 /* JCTagCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED1709121C3B457300F92EC0 /* JCTagCell.m */; };
+		ED1709171C3B457300F92EC0 /* JCTagListView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED1709141C3B457300F92EC0 /* JCTagListView.m */; };
+		ED3116EE1C33B74100061E78 /* FHSStream.m in Sources */ = {isa = PBXBuildFile; fileRef = ED3116EB1C33B74100061E78 /* FHSStream.m */; };
+		ED3116EF1C33B74100061E78 /* FHSTwitterEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = ED3116ED1C33B74100061E78 /* FHSTwitterEngine.m */; };
+		ED3116F11C33B97F00061E78 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED3116F01C33B97F00061E78 /* SystemConfiguration.framework */; };
 		ED31CE541C0FDE6C00F8A644 /* AppUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = ED31CE531C0FDE6C00F8A644 /* AppUtils.m */; };
 		ED4DDCB51C28E47800DE5FBA /* menu_all_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = ED4DDCB41C28E47800DE5FBA /* menu_all_icon.png */; };
 		ED4DDCB81C29139B00DE5FBA /* UINavigationBar+Awesome.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4DDCB71C29139B00DE5FBA /* UINavigationBar+Awesome.m */; };
@@ -53,6 +60,7 @@
 		EDCD2F401C0E7B720074E8A0 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDCD2F3F1C0E7B720074E8A0 /* HomeViewController.m */; };
 		EDE694931C23868700A413A6 /* ThirdCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE694921C23868700A413A6 /* ThirdCollectionViewController.m */; };
 		EDE694951C2391D600A413A6 /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = EDE694941C2391D600A413A6 /* info.png */; };
+		EDE6A3921C3A015500F71B38 /* RecommendFoodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE6A3911C3A015500F71B38 /* RecommendFoodViewController.m */; };
 		EDEB136F1C2A26D500772E1F /* go_back.png in Resources */ = {isa = PBXBuildFile; fileRef = EDEB136E1C2A26D500772E1F /* go_back.png */; };
 		EDEB13711C2A3E4300772E1F /* upload.png in Resources */ = {isa = PBXBuildFile; fileRef = EDEB13701C2A3E4300772E1F /* upload.png */; };
 		EDEB13731C2A598E00772E1F /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = EDEB13721C2A598E00772E1F /* pin.png */; };
@@ -81,6 +89,19 @@
 		ED019D1F1C2B8991008D6BBE /* NameSettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameSettingTableViewController.m; sourceTree = "<group>"; };
 		ED019D211C2B899D008D6BBE /* AccountSettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountSettingTableViewController.h; sourceTree = "<group>"; };
 		ED019D221C2B899D008D6BBE /* AccountSettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountSettingTableViewController.m; sourceTree = "<group>"; };
+		ED17090B1C3B451B00F92EC0 /* SearchingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchingViewController.h; sourceTree = "<group>"; };
+		ED17090C1C3B451B00F92EC0 /* SearchingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchingViewController.m; sourceTree = "<group>"; };
+		ED17090F1C3B457300F92EC0 /* JCCollectionViewTagFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCCollectionViewTagFlowLayout.h; sourceTree = "<group>"; };
+		ED1709101C3B457300F92EC0 /* JCCollectionViewTagFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCCollectionViewTagFlowLayout.m; sourceTree = "<group>"; };
+		ED1709111C3B457300F92EC0 /* JCTagCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCTagCell.h; sourceTree = "<group>"; };
+		ED1709121C3B457300F92EC0 /* JCTagCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCTagCell.m; sourceTree = "<group>"; };
+		ED1709131C3B457300F92EC0 /* JCTagListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCTagListView.h; sourceTree = "<group>"; };
+		ED1709141C3B457300F92EC0 /* JCTagListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCTagListView.m; sourceTree = "<group>"; };
+		ED3116EA1C33B74100061E78 /* FHSStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FHSStream.h; sourceTree = "<group>"; };
+		ED3116EB1C33B74100061E78 /* FHSStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FHSStream.m; sourceTree = "<group>"; };
+		ED3116EC1C33B74100061E78 /* FHSTwitterEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FHSTwitterEngine.h; sourceTree = "<group>"; };
+		ED3116ED1C33B74100061E78 /* FHSTwitterEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FHSTwitterEngine.m; sourceTree = "<group>"; };
+		ED3116F01C33B97F00061E78 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		ED31CE521C0FDE6C00F8A644 /* AppUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppUtils.h; sourceTree = "<group>"; };
 		ED31CE531C0FDE6C00F8A644 /* AppUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppUtils.m; sourceTree = "<group>"; };
 		ED4DDCB41C28E47800DE5FBA /* menu_all_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_all_icon.png; sourceTree = "<group>"; };
@@ -136,6 +157,8 @@
 		EDE694911C23868700A413A6 /* ThirdCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdCollectionViewController.h; sourceTree = "<group>"; };
 		EDE694921C23868700A413A6 /* ThirdCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdCollectionViewController.m; sourceTree = "<group>"; };
 		EDE694941C2391D600A413A6 /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
+		EDE6A3901C3A015500F71B38 /* RecommendFoodViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendFoodViewController.h; sourceTree = "<group>"; };
+		EDE6A3911C3A015500F71B38 /* RecommendFoodViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendFoodViewController.m; sourceTree = "<group>"; };
 		EDEB136E1C2A26D500772E1F /* go_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = go_back.png; sourceTree = "<group>"; };
 		EDEB13701C2A3E4300772E1F /* upload.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upload.png; sourceTree = "<group>"; };
 		EDEB13721C2A598E00772E1F /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin.png; sourceTree = "<group>"; };
@@ -147,6 +170,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED3116F11C33B97F00061E78 /* SystemConfiguration.framework in Frameworks */,
 				ED793EFC1C3253A7006D79FE /* FBSDKLoginKit.framework in Frameworks */,
 				ED793F071C325481006D79FE /* TwitterCore.framework in Frameworks */,
 				ED793F051C325481006D79FE /* TwitterKit.framework in Frameworks */,
@@ -231,6 +255,28 @@
 			name = Setting;
 			sourceTree = "<group>";
 		};
+		ED17090E1C3B456400F92EC0 /* TagView */ = {
+			isa = PBXGroup;
+			children = (
+				ED17090F1C3B457300F92EC0 /* JCCollectionViewTagFlowLayout.h */,
+				ED1709101C3B457300F92EC0 /* JCCollectionViewTagFlowLayout.m */,
+				ED1709111C3B457300F92EC0 /* JCTagCell.h */,
+				ED1709121C3B457300F92EC0 /* JCTagCell.m */,
+				ED1709131C3B457300F92EC0 /* JCTagListView.h */,
+				ED1709141C3B457300F92EC0 /* JCTagListView.m */,
+			);
+			name = TagView;
+			sourceTree = "<group>";
+		};
+		ED1709181C3B501000F92EC0 /* SearchViewcontroller */ = {
+			isa = PBXGroup;
+			children = (
+				ED17090B1C3B451B00F92EC0 /* SearchingViewController.h */,
+				ED17090C1C3B451B00F92EC0 /* SearchingViewController.m */,
+			);
+			name = SearchViewcontroller;
+			sourceTree = "<group>";
+		};
 		ED31CE511C0FDE6200F8A644 /* AppUtils */ = {
 			isa = PBXGroup;
 			children = (
@@ -261,6 +307,7 @@
 		ED4DDCBF1C293D0900DE5FBA /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				EDE6A38F1C3A012F00F71B38 /* RecommendFood */,
 				ED4DDCC01C293D1100DE5FBA /* FoodDetailViewController */,
 			);
 			name = Detail;
@@ -308,6 +355,10 @@
 		ED793EFE1C3253AC006D79FE /* Twitter */ = {
 			isa = PBXGroup;
 			children = (
+				ED3116EA1C33B74100061E78 /* FHSStream.h */,
+				ED3116EB1C33B74100061E78 /* FHSStream.m */,
+				ED3116EC1C33B74100061E78 /* FHSTwitterEngine.h */,
+				ED3116ED1C33B74100061E78 /* FHSTwitterEngine.m */,
 				ED793F001C325481006D79FE /* Fabric.framework */,
 				ED793F011C325481006D79FE /* TwitterKit.framework */,
 				ED793F021C325481006D79FE /* TwitterKitResources.bundle */,
@@ -319,6 +370,8 @@
 		ED8301021C22A62500779E8D /* CollectionView */ = {
 			isa = PBXGroup;
 			children = (
+				ED8C5A351C2291A600BE9001 /* CustomCollectionViewCell.h */,
+				ED8C5A361C2291A600BE9001 /* CustomCollectionViewCell.m */,
 				ED83010E1C22B33900779E8D /* collection3 */,
 				ED83010D1C22B32F00779E8D /* collection2 */,
 				ED83010C1C22B2B500779E8D /* collection1 */,
@@ -331,8 +384,6 @@
 			children = (
 				ED8301031C22A73700779E8D /* FirstRowCollectionViewCell.h */,
 				ED8301041C22A73700779E8D /* FirstRowCollectionViewCell.m */,
-				ED8C5A351C2291A600BE9001 /* CustomCollectionViewCell.h */,
-				ED8C5A361C2291A600BE9001 /* CustomCollectionViewCell.m */,
 			);
 			name = collection1;
 			sourceTree = "<group>";
@@ -370,6 +421,7 @@
 		EDAD81891C0D8851009E53F9 = {
 			isa = PBXGroup;
 			children = (
+				ED3116F01C33B97F00061E78 /* SystemConfiguration.framework */,
 				EDAD81941C0D8851009E53F9 /* KhmerFood */,
 				EDAD81931C0D8851009E53F9 /* Products */,
 			);
@@ -390,6 +442,8 @@
 				EDAD81991C0D8851009E53F9 /* AppDelegate.m */,
 				398055811C227D42002144AC /* SaveFoodsViewController.h */,
 				398055821C227D42002144AC /* SaveFoodsViewController.m */,
+				EDAD81CF1C0D8B4B009E53F9 /* KFViewController */,
+				ED1709181C3B501000F92EC0 /* SearchViewcontroller */,
 				ED8C5A3D1C2292B900BE9001 /* Home */,
 				ED4DDCBF1C293D0900DE5FBA /* Detail */,
 				ED019D141C2B713C008D6BBE /* People */,
@@ -403,6 +457,7 @@
 		EDAD81951C0D8851009E53F9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				ED17090E1C3B456400F92EC0 /* TagView */,
 				ED793EFE1C3253AC006D79FE /* Twitter */,
 				ED793EF71C325392006D79FE /* Facebook */,
 				ED4DDCB91C2919EA00DE5FBA /* CExpendHeader */,
@@ -412,7 +467,6 @@
 				ED31CE511C0FDE6200F8A644 /* AppUtils */,
 				EDAD81DA1C0D8D57009E53F9 /* CoredataManager */,
 				EDAD81D51C0D8BF6009E53F9 /* ConnectionManager */,
-				EDAD81CF1C0D8B4B009E53F9 /* KFViewController */,
 				EDAD81CB1C0D8993009E53F9 /* Singleton */,
 				EDAD81A61C0D8851009E53F9 /* LaunchScreen.storyboard */,
 				ED4DDCC41C293E6700DE5FBA /* Assets.xcassets */,
@@ -459,6 +513,15 @@
 				EDAD81DC1C0D8D65009E53F9 /* CoreDataManager.m */,
 			);
 			name = CoredataManager;
+			sourceTree = "<group>";
+		};
+		EDE6A38F1C3A012F00F71B38 /* RecommendFood */ = {
+			isa = PBXGroup;
+			children = (
+				EDE6A3901C3A015500F71B38 /* RecommendFoodViewController.h */,
+				EDE6A3911C3A015500F71B38 /* RecommendFoodViewController.m */,
+			);
+			name = RecommendFood;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -563,6 +626,7 @@
 			files = (
 				EDAD81CE1C0D89D6009E53F9 /* ShareDataManager.m in Sources */,
 				ED019D171C2B715E008D6BBE /* PeopleViewController.m in Sources */,
+				ED1709171C3B457300F92EC0 /* JCTagListView.m in Sources */,
 				EDAD81DD1C0D8D65009E53F9 /* CoreDataManager.m in Sources */,
 				398055901C227E4E002144AC /* UIColor+FlatColors.m in Sources */,
 				398055911C227E4E002144AC /* ZLPanGestureRecognizer.m in Sources */,
@@ -573,17 +637,23 @@
 				ED4DDCBC1C2919FC00DE5FBA /* CExpandHeader.m in Sources */,
 				ED83010B1C22ABAD00779E8D /* SecondCollectionViewController.m in Sources */,
 				EDAD819A1C0D8851009E53F9 /* AppDelegate.m in Sources */,
+				ED1709151C3B457300F92EC0 /* JCCollectionViewTagFlowLayout.m in Sources */,
 				ED8C5A371C2291A600BE9001 /* CustomCollectionViewCell.m in Sources */,
 				398055831C227D42002144AC /* SaveFoodsViewController.m in Sources */,
+				ED3116EF1C33B74100061E78 /* FHSTwitterEngine.m in Sources */,
+				ED17090D1C3B451B00F92EC0 /* SearchingViewController.m in Sources */,
 				ED5A446E1C2A7A610004DF8C /* ProfileTableViewController.m in Sources */,
 				3980558F1C227E4E002144AC /* CardView.m in Sources */,
 				EDCD2F401C0E7B720074E8A0 /* HomeViewController.m in Sources */,
+				ED3116EE1C33B74100061E78 /* FHSStream.m in Sources */,
 				ED4DDCC31C293D3300DE5FBA /* FoodDetailViewController.m in Sources */,
 				ED019D201C2B8991008D6BBE /* NameSettingTableViewController.m in Sources */,
 				EDAD81D81C0D8C0B009E53F9 /* ConnectionManager.m in Sources */,
 				ED8C5A3A1C2291B400BE9001 /* HomeCustomTableViewCell.m in Sources */,
 				ED31CE541C0FDE6C00F8A644 /* AppUtils.m in Sources */,
 				ED5A44681C2A6B560004DF8C /* CustomFoodDetailTableViewCell.m in Sources */,
+				ED1709161C3B457300F92EC0 /* JCTagCell.m in Sources */,
+				EDE6A3921C3A015500F71B38 /* RecommendFoodViewController.m in Sources */,
 				398055921C227E4E002144AC /* ZLSwipeableView.m in Sources */,
 				EDAD81971C0D8851009E53F9 /* main.m in Sources */,
 				ED019D231C2B899D008D6BBE /* AccountSettingTableViewController.m in Sources */,

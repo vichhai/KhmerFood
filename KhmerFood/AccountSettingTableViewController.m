@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:45/255.0 green:169/255.0 blue:122/255.0 alpha:1]];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:53/255.0 green:201/255.0 blue:147/255.0 alpha:1]];
     
     UILabel *titleLable =[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 25)];
     [titleLable setFont:[UIFont systemFontOfSize:17]];
