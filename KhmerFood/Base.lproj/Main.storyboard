@@ -648,51 +648,80 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="35E-gl-Fog" customClass="JCTagListView">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.88235294117647056" green="0.88235294117647056" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="tEX-s2-XDw">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="QRZ-BJ-PUl" id="DZ0-AH-krr"/>
+                                </connections>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Zl4-CE-440" firstAttribute="top" secondItem="35E-gl-Fog" secondAttribute="bottom" id="1tz-N8-hun">
                                 <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
                             </constraint>
+                            <constraint firstItem="tEX-s2-XDw" firstAttribute="top" secondItem="EqY-91-iP8" secondAttribute="bottom" constant="1" id="57z-yc-B6m"/>
                             <constraint firstItem="35E-gl-Fog" firstAttribute="leading" secondItem="dnS-RQ-GsQ" secondAttribute="leading" id="7xz-L6-AM3"/>
                             <constraint firstAttribute="trailing" secondItem="35E-gl-Fog" secondAttribute="trailing" id="AdW-yf-K2w"/>
+                            <constraint firstAttribute="trailing" secondItem="tEX-s2-XDw" secondAttribute="trailing" id="HcF-hH-RyW"/>
+                            <constraint firstItem="tEX-s2-XDw" firstAttribute="leading" secondItem="dnS-RQ-GsQ" secondAttribute="leading" id="hM8-Qo-xJT"/>
                             <constraint firstItem="35E-gl-Fog" firstAttribute="top" secondItem="EqY-91-iP8" secondAttribute="bottom" id="miD-jR-moE">
-                                <variation key="heightClass=regular-widthClass=compact" constant="-64"/>
+                                <variation key="heightClass=regular-widthClass=compact" constant="-24"/>
                             </constraint>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="35E-gl-Fog"/>
+                                <exclude reference="tEX-s2-XDw"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="7xz-L6-AM3"/>
                                 <exclude reference="AdW-yf-K2w"/>
                                 <exclude reference="miD-jR-moE"/>
+                                <exclude reference="57z-yc-B6m"/>
+                                <exclude reference="HcF-hH-RyW"/>
+                                <exclude reference="hM8-Qo-xJT"/>
                                 <exclude reference="1tz-N8-hun"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
                                 <include reference="35E-gl-Fog"/>
+                                <include reference="tEX-s2-XDw"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="7xz-L6-AM3"/>
                                 <include reference="AdW-yf-K2w"/>
                                 <include reference="miD-jR-moE"/>
+                                <include reference="57z-yc-B6m"/>
+                                <include reference="HcF-hH-RyW"/>
+                                <include reference="hM8-Qo-xJT"/>
                                 <include reference="1tz-N8-hun"/>
                             </mask>
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="7or-U7-bDA"/>
                     <connections>
+                        <outlet property="searchDisplayController" destination="1NG-yD-2q0" id="gVp-iM-ZZ8"/>
                         <outlet property="tagView" destination="35E-gl-Fog" id="VRw-2c-Zop"/>
+                        <segue destination="mZl-6W-asB" kind="show" identifier="recommend" id="Zyw-3J-9hg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w6Q-6y-IoN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="1NG-yD-2q0">
+                    <connections>
+                        <outlet property="delegate" destination="QRZ-BJ-PUl" id="xom-zv-RRY"/>
+                        <outlet property="searchBar" destination="tEX-s2-XDw" id="hdu-Zq-Eio"/>
+                        <outlet property="searchContentsController" destination="QRZ-BJ-PUl" id="FbC-tB-Vh0"/>
+                        <outlet property="searchResultsDataSource" destination="QRZ-BJ-PUl" id="BHp-fw-Hxd"/>
+                        <outlet property="searchResultsDelegate" destination="QRZ-BJ-PUl" id="J4z-j6-6d5"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="-78" y="1538.25"/>
+            <point key="canvasLocation" x="-78" y="1559.25"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="4wl-U7-kdy">
@@ -1648,6 +1677,9 @@
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="food1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="s6n-k7-NoT">
                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                        <rect key="frame" x="0.0" y="-64" width="414" height="192"/>
+                                    </variation>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="បបរសាមចូក" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zod-za-NKa">
                                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
@@ -1662,7 +1694,8 @@
                                             <exclude reference="P5d-E9-SzW"/>
                                         </mask>
                                     </variation>
-                                    <variation key="heightClass=regular-widthClass=compact">
+                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                        <rect key="frame" x="8" y="68" width="398" height="27"/>
                                         <mask key="constraints">
                                             <include reference="P5d-E9-SzW"/>
                                         </mask>
@@ -1681,7 +1714,8 @@
                                             <exclude reference="oUz-f6-bSV"/>
                                         </mask>
                                     </variation>
-                                    <variation key="heightClass=regular-widthClass=compact">
+                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                        <rect key="frame" x="8" y="94" width="398" height="27"/>
                                         <mask key="constraints">
                                             <include reference="oUz-f6-bSV"/>
                                         </mask>
@@ -1752,6 +1786,9 @@
                                             <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                             <attributedString key="attributedText"/>
                                             <nil key="highlightedColor"/>
+                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                <rect key="frame" x="8" y="8" width="398" height="448"/>
+                                            </variation>
                                         </label>
                                     </subviews>
                                     <constraints>
@@ -1801,7 +1838,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IhL-gl-PbM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2647.5" y="805.5"/>
+            <point key="canvasLocation" x="2440.5" y="804"/>
         </scene>
         <!--Recommend Food View Controller-->
         <scene sceneID="5Hd-RZ-mdu">
@@ -1825,6 +1862,9 @@
                                     <inset key="sectionInset" minX="5" minY="10" maxX="5" maxY="20"/>
                                 </collectionViewFlowLayout>
                                 <cells/>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="64" width="320" height="628"/>
+                                </variation>
                                 <connections>
                                     <outlet property="dataSource" destination="mZl-6W-asB" id="QTh-o9-D42"/>
                                     <outlet property="delegate" destination="mZl-6W-asB" id="Yqo-ho-UIk"/>
@@ -1870,7 +1910,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vOL-pF-jiG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1809" y="805.5"/>
+            <point key="canvasLocation" x="1708.5" y="1069.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="QPp-wC-eCF">
@@ -2704,6 +2744,7 @@
         <image name="info.png" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="Zyw-3J-9hg"/>
         <segue reference="RkH-vt-Q5q"/>
     </inferredMetricsTieBreakers>
 </document>

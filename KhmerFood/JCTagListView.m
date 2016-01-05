@@ -6,6 +6,8 @@
 //  Copyright (c) 2015年 李京城. All rights reserved.
 //
 
+#define RGB(r, g, b)			[UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
+
 #import "JCTagListView.h"
 #import "JCTagCell.h"
 #import "JCCollectionViewTagFlowLayout.h"
@@ -64,11 +66,11 @@ static NSString * const reuseIdentifier = @"tagListViewItemId";
     self.collectionView.dataSource = self;
     self.collectionView.showsHorizontalScrollIndicator = NO;
     self.collectionView.showsVerticalScrollIndicator = NO;
-    self.collectionView.backgroundColor = [UIColor whiteColor];
+    self.collectionView.backgroundColor = self.backgroundColor;
     [self.collectionView registerClass:[JCTagCell class] forCellWithReuseIdentifier:reuseIdentifier];
     [self addSubview:self.collectionView];
     
-    arrayColor = [[NSArray alloc] initWithObjects:[UIColor redColor],[UIColor greenColor],[UIColor yellowColor],[UIColor greenColor], nil];
+    arrayColor = [[NSArray alloc] initWithObjects:RGB(58, 117, 194),RGB(71, 91, 173),RGB(239, 122, 62),RGB(149, 73, 153), nil];
 }
 
 - (void)setCompletionBlockWithSeleted:(JCTagListViewBlock)completionBlock

@@ -14,9 +14,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "65"
-            endingLineNumber = "65"
-            landmarkName = "-URLSession:dataTask:didReceiveResponse:completionHandler:"
-            landmarkType = "5">
+            endingLineNumber = "65">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -30,9 +28,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "70"
-            endingLineNumber = "70"
-            landmarkName = "-URLSession:task:didCompleteWithError:"
-            landmarkType = "5">
+            endingLineNumber = "70">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -47,7 +43,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "59"
             endingLineNumber = "59"
-            landmarkName = "-URLSession:dataTask:didReceiveData:"
+            landmarkName = "-URLSession:task:didCompleteWithError:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -57,29 +53,45 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "KhmerFood/ConnectionManager.m"
-            timestampString = "473147635.998587"
+            filePath = "KhmerFood/PeopleViewController.m"
+            timestampString = "473665987.19559"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
-            landmarkName = "-sendTranData:"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
+            landmarkName = "-loginWithFacebookAction"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KhmerFood/KFViewController.m"
+            timestampString = "473659844.537225"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "-returnResultWithData:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "KhmerFood/PeopleViewController.m"
-            timestampString = "473586919.251611"
+            timestampString = "473666042.555123"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "-viewWillAppear:"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
+            landmarkName = "-returnTransaction:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -16,6 +16,7 @@
 #import <TwitterKit/TwitterKit.h>
 #import "FHSStream.h"
 #import "FHSTwitterEngine.h"
+
 @interface PeopleViewController () <UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UIView *coverView;
@@ -52,7 +53,80 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark : other methods
+#pragma mark - request and response from server
+
+// request
+-(void)setTrandata : (NSDictionary *)user pictureURL:(NSString *)urlString accountType :(NSString *)type{
+    NSMutableDictionary *reqDic = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *dataDic = [[NSMutableDictionary alloc] init];
+    
+    if ([AppUtils isNull:[user valueForKey:@"id"]] == false) {
+        [dataDic setObject:[user valueForKey:@"id"] forKey:@"USER_ID"];
+    }
+    
+    if ([AppUtils isNull:[user valueForKey:@"email"]] == false) {
+        [dataDic setObject:[user valueForKey:@"email"] forKey:@"USER_EMAIL"];
+    } else {
+        [dataDic setObject:@"kan_vichhai@yahoo.com" forKey:@"USER_EMAIL"];
+    }
+    
+    if ([AppUtils isNull:[user valueForKey:@"first_name"]] == false) {
+        [dataDic setObject:[user valueForKey:@"first_name"] forKey:@"F_NAME"];
+    }
+    
+    if ([AppUtils isNull:[user valueForKey:@"last_name"]] == false) {
+        [dataDic setObject:[user valueForKey:@"last_name"] forKey:@"L_NAME"];
+    }
+    
+    if ([AppUtils isNull:[user valueForKey:@"name"]] == false) {
+        [dataDic setObject:[user valueForKey:@"name"] forKey:@"FULL_NAME"];
+    }
+    
+    if ([AppUtils isNull: urlString] == false) {
+        [dataDic setObject:urlString forKey:@"USR_PROFILE"];
+    }
+    
+    if ([AppUtils isNull:[user valueForKey:@"gender"]] == false) {
+        [dataDic setObject:[user valueForKey:@"gender"] forKey:@"SEX"];
+    }
+    
+    if ([AppUtils isNull:[user valueForKey:@"birthday"]] == false) {
+        [dataDic setObject:[user valueForKey:@"birthday"] forKey:@"USER_DOB"];
+    }
+    
+    if ([AppUtils isNull:type] == false) {
+        [dataDic setObject:type forKey:@"ACC_TYPE"];
+    }
+    
+    [reqDic setObject:@"KF_SIGNUP" forKey:@"API_KEY"];
+    [reqDic setObject:dataDic forKey:@"REQ_DATA"];
+    [super sendTranData:reqDic];
+}
+
+-(void)checkExistingUser:(NSString *)userId {
+    NSMutableDictionary *reqDic = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *dataDic = [[NSMutableDictionary alloc] init];
+
+    if ([AppUtils isNull:userId] == false) {
+        [dataDic setObject:userId forKey:@"USER_ID"];
+    }
+    
+    [reqDic setObject:@"KF_CUSER" forKey:@"API_KEY"];
+    [reqDic setObject:dataDic forKey:@"REQ_DATA"];
+    [super sendTranData:reqDic];
+}
+
+// response
+-(void)returnTransaction:(NSDictionary *)transaction {
+    NSLog(@"I'm cumming : %@",transaction);
+    if ([[[transaction objectForKey:@"RESP_DATA"] objectForKey:@"STATUS"] integerValue] == 1) { // seccuess
+        
+    } else {
+        NSLog(@"Error !!!");
+    }
+}
+
+#pragma mark - other methods
 
 -(void)loginWithFacebookAction {
     FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
@@ -68,7 +142,7 @@
                                            if ([result.grantedPermissions containsObject:@"public_profile"]) {
                                                if ([FBSDKAccessToken currentAccessToken]) {
                                                    NSMutableDictionary* parameters = [NSMutableDictionary dictionary];
-                                                   [parameters setValue:@"gender,last_name,first_name,name,picture.type(large)" forKey:@"fields"];
+                                                   [parameters setValue:@"id,email,first_name,last_name,name,picture.type(large),gender,birthday" forKey:@"fields"];
                                                    
                                                    [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:parameters]
                                                     startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
@@ -76,24 +150,23 @@
                                                         {
                                                             
                                                             NSString *name = [[result valueForKey:@"name"] lowercaseString];
-                                                            NSString *last_name = [[result valueForKey:@"last_name"] lowercaseString];
-                                                            NSString *first_name = [[result valueForKey:@"first_name"] lowercaseString];
-                                                            NSString *gender = [[result valueForKey:@"gender"] lowercaseString];
-                                                            NSString *username = [name stringByReplacingOccurrencesOfString:@" " withString:@" "];
+//                                                            NSString *last_name = [[result valueForKey:@"last_name"] lowercaseString];
+//                                                            NSString *first_name = [[result valueForKey:@"first_name"] lowercaseString];
+//                                                            NSString *gender = [[result valueForKey:@"gender"] lowercaseString];
+                                                            
                                                             NSArray *picture_arr = [result objectForKey:@"picture"];
                                                             NSArray *data_arr = [picture_arr valueForKey:@"data"];
                                                             NSString *profile_pic = [data_arr valueForKey:@"url"];
-                                                            
-                                                            
-                                                            NSLog(@"Gender is : %@",gender);
-                                                            NSLog(@"First name is : %@",first_name);
-                                                            NSLog(@"Last name is : %@",last_name);
+                                                            NSString *username = [name stringByReplacingOccurrencesOfString:@" " withString:@" "];
                                                             
                                                             NSDictionary *dicData = @{@"user_name":username,@"profile_pic":profile_pic,@"login_type":@"facebook"};
                                                             NSData *myData = [NSKeyedArchiver archivedDataWithRootObject:dicData];
                                                             [[NSUserDefaults standardUserDefaults] setObject:myData forKey:@"login_data"];
                                                             [[NSUserDefaults standardUserDefaults] synchronize];
-                                                            [self closeCoverView];
+//                                                            [self setTrandata:result pictureURL:profile_pic accountType:@"F"];
+                                                            [self checkExistingUser:[result objectForKey:@"id"]];
+                                                            
+//                                                            [self closeCoverView];
                                                         }
                                                     }];
                                                }
@@ -106,28 +179,72 @@
     [[Twitter sharedInstance] logInWithCompletion:^(TWTRSession *session, NSError *error) {
         if (session) {
             NSLog(@"signed in as %@", [session userID]);
-            [[[Twitter sharedInstance] APIClient] loadUserWithID:[session userID]
-                                                      completion:^(TWTRUser *user,
-                                                                   NSError *error) {
-                 // handle the response or error
-                 if (![error isEqual:nil]) {
-                     NSLog(@"Twitter info   -> user = %@ ",user.name);
-                     
-                     NSString *urlString = [[NSString alloc]initWithString:user.profileImageLargeURL];
-                     NSURL *urlImg = [[NSURL alloc]initWithString:urlString];
-                     
-                     NSDictionary *dicData = @{@"user_name":[session userName],@"profile_pic":urlImg,@"login_type":@"Twitter"};
-                     
-                     NSData *myData = [NSKeyedArchiver archivedDataWithRootObject:dicData];
-                     
-                     [[NSUserDefaults standardUserDefaults] setObject:myData forKey:@"login_data"];
-                     [[NSUserDefaults standardUserDefaults] synchronize];
-                     [self closeCoverView];
-                     
-                 } else {
-                     NSLog(@"Twitter error getting profile : %@", [error localizedDescription]);
-                 }
-             }];
+//            [[[Twitter sharedInstance] APIClient] loadUserWithID:[session userID]
+//                                                      completion:^(TWTRUser *user,
+//                                                                   NSError *error) {
+//                 // handle the response or error
+//                 if (![error isEqual:nil]) {
+//                     NSLog(@"Twitter info   -> user = %@ ",user.name);
+//                     
+//                     NSString *urlString = [[NSString alloc]initWithString:user.profileImageLargeURL];
+//                     NSURL *urlImg = [[NSURL alloc]initWithString:urlString];
+//                     
+//                     NSDictionary *dicData = @{@"user_name":[session userName],@"profile_pic":urlImg,@"login_type":@"Twitter"};
+//                     
+//                     
+//                     NSData *myData = [NSKeyedArchiver archivedDataWithRootObject:dicData];
+//                     
+//                     [[NSUserDefaults standardUserDefaults] setObject:myData forKey:@"login_data"];
+//                     [[NSUserDefaults standardUserDefaults] synchronize];
+//                     [self closeCoverView];
+//                     
+//                 } else {
+//                     NSLog(@"Twitter error getting profile : %@", [error localizedDescription]);
+//                 }
+//             }];
+            
+            NSString *statusesShowEndpoint = @"https://api.twitter.com/1.1/users/show.json";
+            NSDictionary *params = @{@"user_id": [session userID]};
+            
+            NSError *clientError;
+            NSURLRequest *request = [[[Twitter sharedInstance] APIClient]
+                                     URLRequestWithMethod:@"GET"
+                                     URL:statusesShowEndpoint
+                                     parameters:params
+                                     error:&clientError];
+            
+            if (request) {
+                [[[Twitter sharedInstance] APIClient]
+                 sendTwitterRequest:request
+                 completion:^(NSURLResponse *response,
+                              NSData *data,
+                              NSError *connectionError) {
+                     if (data) {
+                         // handle the response data e.g.
+                         NSError *jsonError;
+                         NSDictionary *json = [NSJSONSerialization
+                                               JSONObjectWithData:data
+                                               options:0
+                                               error:&jsonError];
+                         
+                         NSDictionary *dicData = @{@"user_name":[json valueForKey:@"screen_name"],@"profile_pic":[json valueForKey:@"profile_image_url"],@"login_type":@"Twitter"};
+                         NSData *myData = [NSKeyedArchiver archivedDataWithRootObject:dicData];
+                         [[NSUserDefaults standardUserDefaults] setObject:myData forKey:@"login_data"];
+                         [[NSUserDefaults standardUserDefaults] synchronize];
+                         [self closeCoverView];
+                         NSLog(@"%@",[json description]);
+                     }
+                     else {
+                         NSLog(@"Error code: %ld | Error description: %@", (long)[connectionError code], [connectionError localizedDescription]);
+                     }
+                 }];
+            }
+            else {
+                NSLog(@"Error: %@", clientError);
+            }
+            
+            
+            
         } else {
             NSLog(@"error: %@", [error localizedDescription]);
             [[FHSTwitterEngine sharedEngine] permanentlySetConsumerKey:@"LGXCB8LxuP4c5OkHwVeKhqobp" andSecret:@"kUIbMY36eaRoYTCRfuMzHWYMuWlKDyhLSqFns340DM53lsNcb0"];
