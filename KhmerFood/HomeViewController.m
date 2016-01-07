@@ -84,7 +84,7 @@
 }
 
 -(void)returnTransaction:(NSDictionary *)transaction{
-    NSLog(@"Transaction : %@",transaction);
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -92,14 +92,14 @@
 }
 
 -(void)leftButtonAction:(UIButton *)sender {
-    NSLog(@"Kikilu");
+
 }
 
 #pragma mark - notification action
 -(void)gotoDetailAction:(NSNotification *)note {
 
     NSDictionary *dic = [[NSDictionary alloc] initWithDictionary:note.userInfo];
-    NSLog(@"other class: %@",dic);
+
     [self performSegueWithIdentifier:@"detail" sender:nil];
 }
 

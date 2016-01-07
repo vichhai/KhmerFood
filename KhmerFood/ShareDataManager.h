@@ -7,9 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <UIKit/UIKit.h>
 @interface ShareDataManager : NSObject
 
 +(ShareDataManager *)shareDataManager;
+
+@property (strong,nonatomic) UIImage *shareImage;
+
 
 @end

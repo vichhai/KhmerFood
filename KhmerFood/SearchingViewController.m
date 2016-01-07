@@ -40,8 +40,6 @@
     [self.tagView.tags addObjectsFromArray:arrayData];
     
     [self.tagView setCompletionBlockWithSeleted:^(NSInteger index) {
-        NSLog(@"______%ld______", (long)index);
-        NSLog(@"selected object : %@",[arrayData objectAtIndex:index]);
         [self performSegueWithIdentifier:@"recommend" sender:nil];
     }];
 }

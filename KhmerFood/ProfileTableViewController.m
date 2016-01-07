@@ -31,19 +31,23 @@
         NSDictionary *dicData = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"login_data"]];
         
         _userName.text = [dicData objectForKey:@"user_name"];
-        _connectionType.text = [NSString stringWithFormat:@"កំពុងភ្ជាប់ជាមួយ %@",[dicData objectForKey:@"login_type"]];
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            // retrive image on global queue
-            NSLog(@"string url: %@",[dicData objectForKey:@"profile_pic"]);
-            UIImage * img = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[dicData objectForKey:@"profile_pic"]]]]];
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                _profileImage.image = img;
-            });
-        });
+        if ([[dicData objectForKey:@"login_type"] isEqualToString:@"F"]) {
+            _connectionType.text = [NSString stringWithFormat:@"កំពុងភ្ជាប់ជាមួយ %@",@"Facebook"];
+        }else {
+            _connectionType.text = [NSString stringWithFormat:@"កំពុងភ្ជាប់ជាមួយ %@",@"Twitter"];
+        }
         
-        
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//            // retrive image on global queue
+//            
+//            UIImage * img = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[dicData objectForKey:@"profile_pic"]]]]];
+//            
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                _profileImage.image = img;
+//            });
+//        });
+        _profileImage.image = [ShareDataManager shareDataManager].shareImage;
         
         
     }

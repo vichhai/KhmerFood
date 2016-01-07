@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "UINavigationBar+Awesome.h"
+#import "ShareDataManager.h"
 @interface ProfileTableViewController : UITableViewController
 
 @end

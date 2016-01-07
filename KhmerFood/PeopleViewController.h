@@ -7,7 +7,7 @@
 //
 
 #import "KFViewController.h"
-
+#import "ShareDataManager.h"
 @interface PeopleViewController : KFViewController
 
 @end

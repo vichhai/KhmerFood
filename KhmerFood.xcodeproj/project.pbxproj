@@ -18,6 +18,7 @@
 		ED019D1C1C2B8029008D6BBE /* x_button.png in Resources */ = {isa = PBXBuildFile; fileRef = ED019D1B1C2B8029008D6BBE /* x_button.png */; };
 		ED019D201C2B8991008D6BBE /* NameSettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED019D1F1C2B8991008D6BBE /* NameSettingTableViewController.m */; };
 		ED019D231C2B899D008D6BBE /* AccountSettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED019D221C2B899D008D6BBE /* AccountSettingTableViewController.m */; };
+		ED1436011C3DED0E009B382A /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = ED1436001C3DED0E009B382A /* NSString+MD5.m */; };
 		ED17090D1C3B451B00F92EC0 /* SearchingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED17090C1C3B451B00F92EC0 /* SearchingViewController.m */; };
 		ED1709151C3B457300F92EC0 /* JCCollectionViewTagFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = ED1709101C3B457300F92EC0 /* JCCollectionViewTagFlowLayout.m */; };
 		ED1709161C3B457300F92EC0 /* JCTagCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED1709121C3B457300F92EC0 /* JCTagCell.m */; };
@@ -89,6 +90,8 @@
 		ED019D1F1C2B8991008D6BBE /* NameSettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameSettingTableViewController.m; sourceTree = "<group>"; };
 		ED019D211C2B899D008D6BBE /* AccountSettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountSettingTableViewController.h; sourceTree = "<group>"; };
 		ED019D221C2B899D008D6BBE /* AccountSettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountSettingTableViewController.m; sourceTree = "<group>"; };
+		ED1435FF1C3DED0E009B382A /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
+		ED1436001C3DED0E009B382A /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
 		ED17090B1C3B451B00F92EC0 /* SearchingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchingViewController.h; sourceTree = "<group>"; };
 		ED17090C1C3B451B00F92EC0 /* SearchingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchingViewController.m; sourceTree = "<group>"; };
 		ED17090F1C3B457300F92EC0 /* JCCollectionViewTagFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCCollectionViewTagFlowLayout.h; sourceTree = "<group>"; };
@@ -457,6 +460,8 @@
 		EDAD81951C0D8851009E53F9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				ED1435FF1C3DED0E009B382A /* NSString+MD5.h */,
+				ED1436001C3DED0E009B382A /* NSString+MD5.m */,
 				ED17090E1C3B456400F92EC0 /* TagView */,
 				ED793EFE1C3253AC006D79FE /* Twitter */,
 				ED793EF71C325392006D79FE /* Facebook */,
@@ -637,6 +642,7 @@
 				ED4DDCBC1C2919FC00DE5FBA /* CExpandHeader.m in Sources */,
 				ED83010B1C22ABAD00779E8D /* SecondCollectionViewController.m in Sources */,
 				EDAD819A1C0D8851009E53F9 /* AppDelegate.m in Sources */,
+				ED1436011C3DED0E009B382A /* NSString+MD5.m in Sources */,
 				ED1709151C3B457300F92EC0 /* JCCollectionViewTagFlowLayout.m in Sources */,
 				ED8C5A371C2291A600BE9001 /* CustomCollectionViewCell.m in Sources */,
 				398055831C227D42002144AC /* SaveFoodsViewController.m in Sources */,
@@ -777,7 +783,7 @@
 				INFOPLIST_FILE = KhmerFood/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = come.dobut.KhmerFood;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dobut.KhmerFood;
 				PRODUCT_NAME = "Khmer Food";
 				SWIFT_OBJC_BRIDGING_HEADER = "KhmerFood/KhmerFood-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -796,7 +802,7 @@
 				INFOPLIST_FILE = KhmerFood/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = come.dobut.KhmerFood;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dobut.KhmerFood;
 				PRODUCT_NAME = "Khmer Food";
 				SWIFT_OBJC_BRIDGING_HEADER = "KhmerFood/KhmerFood-Bridging-Header.h";
 			};

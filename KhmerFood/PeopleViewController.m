@@ -16,8 +16,12 @@
 #import <TwitterKit/TwitterKit.h>
 #import "FHSStream.h"
 #import "FHSTwitterEngine.h"
+#import "NSString+MD5.h"
 
 @interface PeopleViewController () <UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
+{
+    NSMutableDictionary *fbDataDic;
+}
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UIView *coverView;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *registerButton;
@@ -56,49 +60,74 @@
 #pragma mark - request and response from server
 
 // request
--(void)setTrandata : (NSDictionary *)user pictureURL:(NSString *)urlString accountType :(NSString *)type{
+-(void)setTrandata : (NSDictionary *)user apiKey:(NSString *)key{
     NSMutableDictionary *reqDic = [[NSMutableDictionary alloc] init];
     NSMutableDictionary *dataDic = [[NSMutableDictionary alloc] init];
     
-    if ([AppUtils isNull:[user valueForKey:@"id"]] == false) {
-        [dataDic setObject:[user valueForKey:@"id"] forKey:@"USER_ID"];
+    if ([key isEqualToString:@"KF_SINGIN"]) { // sign in
+        
+        NSDictionary *tmpDic = [[NSDictionary alloc] initWithDictionary:[user objectForKey:@"RESP_DATA"]];
+        [dataDic setObject:[tmpDic objectForKey:@"USER_ID"] forKey:@"USER_ID"];
+        [dataDic setObject:[tmpDic objectForKey:@"USR_STS"] forKey:@"LOG_STS"];
+        
+    } else if ([key isEqualToString:@"KF_SIGNUP"]) { // sign up
+        
+        if ([AppUtils isNull:[user objectForKey:@"ACC_TYPE"]] == false) {
+            if ([[user objectForKey:@"ACC_TYPE"] isEqualToString:@"F"]) { // facebook
+                if ([AppUtils isNull:[user valueForKey:@"id"]] == false) {
+                    [dataDic setObject:[user valueForKey:@"id"] forKey:@"USER_ID"];
+                }
+                
+                if ([AppUtils isNull:[user valueForKey:@"email"]] == false) {
+                    [dataDic setObject:[user valueForKey:@"email"] forKey:@"USER_EMAIL"];
+                } else {
+                    [dataDic setObject:@"" forKey:@"USER_EMAIL"];
+                }
+                
+                if ([AppUtils isNull:[user valueForKey:@"first_name"]] == false) {
+                    [dataDic setObject:[user valueForKey:@"first_name"] forKey:@"F_NAME"];
+                }
+                
+                if ([AppUtils isNull:[user valueForKey:@"last_name"]] == false) {
+                    [dataDic setObject:[user valueForKey:@"last_name"] forKey:@"L_NAME"];
+                }
+                
+                if ([AppUtils isNull:[user valueForKey:@"name"]] == false) {
+                    [dataDic setObject:[user valueForKey:@"name"] forKey:@"FULL_NAME"];
+                }
+                
+                if ([AppUtils isNull:[user objectForKey:@"picture"]] == false) {
+                    NSArray *picture_arr = [user objectForKey:@"picture"];
+                    NSArray *data_arr = [picture_arr valueForKey:@"data"];
+                    NSString *profile_pic = [data_arr valueForKey:@"url"];
+                    [dataDic setObject:profile_pic forKey:@"USR_PROFILE"];
+                }
+                
+                if ([AppUtils isNull:[user valueForKey:@"gender"]] == false) {
+                    [dataDic setObject:[user valueForKey:@"gender"] forKey:@"SEX"];
+                }
+                
+                if ([AppUtils isNull:[user valueForKey:@"birthday"]] == false) {
+                    [dataDic setObject:[user valueForKey:@"birthday"] forKey:@"USER_DOB"];
+                } else {
+                    [dataDic setObject:@"" forKey:@"USER_DOB"];
+                }
+                
+                [dataDic setObject:[user objectForKey:@"ACC_TYPE"] forKey:@"ACC_TYPE"];
+                [dataDic setObject:@"" forKey:@"USER_PHONE"];
+//                [dataDic setObject: forKey:@"USER_PWD"];
+                
+            } else if ([[user objectForKey:@"ACC_TYPE"] isEqualToString:@"T"]) { // twitter
+                
+            } else { // mail
+                
+            }
+        } else {
+            NSLog(@"missiong login type");
+        }
     }
     
-    if ([AppUtils isNull:[user valueForKey:@"email"]] == false) {
-        [dataDic setObject:[user valueForKey:@"email"] forKey:@"USER_EMAIL"];
-    } else {
-        [dataDic setObject:@"kan_vichhai@yahoo.com" forKey:@"USER_EMAIL"];
-    }
-    
-    if ([AppUtils isNull:[user valueForKey:@"first_name"]] == false) {
-        [dataDic setObject:[user valueForKey:@"first_name"] forKey:@"F_NAME"];
-    }
-    
-    if ([AppUtils isNull:[user valueForKey:@"last_name"]] == false) {
-        [dataDic setObject:[user valueForKey:@"last_name"] forKey:@"L_NAME"];
-    }
-    
-    if ([AppUtils isNull:[user valueForKey:@"name"]] == false) {
-        [dataDic setObject:[user valueForKey:@"name"] forKey:@"FULL_NAME"];
-    }
-    
-    if ([AppUtils isNull: urlString] == false) {
-        [dataDic setObject:urlString forKey:@"USR_PROFILE"];
-    }
-    
-    if ([AppUtils isNull:[user valueForKey:@"gender"]] == false) {
-        [dataDic setObject:[user valueForKey:@"gender"] forKey:@"SEX"];
-    }
-    
-    if ([AppUtils isNull:[user valueForKey:@"birthday"]] == false) {
-        [dataDic setObject:[user valueForKey:@"birthday"] forKey:@"USER_DOB"];
-    }
-    
-    if ([AppUtils isNull:type] == false) {
-        [dataDic setObject:type forKey:@"ACC_TYPE"];
-    }
-    
-    [reqDic setObject:@"KF_SIGNUP" forKey:@"API_KEY"];
+    [reqDic setObject:key forKey:@"API_KEY"];
     [reqDic setObject:dataDic forKey:@"REQ_DATA"];
     [super sendTranData:reqDic];
 }
@@ -119,10 +148,40 @@
 // response
 -(void)returnTransaction:(NSDictionary *)transaction {
     NSLog(@"I'm cumming : %@",transaction);
-    if ([[[transaction objectForKey:@"RESP_DATA"] objectForKey:@"STATUS"] integerValue] == 1) { // seccuess
-        
-    } else {
-        NSLog(@"Error !!!");
+    
+    if ([[transaction objectForKey:@"API_KEY"] isEqualToString:@"KF_CUSER"]) { // check existed user
+        if ([[[transaction objectForKey:@"RESP_DATA"] objectForKey:@"STATUS"] integerValue] == 1) { // seccuess
+            [self setTrandata:transaction apiKey:@"KF_SINGIN"];
+        } else { // register new user
+            [self setTrandata:fbDataDic apiKey:@"KF_SIGNUP"];
+        }
+    } else if ([[transaction objectForKey:@"API_KEY"] isEqualToString:@"KF_SIGNUP"]){ // sign up for new user
+        if ([[[transaction objectForKey:@"RESP_DATA"] objectForKey:@"STATUS"] integerValue] == 1) {
+            [self setTrandata:transaction apiKey:@"KF_SINGIN"];
+        } else {
+            NSLog(@"error man.");
+        }
+    } else if ([[transaction objectForKey:@"API_KEY"] isEqualToString:@"KF_SINGIN"]) { // user sign in
+        /* Status type:
+            A - Login success
+            Z - No User
+            L - please comfirm email
+         */
+        if ([[transaction objectForKey:@"STATUS"] isEqualToString:@"A"]) { // login success
+            
+            NSDictionary *defaultDic = @{
+                                         @"user_name" :[[transaction objectForKey:@"RESP_DATA"] objectForKey:@"FULL_NAME"]
+                                         ,@"profile_pic":[[transaction objectForKey:@"RESP_DATA"] objectForKey:@"USER_PROFILE"]
+                                         ,@"user_id":[[transaction objectForKey:@"RESP_DATA"] objectForKey:@"USER_ID"]
+                                         ,@"login_type":[[transaction objectForKey:@"RESP_DATA"] objectForKey:@"USR_STS"]};
+            
+            NSData *myData = [NSKeyedArchiver archivedDataWithRootObject:defaultDic];
+            [[NSUserDefaults standardUserDefaults] setObject:myData forKey:@"login_data"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            [self closeCoverView];
+        } else {
+            
+        }
     }
 }
 
@@ -130,15 +189,15 @@
 
 -(void)loginWithFacebookAction {
     FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
-    loginManager.loginBehavior = FBSDKLoginBehaviorWeb;
-    [loginManager logInWithReadPermissions:@[@"public_profile"] fromViewController:self
+//    loginManager.loginBehavior = FBSDKLoginBehaviorWeb;
+    [loginManager logInWithReadPermissions:@[@"public_profile",@"email",@"user_birthday"] fromViewController:self
                                    handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
                                        if (error) {
                                            NSLog(@"error : %@",[error localizedDescription]);
                                        } else if ([result isCancelled]) {
                                            NSLog(@"Cancelled");
                                        } else {
-                                           NSLog(@"Logged in");
+
                                            if ([result.grantedPermissions containsObject:@"public_profile"]) {
                                                if ([FBSDKAccessToken currentAccessToken]) {
                                                    NSMutableDictionary* parameters = [NSMutableDictionary dictionary];
@@ -149,24 +208,24 @@
                                                         if (!error)
                                                         {
                                                             
-                                                            NSString *name = [[result valueForKey:@"name"] lowercaseString];
+//                                                            NSString *name = [[result valueForKey:@"name"] lowercaseString];
 //                                                            NSString *last_name = [[result valueForKey:@"last_name"] lowercaseString];
 //                                                            NSString *first_name = [[result valueForKey:@"first_name"] lowercaseString];
 //                                                            NSString *gender = [[result valueForKey:@"gender"] lowercaseString];
                                                             
-                                                            NSArray *picture_arr = [result objectForKey:@"picture"];
-                                                            NSArray *data_arr = [picture_arr valueForKey:@"data"];
-                                                            NSString *profile_pic = [data_arr valueForKey:@"url"];
-                                                            NSString *username = [name stringByReplacingOccurrencesOfString:@" " withString:@" "];
+//                                                            NSArray *picture_arr = [result objectForKey:@"picture"];
+//                                                            NSArray *data_arr = [picture_arr valueForKey:@"data"];
+//                                                            NSString *profile_pic = [data_arr valueForKey:@"url"];
+//                                                            NSString *username = [name stringByReplacingOccurrencesOfString:@" " withString:@" "];
                                                             
-                                                            NSDictionary *dicData = @{@"user_name":username,@"profile_pic":profile_pic,@"login_type":@"facebook"};
-                                                            NSData *myData = [NSKeyedArchiver archivedDataWithRootObject:dicData];
-                                                            [[NSUserDefaults standardUserDefaults] setObject:myData forKey:@"login_data"];
-                                                            [[NSUserDefaults standardUserDefaults] synchronize];
+//                                                            NSDictionary *dicData = @{@"user_name":username,@"profile_pic":profile_pic,@"login_type":@"facebook"};
+//                                                            NSData *myData = [NSKeyedArchiver archivedDataWithRootObject:dicData];
+//                                                            [[NSUserDefaults standardUserDefaults] setObject:myData forKey:@"login_data"];
+//                                                            [[NSUserDefaults standardUserDefaults] synchronize];
 //                                                            [self setTrandata:result pictureURL:profile_pic accountType:@"F"];
+                                                            fbDataDic = [[NSMutableDictionary alloc] initWithDictionary:result];
+                                                            [fbDataDic setObject:@"F" forKey:@"ACC_TYPE"];
                                                             [self checkExistingUser:[result objectForKey:@"id"]];
-                                                            
-//                                                            [self closeCoverView];
                                                         }
                                                     }];
                                                }
@@ -179,30 +238,6 @@
     [[Twitter sharedInstance] logInWithCompletion:^(TWTRSession *session, NSError *error) {
         if (session) {
             NSLog(@"signed in as %@", [session userID]);
-//            [[[Twitter sharedInstance] APIClient] loadUserWithID:[session userID]
-//                                                      completion:^(TWTRUser *user,
-//                                                                   NSError *error) {
-//                 // handle the response or error
-//                 if (![error isEqual:nil]) {
-//                     NSLog(@"Twitter info   -> user = %@ ",user.name);
-//                     
-//                     NSString *urlString = [[NSString alloc]initWithString:user.profileImageLargeURL];
-//                     NSURL *urlImg = [[NSURL alloc]initWithString:urlString];
-//                     
-//                     NSDictionary *dicData = @{@"user_name":[session userName],@"profile_pic":urlImg,@"login_type":@"Twitter"};
-//                     
-//                     
-//                     NSData *myData = [NSKeyedArchiver archivedDataWithRootObject:dicData];
-//                     
-//                     [[NSUserDefaults standardUserDefaults] setObject:myData forKey:@"login_data"];
-//                     [[NSUserDefaults standardUserDefaults] synchronize];
-//                     [self closeCoverView];
-//                     
-//                 } else {
-//                     NSLog(@"Twitter error getting profile : %@", [error localizedDescription]);
-//                 }
-//             }];
-            
             NSString *statusesShowEndpoint = @"https://api.twitter.com/1.1/users/show.json";
             NSDictionary *params = @{@"user_id": [session userID]};
             
@@ -232,7 +267,6 @@
                          [[NSUserDefaults standardUserDefaults] setObject:myData forKey:@"login_data"];
                          [[NSUserDefaults standardUserDefaults] synchronize];
                          [self closeCoverView];
-                         NSLog(@"%@",[json description]);
                      }
                      else {
                          NSLog(@"Error code: %ld | Error description: %@", (long)[connectionError code], [connectionError localizedDescription]);
@@ -269,19 +303,19 @@
     for (int i = 0; i < 3; i++) {
         [[[_registerButton objectAtIndex:i] layer]setBorderWidth:1.0];
         [[[_registerButton objectAtIndex:i] layer]setBorderColor:[[UIColor whiteColor]CGColor]];
-        [[_registerButton objectAtIndex:i] setTag:2000 + i];
-        [[_registerButton objectAtIndex:i] addTarget:self action:@selector(registerButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+//        [[_registerButton objectAtIndex:i] setTag:2000 + i];
+//        [[_registerButton objectAtIndex:i] addTarget:self action:@selector(registerButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     
-    self.coverView.frame = self.view.frame;
-    [self.view addSubview:self.coverView];
-    [self.view bringSubviewToFront:self.coverView];
+//    self.coverView.frame = self.view.frame;
+//    [self.view addSubview:self.coverView];
+//    [self.view bringSubviewToFront:self.coverView];
     self.coverView.hidden = false;
     self.tableView.hidden = true;
     
-    [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor clearColor]];
-    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
-    self.navigationItem.titleView = nil;
+//    [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor clearColor]];
+//    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+//    self.navigationItem.titleView = nil;
 }
 
 -(void)setupSearch {
@@ -294,7 +328,7 @@
     
 }
 
--(void)registerButtonClick:(UIButton *)sender {
+-(IBAction)registerButtonClick:(UIButton *)sender {
     
     [self loginMethodAction:sender];
     
@@ -302,18 +336,18 @@
 
 -(void)closeCoverView {
         
-        [self.navigationController.navigationBar lt_reset];
-        UILabel *titleLable =[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 25)];
-        [titleLable setFont:[UIFont systemFontOfSize:17]];
-        titleLable.textColor = [UIColor whiteColor];
-        titleLable.textAlignment = NSTextAlignmentCenter;
-        titleLable.text = @"អំពីខ្ញុំ";
-        self.navigationItem.titleView = titleLable;
-        
+//        [self.navigationController.navigationBar lt_reset];
+//        UILabel *titleLable =[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 25)];
+//        [titleLable setFont:[UIFont systemFontOfSize:17]];
+//        titleLable.textColor = [UIColor whiteColor];
+//        titleLable.textAlignment = NSTextAlignmentCenter;
+//        titleLable.text = @"អំពីខ្ញុំ";
+//        self.navigationItem.titleView = titleLable;
+    
         //    [self.coverView removeFromSuperview];
         self.tableView.hidden = false;
         self.coverView.hidden = true;
-        [self.tableView reloadData];
+//        [self.tableView reloadData];
 }
 
 
@@ -325,24 +359,24 @@
     
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            if ([[NSUserDefaults standardUserDefaults] objectForKey:@"login_data"] != nil) {
-                NSDictionary *dicData = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"login_data"]];
+//            if ([[NSUserDefaults standardUserDefaults] objectForKey:@"login_data"] != nil) {
+//                NSDictionary *dicData = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"login_data"]];
+//                
+//                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//                    // retrive image on global queue
+//       
+//                    UIImage * img = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[dicData objectForKey:@"profile_pic"]]]]];
+//                    [ShareDataManager shareDataManager].shareImage = img;
+//                    dispatch_async(dispatch_get_main_queue(), ^{
+//                        cell.myImage.image = img;
+//                    });
+//                });
                 
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    // retrive image on global queue
-       
-                    UIImage * img = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[dicData objectForKey:@"profile_pic"]]]]];
-                    
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        cell.myImage.image = img;
-                    });
-                });
-                
-                return cell;
-            }
+//                return cell;
+//            }
         }
     } else if (indexPath.section == 1) {
-        cell.myImage.image = [UIImage imageNamed:@"face.png"];
+//        cell.myImage.image = [UIImage imageNamed:@"face.png"];
     }
     return cell;
 
