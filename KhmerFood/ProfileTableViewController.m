@@ -38,15 +38,15 @@
             _connectionType.text = [NSString stringWithFormat:@"កំពុងភ្ជាប់ជាមួយ %@",@"Twitter"];
         }
         
-//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//            // retrive image on global queue
-//            
-//            UIImage * img = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[dicData objectForKey:@"profile_pic"]]]]];
-//            
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                _profileImage.image = img;
-//            });
-//        });
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            // retrive image on global queue
+            
+            UIImage * img = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[dicData objectForKey:@"profile_pic"]]]]];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                _profileImage.image = img;
+            });
+        });
         _profileImage.image = [ShareDataManager shareDataManager].shareImage;
         
         
@@ -80,7 +80,7 @@
 - (IBAction)logout:(UIButton *)sender {
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"login_data"] != nil) {
         NSDictionary *dicData = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"login_data"]];
-        if ([[dicData objectForKey:@"login_type"] isEqualToString:@"facebook"]) {
+        if ([[dicData objectForKey:@"login_type"] isEqualToString:@"F"]) {
             [FBSDKAccessToken setCurrentAccessToken:nil];
             [FBSDKProfile setCurrentProfile:nil];
             [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"login_data"];
