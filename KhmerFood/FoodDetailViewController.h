@@ -11,4 +11,6 @@
 
 @interface FoodDetailViewController : UITableViewController
 
+@property (strong,nonatomic) NSDictionary *receiveData;
+
 @end

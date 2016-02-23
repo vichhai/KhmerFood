@@ -23,6 +23,6 @@
 @protocol ConnectionManagerDelegate <NSObject>
 
 @required
--(void)returnResult:(NSDictionary *)result;
+//-(void)returnResult:(NSDictionary *)result;
 -(void)returnResultWithData:(NSData *)data;
 @end

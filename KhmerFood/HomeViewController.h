@@ -9,11 +9,18 @@
 #import "KFViewController.h"
 #import "ConnectionManager.h"
 #import "AppUtils.h"
-//#import "GKFadeNavigationController.h"
+#import "FirstRowCollectionViewCell.h"
+#import "SecondCollectionViewController.h"
+#import "ThirdCollectionViewController.h"
 #import "UINavigationBar+Awesome.h"
+#import <Realm/Realm.h>
+
 @interface HomeViewController : UITableViewController
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageTopConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageButtomConstraint;
+//@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageTopConstraint;
+//@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageButtomConstraint;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionRow1;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionRow2;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectinRow3;
 
 @end

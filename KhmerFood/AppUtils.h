@@ -9,6 +9,8 @@
 //#import "MBProgressHUD.h"
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <Realm/Realm.h>
+#import "Constants.h"
 
 @interface AppUtils : NSObject
 
@@ -102,4 +104,10 @@
  @return Returns			@c NSInteger OS version.
  */
 +(NSInteger)getOSVersion;
+
+
++(void)writeObjectToRealm:(RLMObject *)anyObject;
++(RLMResults *)readObjectFromRealm:(RLMObject *)anyObject;
+
+
 @end

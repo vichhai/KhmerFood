@@ -11,6 +11,8 @@
 #import <UIKit/UIKit.h>
 #import "ConnectionManager.h"
 #import "AppUtils.h"
+#import "Constants.h"
+
 @interface KFViewController : UIViewController<ConnectionManagerDelegate>
 
 -(void)sendTranData:(NSDictionary *)requestDic;

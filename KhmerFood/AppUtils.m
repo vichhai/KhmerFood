@@ -8,6 +8,7 @@
 
 #import "AppUtils.h"
 
+
 @interface AppUtils ()
 
 @end
@@ -147,6 +148,17 @@
 /////////////////////////////////////////////////////////////////////////////////////////////
 + (NSInteger)getOSVersion {
     return [[[UIDevice currentDevice] systemVersion] integerValue];
+}
+
+
++(void)writeObjectToRealm:(RLMObject *)anyObject {
+    [UIRealm beginWriteTransaction];
+    [UIRealm addObject:anyObject];
+    [UIRealm commitWriteTransaction];
+}
+
++(RLMResults *)readObjectFromRealm:(RLMObject *)anyObject{
+    return [[anyObject class] allObjects];
 }
 
 @end

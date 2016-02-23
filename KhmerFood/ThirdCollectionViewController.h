@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KFViewController.h"
 
-@interface ThirdCollectionViewController : UIViewController <UICollectionViewDataSource,UICollectionViewDelegate>
+@interface ThirdCollectionViewController : KFViewController <UICollectionViewDataSource,UICollectionViewDelegate>
 
 @end

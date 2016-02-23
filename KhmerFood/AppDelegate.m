@@ -17,17 +17,14 @@
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     [[FBSDKApplicationDelegate sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
     
-//    [[Twitter sharedInstance] startWithConsumerKey:@"LGXCB8LxuP4c5OkHwVeKhqobp" consumerSecret:@"kUIbMY36eaRoYTCRfuMzHWYMuWlKDyhLSqFns340DM53lsNcb0"];
-//    [[Twitter sharedInstance] startWithConsumerKey:@"HtVGM4koiLUvsxEwZeY8oDJG2" consumerSecret:@"l6AphJtBFTcumxaAeGfOMZLrSwYlrcpVKgFazdDqicM4rP3o51"];
-    
     [[Twitter sharedInstance] startWithConsumerKey:@"566E0YxQZDer1TS1uHsxJ1kVi" consumerSecret:@"6hdXQygZcXXu7q0dx9UKU0NdVRXK4wvFXbWzYkDEuNf5Fa1tp6"];
     
     [Fabric with:@[[Twitter sharedInstance]]];
+    
     return YES;
 }
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
@@ -126,5 +123,6 @@
         }
     }
 }
+
 
 @end

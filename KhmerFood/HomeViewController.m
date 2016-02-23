@@ -12,14 +12,22 @@
 #import "CustomCollectionViewCell.h"
 #import "AppUtils.h"
 #import "CExpandHeader.h"
+#import "UIImageView+WebCache.h"
+#import "FoodModel.h"
+#import "UIView+WebCacheOperation.h"
+#import "FoodDetailViewController.h"
 
 #define NAVBAR_CHANGE_POINT 0
-@interface HomeViewController ()<UITableViewDelegate>
+@interface HomeViewController ()<UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,ConnectionManagerDelegate>
 
 {
-//    CExpandHeader *_header;
     float screenWidth;
     UIScrollView *myScrollView;
+    NSMutableArray *headerArray;
+    NSMutableArray *rateArray;
+    NSMutableArray *randomArray;
+    NSMutableArray *aFoodArray;
+    
 }
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 
@@ -53,13 +61,80 @@
     
     [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor clearColor]];
     [AppUtils settingLeftButton:self action:@selector(leftButtonAction:) normalImageCode:@"menu_all_icon" highlightImageCode:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gotoDetailAction:) name:@"goToDetail" object:nil];
     
     screenWidth = [[UIScreen mainScreen] bounds].size.width;
-    [self setupScrollView];
     
+    [self initialScrollView];
     
+    if ([[FoodModel allObjects] count] == 0) {
+        NSDictionary *reqDic = @{@"API_KEY":@"KF_LSTMFOOD"};
+        [self sendTranData:reqDic];
+    } else {
+        FoodModel *objFood = [[AppUtils readObjectFromRealm:[[FoodModel alloc] init]] objectAtIndex:0];
+        NSDictionary *tempDic = (NSDictionary *)[NSKeyedUnarchiver unarchiveObjectWithData:objFood.foodRecord];
+        headerArray = [[NSMutableArray alloc] initWithArray:[tempDic objectForKey:@"HEAD"]];
+        aFoodArray = [[NSMutableArray alloc] initWithArray:[tempDic objectForKey:@"AFOOD"]];
+        rateArray = [[NSMutableArray alloc] initWithArray:[tempDic objectForKey:@"RATE"]];
+        randomArray = [[NSMutableArray alloc] initWithArray:[tempDic objectForKey:@"RANDOM"]];
+        if (!headerArray.count == false || headerArray.count != 0) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self setupScrollView];
+            });
+        }
+    }
 }
+
+#pragma mark - UICollectionView delegate and datasource methods
+
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    if (collectionView.tag == 111) {
+        return [randomArray count];
+    } else if (collectionView.tag == 222) {
+        return [rateArray count];
+    }
+    return [aFoodArray count];
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSDictionary *sendDic;
+    if (collectionView.tag == 111) {
+        sendDic = [[NSDictionary alloc] initWithDictionary:[randomArray objectAtIndex:indexPath.row]];
+    } else if (collectionView.tag == 222) {
+        sendDic = [[NSDictionary alloc] initWithDictionary:[rateArray objectAtIndex:indexPath.row]];
+    } else {
+        sendDic = [[NSDictionary alloc] initWithDictionary:[aFoodArray objectAtIndex:indexPath.row]];
+    }
+    
+    [self performSegueWithIdentifier:@"detail" sender:sendDic];
+}
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    CustomCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
+    
+    if (collectionView.tag == 111) {
+        cell.mylabel.text = [[randomArray objectAtIndex:indexPath.row] objectForKey:@"FD_NAME"];
+        cell.foodType.text = [[randomArray objectAtIndex:indexPath.row] objectForKey:@"FD_COOK_TIME"]; //FD_IMG
+        [cell.myImage sd_setImageWithURL:[NSURL URLWithString:[[randomArray objectAtIndex:indexPath.row] objectForKey:@"FD_IMG"]]];
+    } else if (collectionView.tag == 222) {
+        cell.mylabel.text = [[rateArray objectAtIndex:indexPath.row] objectForKey:@"FD_NAME"];
+        cell.foodType.text = [[rateArray objectAtIndex:indexPath.row] objectForKey:@"FD_COOK_TIME"]; //FD_IMG
+        [cell.myImage sd_setImageWithURL:[NSURL URLWithString:[[rateArray objectAtIndex:indexPath.row] objectForKey:@"FD_IMG"]]];
+    } else {
+        cell.mylabel.text = [[aFoodArray objectAtIndex:indexPath.row] objectForKey:@"FD_NAME"];
+        cell.foodType.text = [[aFoodArray objectAtIndex:indexPath.row] objectForKey:@"FD_COOK_TIME"]; //FD_IMG
+        [cell.myImage sd_setImageWithURL:[NSURL URLWithString:[[aFoodArray objectAtIndex:indexPath.row] objectForKey:@"FD_IMG"]]];
+    }
+    return cell;
+}
+
+#pragma mark - segue method
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    FoodDetailViewController *vc = [segue destinationViewController];
+    vc.receiveData = sender;
+}
+
+
+#pragma mark - sroll view did scroll
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
@@ -83,24 +158,12 @@
     
 }
 
--(void)returnTransaction:(NSDictionary *)transaction{
-
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
--(void)leftButtonAction:(UIButton *)sender {
-
-}
-
 #pragma mark - notification action
 -(void)gotoDetailAction:(NSNotification *)note {
 
     NSDictionary *dic = [[NSDictionary alloc] initWithDictionary:note.userInfo];
 
-    [self performSegueWithIdentifier:@"detail" sender:nil];
+    [self performSegueWithIdentifier:@"detail" sender:dic];
 }
 
 #pragma mark - other methods
@@ -118,17 +181,17 @@
     // calculate next page to display
     int nextPage = (int)(contentOffset/scrMain.frame.size.width) + 1 ;
     // if page is not 4, display it
-    if( nextPage!=4 )  {
+    if( nextPage != headerArray.count )  {
         [scrMain scrollRectToVisible:CGRectMake(nextPage*scrMain.frame.size.width, 0, scrMain.frame.size.width, scrMain.frame.size.height) animated:YES];
-        pgCtr.currentPage=nextPage;
-        // else start sliding form 1 :)
-    } else {
-        [scrMain scrollRectToVisible:CGRectMake(0, 0, scrMain.frame.size.width, scrMain.frame.size.height) animated:YES];
-        pgCtr.currentPage=0;
+        pgCtr.currentPage = nextPage;
+    } else {        // else start sliding form 1 :)
+        [scrMain setContentOffset:CGPointMake(0, 0) animated:YES];
+        pgCtr.currentPage = 0;
     }
 }
 
--(void) setupScrollView {
+-(void)initialScrollView{
+    // initial scroll view
     myScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, -64, screenWidth, 194)];
     [self.headerView addSubview:myScrollView];
     myScrollView.delegate = self;
@@ -137,35 +200,35 @@
     myScrollView.tag = 2000;
     myScrollView.showsHorizontalScrollIndicator = false;
     
-    NSArray *array = [[NSArray alloc] initWithObjects:@"header.jpg",@"food1.jpg",@"Test",@"food.jpg", nil];
+    // gesture recognizer
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapDidTap:)];
+    tapGesture.numberOfTapsRequired = 1;
+    [myScrollView addGestureRecognizer:tapGesture];
+}
+
+-(void) setupScrollView {
     
-    for (int i = 0; i < array.count; i++) {
+    for (int i = 0; i < headerArray.count; i++) {
+        
+        NSDictionary *tempDic = [[NSDictionary alloc] initWithDictionary:[headerArray objectAtIndex:i]];
         UIView *tempView = [[UIView alloc] init];
         UIImageView *tempImage = [[UIImageView alloc] init];
         tempImage.tag = 2000 + i;
         
-        // gesture recognizer
-        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapDidTap:)];
-        tapGesture.numberOfTapsRequired = 1;
-        [myScrollView addGestureRecognizer:tapGesture];
-        
         [tempView addSubview:tempImage];
         tempView.frame = CGRectMake(screenWidth * i, 0, screenWidth,myScrollView.frame.size.height);
         tempImage.frame = CGRectMake(0, 0, tempView.frame.size.width, tempView.frame.size.height);
-        tempImage.image = [UIImage imageNamed:[array objectAtIndex:i]];
+        [tempImage sd_setImageWithURL:[NSURL URLWithString:[tempDic objectForKey:@"FD_IMG"]]];
+
         [myScrollView addSubview:tempView];
     }
-    
-    myScrollView.contentSize = CGSizeMake(screenWidth * 4.0, myScrollView.frame.size.height);
+    myScrollView.backgroundColor = [UIColor whiteColor];
+    myScrollView.contentSize = CGSizeMake(screenWidth * headerArray.count, myScrollView.frame.size.height);
     
     self.pageControl.currentPage = 0;
-    self.pageControl.numberOfPages = array.count;
+    self.pageControl.numberOfPages = headerArray.count;
 
     [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(scrollingTimer) userInfo:nil repeats:YES];
-}
-
--(void)tapDidTap:(id)sender {
-    NSLog(@"sender is %f",((myScrollView.contentOffset.x + screenWidth) - (myScrollView.contentSize.width / 4))/screenWidth);
 }
 
 #pragma mark - button method
@@ -173,5 +236,48 @@
     [self performSegueWithIdentifier:@"recommend" sender:nil];
 }
 
+-(void)leftButtonAction:(UIButton *)sender {
+    
+}
+
+-(void)tapDidTap:(id)sender {
+    //    NSLog(@"sender is %f",((myScrollView.contentOffset.x + screenWidth) - (myScrollView.contentSize.width / headerArray.count))/screenWidth);
+}
+
+#pragma mark - request and response
+
+//request
+-(void) sendTranData : (NSDictionary *) requestDic {
+    ConnectionManager *cont = [[ConnectionManager alloc] init];
+    cont.delegate = self;
+    [cont sendTranData:requestDic];
+}
+
+//response
+-(void)returnResultWithData:(NSData *)data {
+    
+    if ([AppUtils isNull:data] == false) {
+        
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        
+        if ([[dic objectForKey:@"STATUS"] isEqualToString:@"1"]) {
+            
+            if ([[FoodModel allObjects] count] == 0 || ![[FoodModel allObjects] count]) {
+                
+                FoodModel *obj = [[FoodModel alloc] init];
+                obj.foodRecord = [NSKeyedArchiver archivedDataWithRootObject:[dic objectForKey:@"RES_DATA"]] ;
+                [AppUtils writeObjectToRealm:obj];
+                headerArray = [[NSMutableArray alloc] initWithArray:[[dic objectForKey:@"RES_DATA"] objectForKey:@"HEAD"]];
+                aFoodArray = [[NSMutableArray alloc] initWithArray:[[dic objectForKey:@"RES_DATA"] objectForKey:@"AFOOD"]];
+                randomArray = [[NSMutableArray alloc] initWithArray:[[dic objectForKey:@"RES_DATA"] objectForKey:@"RANDOM"]];
+                rateArray = [[NSMutableArray alloc] initWithArray:[[dic objectForKey:@"RES_DATA"] objectForKey:@"RATE"]];
+                
+                [self.collectionRow1 reloadData];
+                [self.collectionRow2 reloadData];
+                [self.collectinRow3 reloadData];
+            }
+        }
+    }
+}
 
 @end

@@ -9,12 +9,15 @@
 #import "FoodDetailViewController.h"
 #import "AppUtils.h"
 #import "CustomFoodDetailTableViewCell.h"
+#import "UIImageView+WebCache.h"
 
 #define NAVBAR_CHANGE_POINT 0
 @interface FoodDetailViewController () <UITableViewDelegate,UITableViewDataSource>
 {
     UILabel *titleLable;
 }
+
+@property (weak, nonatomic) IBOutlet UIImageView *foodImage;
 @property (weak, nonatomic) IBOutlet UILabel *foodName;
 @property (weak, nonatomic) IBOutlet UILabel *foodType;
 
@@ -33,6 +36,10 @@
     titleLable =[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 25)];
     [titleLable setFont:[UIFont systemFontOfSize:17]];
     titleLable.textColor = [UIColor whiteColor];
+    
+    [_foodImage sd_setImageWithURL:[NSURL URLWithString:[_receiveData objectForKey:@"FD_IMG"]]];
+    _foodName.text = [_receiveData objectForKey:@"FD_NAME"];
+    _foodType.text = [_receiveData objectForKey:@"FD_NAME"];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -47,13 +54,13 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 
 #pragma mark - set up navigation button
 
 -(void)setupNavigationRightButtons {
+    
     UIButton *shareButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 20.0f, 20.0f)];
     [shareButton setImage:[UIImage imageNamed:@"upload.png"] forState:UIControlStateNormal];
     [shareButton addTarget:self action:@selector(btnShareClicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -76,7 +83,7 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CustomFoodDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    cell.myLabel.text = @"គ្រឿងផ្សំ បង្កង ត្រី​រ៉ស់ សាច់ជ្រូក (​សាច់​សុទ្ធ​) ថ្លើម​ជ្រូក ពោះវៀន​ខ្ចី ខ្ញី អំបិល ទឹកស៊ីអ៊ីវ​ស ម្សៅ​ស៊ុប ម្សៅ​មី ដើម​ខ្ទឹម ស្លឹក​វ៉ានស៊ុយ ម្រេច​បុក ខ្ទឹមស ខ្លាញ់​រាវ ។ \nវិធី​ធ្វើ\n១. ត្រី​រ៉ស់ លើ​យ​យកតែ​សាច់​ហាន់​ជា​បន្ទះ​ស្ដើងៗ ថ្លើម​ជ្រូក​ហាន់​ជា​បន្ទះ​ស្ដើង​ដែរ ខ្ញី​រើសយក ខ្ចី ចិត​សំបក​ហាន់​ជា​សរសៃ​ឆ្មារៗ គល់​ខ្ទឹម​កាត់​ប្រវែង​ពីរ​ថ្នាំងដៃ សាប់​ចុង​ដើម​ត្រាំ​ទឹក​ឲ្យ​រីក ស្លឹក​វ៉ាន់ស៊ុយបេះ​លាង​ទឹក​ឲ្យ​ស្អាត ។\n២. សាច់ជ្រូក (​សាច់​សុទ្ធ​) ចិញ្ច្រាំ​ឲ្យ​ល្អិត​ដាក់​ម្សៅ​មី​បន្តិច​សូន​មូលៗ ប៉ុន​មេដៃ ពោះវៀន​ខ្ចី​កាត់កង់ៗ​ប្រវែង​មួយ​ថ្នាំងដៃ ខ្ទឹមស​ចិញ្ច្រាំ​ឲ្យ​ល្អិត​បំពង​ខ្លាញ់​ឲ្យ​ឈ្ងុយ ដាក់​ចាន​ទុក ។\n៣. យក​អង្ករ​ដាំបបរ (​រាវៗ​) ហើយ​ដាក់​ពោះវៀន​ខ្ចី អំបិល ម្សៅ​ស៊ុប​ទុក​ឲ្យ​ឆ្អិន ទើប​ដាក់​សាច់ជ្រូក​ចិញ្ច្រាំ ។\nរបៀប​រៀប​ទទួលទាន\n៤. យក​ចាន​ដាក់​ថ្លើម​ជ្រូក សាច់​ត្រី ខ្ញី គល់​ខ្ទឹម រួច​ដួស​បបរ (​កំពុងពុះ​) ដាក់​ពីលើ​រោយ​ខ្ទឹមបំពង ចាក់​ទឹកស៊ីអ៊ីវ​ស និង​ម្រេច​បុក ស្លឹក​វ៉ាន់ស៊ុយ ។​";
+    [cell.myWebView loadHTMLString:[_receiveData objectForKey:@"FD_DETAIL"] baseURL:nil];
     return cell;
 }
 
@@ -92,7 +99,7 @@
     if (offsetY > NAVBAR_CHANGE_POINT) {
         CGFloat alpha = MIN(1, 1 - ((NAVBAR_CHANGE_POINT + 64 - offsetY) / 64));
         [self.navigationController.navigationBar lt_setBackgroundColor:[color colorWithAlphaComponent:alpha]];
-        titleLable.text = @"បបរសាមចូក";
+        titleLable.text = [_receiveData objectForKey:@"FD_NAME"];;
         self.navigationItem.titleView = titleLable;
     } else {
         [self.navigationController.navigationBar lt_setBackgroundColor:[color colorWithAlphaComponent:0]];

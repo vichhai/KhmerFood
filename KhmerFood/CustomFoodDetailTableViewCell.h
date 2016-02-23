@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface CustomFoodDetailTableViewCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *myLabel;
+
+@property (weak, nonatomic) IBOutlet UIWebView *myWebView;
 
 @end
