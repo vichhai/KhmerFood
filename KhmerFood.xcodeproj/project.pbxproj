@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		397CB7721C7C352800DC47CA /* CardViewMe.m in Sources */ = {isa = PBXBuildFile; fileRef = 397CB76D1C7C352800DC47CA /* CardViewMe.m */; };
+		397CB7731C7C352800DC47CA /* YSLCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 397CB76F1C7C352800DC47CA /* YSLCardView.m */; };
+		397CB7741C7C352800DC47CA /* YSLDraggableCardContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 397CB7711C7C352800DC47CA /* YSLDraggableCardContainer.m */; };
 		398055831C227D42002144AC /* SaveFoodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 398055821C227D42002144AC /* SaveFoodsViewController.m */; };
 		3980558F1C227E4E002144AC /* CardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 398055861C227E4E002144AC /* CardView.m */; };
 		398055901C227E4E002144AC /* UIColor+FlatColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 398055891C227E4E002144AC /* UIColor+FlatColors.m */; };
@@ -69,6 +72,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		397CB76C1C7C352800DC47CA /* CardViewMe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardViewMe.h; sourceTree = "<group>"; };
+		397CB76D1C7C352800DC47CA /* CardViewMe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardViewMe.m; sourceTree = "<group>"; };
+		397CB76E1C7C352800DC47CA /* YSLCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSLCardView.h; sourceTree = "<group>"; };
+		397CB76F1C7C352800DC47CA /* YSLCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSLCardView.m; sourceTree = "<group>"; };
+		397CB7701C7C352800DC47CA /* YSLDraggableCardContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSLDraggableCardContainer.h; sourceTree = "<group>"; };
+		397CB7711C7C352800DC47CA /* YSLDraggableCardContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSLDraggableCardContainer.m; sourceTree = "<group>"; };
 		3980557E1C227CDA002144AC /* KhmerFood-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KhmerFood-Bridging-Header.h"; sourceTree = "<group>"; };
 		398055811C227D42002144AC /* SaveFoodsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveFoodsViewController.h; sourceTree = "<group>"; };
 		398055821C227D42002144AC /* SaveFoodsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveFoodsViewController.m; sourceTree = "<group>"; };
@@ -186,9 +195,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		397CB76B1C7C352800DC47CA /* CardMe */ = {
+			isa = PBXGroup;
+			children = (
+				397CB76C1C7C352800DC47CA /* CardViewMe.h */,
+				397CB76D1C7C352800DC47CA /* CardViewMe.m */,
+				397CB76E1C7C352800DC47CA /* YSLCardView.h */,
+				397CB76F1C7C352800DC47CA /* YSLCardView.m */,
+				397CB7701C7C352800DC47CA /* YSLDraggableCardContainer.h */,
+				397CB7711C7C352800DC47CA /* YSLDraggableCardContainer.m */,
+			);
+			path = CardMe;
+			sourceTree = "<group>";
+		};
 		398055841C227E4E002144AC /* CardView_Lib */ = {
 			isa = PBXGroup;
 			children = (
+				397CB76B1C7C352800DC47CA /* CardMe */,
 				398055851C227E4E002144AC /* CardView.h */,
 				398055861C227E4E002144AC /* CardView.m */,
 				398055871C227E4E002144AC /* UIColor+FlatColors */,
@@ -648,6 +671,7 @@
 				398055831C227D42002144AC /* SaveFoodsViewController.m in Sources */,
 				ED3116EF1C33B74100061E78 /* FHSTwitterEngine.m in Sources */,
 				ED17090D1C3B451B00F92EC0 /* SearchingViewController.m in Sources */,
+				397CB7731C7C352800DC47CA /* YSLCardView.m in Sources */,
 				ED5A446E1C2A7A610004DF8C /* ProfileTableViewController.m in Sources */,
 				3980558F1C227E4E002144AC /* CardView.m in Sources */,
 				EDCD2F401C0E7B720074E8A0 /* HomeViewController.m in Sources */,
@@ -656,9 +680,11 @@
 				ED019D201C2B8991008D6BBE /* NameSettingTableViewController.m in Sources */,
 				EDAD81D81C0D8C0B009E53F9 /* ConnectionManager.m in Sources */,
 				ED8C5A3A1C2291B400BE9001 /* HomeCustomTableViewCell.m in Sources */,
+				397CB7741C7C352800DC47CA /* YSLDraggableCardContainer.m in Sources */,
 				ED31CE541C0FDE6C00F8A644 /* AppUtils.m in Sources */,
 				ED5A44681C2A6B560004DF8C /* CustomFoodDetailTableViewCell.m in Sources */,
 				ED1709161C3B457300F92EC0 /* JCTagCell.m in Sources */,
+				397CB7721C7C352800DC47CA /* CardViewMe.m in Sources */,
 				EDE6A3921C3A015500F71B38 /* RecommendFoodViewController.m in Sources */,
 				398055921C227E4E002144AC /* ZLSwipeableView.m in Sources */,
 				EDAD81971C0D8851009E53F9 /* main.m in Sources */,
