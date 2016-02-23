@@ -827,6 +827,7 @@
 				ED5A44681C2A6B560004DF8C /* CustomFoodDetailTableViewCell.m in Sources */,
 				ED1709161C3B457300F92EC0 /* JCTagCell.m in Sources */,
 				ED4DCBC01C7AF0C100986CEA /* UIButton+WebCache.m in Sources */,
+				397CB7721C7C352800DC47CA /* CardViewMe.m in Sources */,
 				EDE6A3921C3A015500F71B38 /* RecommendFoodViewController.m in Sources */,
 				ED4DCBBF1C7AF0C100986CEA /* SDWebImagePrefetcher.m in Sources */,
 				ED4DCBC61C7AF0C100986CEA /* UIView+WebCacheOperation.m in Sources */,
