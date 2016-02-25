@@ -23,7 +23,7 @@
     [AppUtils settingLeftButton:self action:@selector(lettButtonClicked:) normalImageCode:@"go_back.png" highlightImageCode:nil];
     
     [self setTitleForNavigationbar:@"ម្ហូបដែលអ្នកគួរសាក"];
-    
+    self.collectionView.hidden = true;
 }
 
 - (void)didReceiveMemoryWarning {

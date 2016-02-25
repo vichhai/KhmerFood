@@ -7,7 +7,7 @@
 //
 
 #import "KFViewController.h"
-
+#import "Constants.h"
 @interface SearchingViewController : KFViewController
 
 @end

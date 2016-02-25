@@ -17,42 +17,42 @@
 @implementation ConnectionManager 
 
 -(void)sendTranData:(NSDictionary *)reqDictionary{
-//    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-//    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:nil];
-//    
-//    // create an URLRequest
-//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://172.20.20.48/~yoman/KF_APP_API/API_MES.php"]];
-//    request.HTTPMethod = @"POST";
-////    [request setValue:@"2a1814171e4c995cbc1a7950a67d3db45b4fd139" forHTTPHeaderField:@"X-API-KEY"];
-//    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:reqDictionary options:0 error:nil];
-//    
-//    // checking the format
-//    NSString *urlString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-//    NSString *stringData = [NSString stringWithFormat:@"%@",urlString];
-//    [request setHTTPBody:[stringData dataUsingEncoding:NSUTF8StringEncoding]];
-//    
-//    // create task
-//    
-//    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request];
-//    
-//    if (dataTask == nil) {
-//        responseData = nil;
-//    } else {
-//        [dataTask resume];
-//    }
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:nil];
     
+    // create an URLRequest
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://172.20.20.48/~yoman/KF_APP_API/API_MES.php"]];
     request.HTTPMethod = @"POST";
+//    [request setValue:@"2a1814171e4c995cbc1a7950a67d3db45b4fd139" forHTTPHeaderField:@"X-API-KEY"];
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:reqDictionary options:0 error:nil];
+    
+    // checking the format
     NSString *urlString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     NSString *stringData = [NSString stringWithFormat:@"%@",urlString];
     [request setHTTPBody:[stringData dataUsingEncoding:NSUTF8StringEncoding]];
     
-    NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
- 
-    if (!theConnection) {
+    // create task
+    
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request];
+    
+    if (dataTask == nil) {
         responseData = nil;
+    } else {
+        [dataTask resume];
     }
+    
+//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://172.20.20.48/~yoman/KF_APP_API/API_MES.php"]];
+//    request.HTTPMethod = @"POST";
+//    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:reqDictionary options:0 error:nil];
+//    NSString *urlString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+//    NSString *stringData = [NSString stringWithFormat:@"%@",urlString];
+//    [request setHTTPBody:[stringData dataUsingEncoding:NSUTF8StringEncoding]];
+//    
+//    NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+// 
+//    if (!theConnection) {
+//        responseData = nil;
+//    }
 }
 
 #pragma mark - NSURLSession delegate methods
@@ -70,7 +70,7 @@
 }
 
 -(void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error{
-
+    NSLog(@"Fuck error : %@",error.description);
 }
 
 #pragma mark - NSURLConnection delegate methods

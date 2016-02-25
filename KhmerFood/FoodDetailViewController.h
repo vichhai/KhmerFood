@@ -8,7 +8,7 @@
 
 #import "KFViewController.h"
 #import "UINavigationBar+Awesome.h"
-
+#import "Constants.h"
 @interface FoodDetailViewController : UITableViewController
 
 @property (strong,nonatomic) NSDictionary *receiveData;

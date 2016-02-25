@@ -16,7 +16,7 @@
 #import "FoodModel.h"
 #import "UIView+WebCacheOperation.h"
 #import "FoodDetailViewController.h"
-
+#import "AllFoodModel.h"
 #define NAVBAR_CHANGE_POINT 0
 @interface HomeViewController ()<UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,ConnectionManagerDelegate>
 
@@ -67,8 +67,7 @@
     [self initialScrollView];
     
     if ([[FoodModel allObjects] count] == 0) {
-        NSDictionary *reqDic = @{@"API_KEY":@"KF_LSTMFOOD"};
-        [self sendTranData:reqDic];
+        [self sendTranData:@"KF_LSTMFOOD"];
     } else {
         FoodModel *objFood = [[AppUtils readObjectFromRealm:[[FoodModel alloc] init]] objectAtIndex:0];
         NSDictionary *tempDic = (NSDictionary *)[NSKeyedUnarchiver unarchiveObjectWithData:objFood.foodRecord];
@@ -129,8 +128,10 @@
 
 #pragma mark - segue method
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    FoodDetailViewController *vc = [segue destinationViewController];
-    vc.receiveData = sender;
+    if ([segue.identifier isEqualToString:@"detail"]) {
+        FoodDetailViewController *vc = [segue destinationViewController];
+        vc.receiveData = sender;
+    }
 }
 
 
@@ -247,10 +248,18 @@
 #pragma mark - request and response
 
 //request
--(void) sendTranData : (NSDictionary *) requestDic {
+-(void) sendTranData : (NSString *) apiKey {
+    
     ConnectionManager *cont = [[ConnectionManager alloc] init];
     cont.delegate = self;
-    [cont sendTranData:requestDic];
+    NSDictionary *reqDic;
+    
+    if ([apiKey isEqualToString:@"KF_LSTMFOOD"]) {
+        reqDic = @{@"API_KEY":@"KF_LSTMFOOD"};
+    } else if ([apiKey isEqualToString:@"KF_LSTFOODS"]) {
+        reqDic = @{@"API_KEY":@"KF_LSTFOODS"};
+    }
+    [cont sendTranData:reqDic];
 }
 
 //response
@@ -260,21 +269,39 @@
         
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
         
-        if ([[dic objectForKey:@"STATUS"] isEqualToString:@"1"]) {
-            
-            if ([[FoodModel allObjects] count] == 0 || ![[FoodModel allObjects] count]) {
+        if ([[dic objectForKey:@"API_KEY"] isEqualToString:@"KF_LSTMFOOD"]) { // list main food
+          
+            if ([[dic objectForKey:@"STATUS"] isEqualToString:@"1"]) {// if success
                 
-                FoodModel *obj = [[FoodModel alloc] init];
-                obj.foodRecord = [NSKeyedArchiver archivedDataWithRootObject:[dic objectForKey:@"RES_DATA"]] ;
-                [AppUtils writeObjectToRealm:obj];
-                headerArray = [[NSMutableArray alloc] initWithArray:[[dic objectForKey:@"RES_DATA"] objectForKey:@"HEAD"]];
-                aFoodArray = [[NSMutableArray alloc] initWithArray:[[dic objectForKey:@"RES_DATA"] objectForKey:@"AFOOD"]];
-                randomArray = [[NSMutableArray alloc] initWithArray:[[dic objectForKey:@"RES_DATA"] objectForKey:@"RANDOM"]];
-                rateArray = [[NSMutableArray alloc] initWithArray:[[dic objectForKey:@"RES_DATA"] objectForKey:@"RATE"]];
+                if ([[FoodModel allObjects] count] == 0 || ![[FoodModel allObjects] count]) {
+                    
+                    FoodModel *obj = [[FoodModel alloc] init];
+                    obj.foodRecord = [NSKeyedArchiver archivedDataWithRootObject:[dic objectForKey:@"RES_DATA"]] ;
+                    [AppUtils writeObjectToRealm:obj];
+                    headerArray = [[NSMutableArray alloc] initWithArray:[[dic objectForKey:@"RES_DATA"] objectForKey:@"HEAD"]];
+                    aFoodArray = [[NSMutableArray alloc] initWithArray:[[dic objectForKey:@"RES_DATA"] objectForKey:@"AFOOD"]];
+                    randomArray = [[NSMutableArray alloc] initWithArray:[[dic objectForKey:@"RES_DATA"] objectForKey:@"RANDOM"]];
+                    rateArray = [[NSMutableArray alloc] initWithArray:[[dic objectForKey:@"RES_DATA"] objectForKey:@"RATE"]];
                 
-                [self.collectionRow1 reloadData];
-                [self.collectionRow2 reloadData];
-                [self.collectinRow3 reloadData];
+                    if (!headerArray.count == false || headerArray.count != 0) {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [self setupScrollView];
+                            [self.collectionRow1 reloadData];
+                            [self.collectionRow2 reloadData];
+                            [self.collectinRow3 reloadData];
+                        });
+                    }
+                    [self sendTranData:@"KF_LSTFOODS"];
+                }
+                
+            }  // end if success
+        } // end list main food
+        else if ([[dic objectForKey:@"API_KEY"] isEqualToString:@"KF_LSTFOODS"]) { // get all foods
+            if ([[AllFoodModel allObjects] count] == 0) {
+                AllFoodModel *allFoodsObj = [[AllFoodModel alloc] init];
+                allFoodsObj.allFoods = [NSKeyedArchiver archivedDataWithRootObject:[dic objectForKey:@"RES_DATA"]];
+                [AppUtils writeObjectToRealm:allFoodsObj];
+                NSLog(@"all food : %@",allFoodsObj.allFoods);
             }
         }
     }

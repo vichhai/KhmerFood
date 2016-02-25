@@ -108,6 +108,6 @@
 
 +(void)writeObjectToRealm:(RLMObject *)anyObject;
 +(RLMResults *)readObjectFromRealm:(RLMObject *)anyObject;
-
++ (CGFloat)measureTextHeight:(NSString*)text constrainedToSize:(CGSize)constrainedToSize fontSize:(CGFloat)fontSize;
 
 @end

@@ -161,4 +161,12 @@
     return [[anyObject class] allObjects];
 }
 
++ (CGFloat)measureTextHeight:(NSString*)text constrainedToSize:(CGSize)constrainedToSize fontSize:(CGFloat)fontSize {
+    
+    CGRect rect = [text boundingRectWithSize:constrainedToSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:fontSize]} context:nil];
+    
+    return rect.size.height;
+    
+}
+
 @end

@@ -8,28 +8,77 @@
 
 #import "SearchingViewController.h"
 #import "JCTagListView.h"
+#import "AllFoodModel.h"
+#import "SearchCustomCellTableViewCell.h"
+#import "FoodDetailViewController.h"
 
-@interface SearchingViewController ()
+
+@interface SearchingViewController () <UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate>
 {
     NSArray *arrayData;
+    NSArray *allFoodsArray;
+    NSMutableArray *searchResultArray;
+    BOOL isSearching;
 }
 @property (weak, nonatomic) IBOutlet JCTagListView *tagView;
+@property (weak, nonatomic) IBOutlet UITextField *searchTextField;
+@property (weak, nonatomic) IBOutlet UITableView *myTableView;
 
 @end
 
 @implementation SearchingViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+#pragma mark - view life cycle
 
-    arrayData = [[NSArray alloc] initWithObjects:@"សម្លម្ជូរ",@"សាច់គោអាំងទឹកប្រហុក",@"ម្ហូបធ្វើរហ័ស",@"ម្ហូបបួស",@"ម្ហូបចុងសប្ដាហ៏",@"អាហាពេលព្រឹក",@"អាហារសំរ៉ន់",nil];
+-(void)viewWillAppear:(BOOL)animated {
+//    [searchResultArray removeAllObjects];
+//    [self.myTableView reloadData];
     self.navigationController.navigationBar.barTintColor = NaviStandartColor;
-    [self setupTagViews];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    arrayData = [[NSArray alloc] initWithObjects:@"សម្លម្ជូរ",@"សាច់គោអាំងទឹកប្រហុក",@"ម្ហូបធ្វើរហ័ស",@"ម្ហូបបួស",@"ម្ហូបចុងសប្ដាហ៏",@"អាហាពេលព្រឹក",@"អាហារសំរ៉ន់",nil];
+    [self setupTagViews];
+    self.myTableView.hidden = true;
+    [self readDataFromRealm];
+}
+
+#pragma mark - uitableview data source and delegate method
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    SearchCustomCellTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    if (isSearching) {
+        [cell.foodName setAttributedText:[searchResultArray objectAtIndex:indexPath.row]];
+    }
+    return cell;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (isSearching) {
+        return [searchResultArray count];
+    }
+    return 0;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString *foodTitle = [[searchResultArray objectAtIndex:indexPath.row] string];
+    NSDictionary *tempDic;
+    for (NSDictionary *dic in allFoodsArray) {
+        if ([[dic objectForKey:@"FD_NAME"] isEqualToString:foodTitle]) {
+            tempDic = dic;
+            break;
+        }
+    }
+    
+    [self performSegueWithIdentifier:@"detail" sender:tempDic];
+}
+
+#pragma mark - read data from Realm
+-(void)readDataFromRealm {
+    AllFoodModel *objFood = [[AppUtils readObjectFromRealm:[[AllFoodModel alloc] init]] objectAtIndex:0];
+    allFoodsArray = (NSArray *)[NSKeyedUnarchiver unarchiveObjectWithData:objFood.allFoods];
 }
 
 #pragma mark - other methods
@@ -45,7 +94,76 @@
 }
 
 #pragma mark - buttons action
--(void)lettButtonClicked:(UIButton *)sender {
-    [self.navigationController popViewControllerAnimated:true];
+
+- (IBAction)closeButtonAction:(UIButton *)sender {
+    isSearching = false;
+    self.myTableView.hidden = true;
+    [self.myTableView reloadData];
+    self.searchTextField.text = nil;
+    [self.searchTextField resignFirstResponder];
 }
+
+#pragma mark - textfield delegate 
+
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    isSearching = true;
+    
+    [searchResultArray removeAllObjects];
+    NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"SELF CONTAINS[c] %@",newString];
+    NSMutableArray *titleArray = [[NSMutableArray alloc] init];
+    
+    for (NSDictionary *dic in allFoodsArray) {
+        [titleArray addObject:[dic objectForKey:@"FD_NAME"]];
+    }
+    
+    NSArray *tempArray = [titleArray filteredArrayUsingPredicate:searchPredicate];
+    
+    NSMutableArray *stringColorArray = [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i < [tempArray count]; i++) {
+        NSString *baseString = [tempArray objectAtIndex:i];
+        NSMutableAttributedString *attributed = [[NSMutableAttributedString alloc] initWithString:baseString];
+        NSRegularExpression *regex = [[NSRegularExpression alloc] initWithPattern:newString options:NSRegularExpressionCaseInsensitive error:nil];
+        
+        NSRange range = NSMakeRange(0, [baseString length]);
+        [regex enumerateMatchesInString:baseString options:0 range:range usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+        
+            [attributed addAttribute:NSBackgroundColorAttributeName value:[UIColor brownColor] range:[result rangeAtIndex:0]];
+            [stringColorArray addObject:attributed];
+            
+        }];
+    }
+    
+    if ([stringColorArray count] != 0 ) {
+        searchResultArray = stringColorArray;
+    }
+    [self.myTableView reloadData];
+    
+    return YES;
+}
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField {
+    self.myTableView.hidden = false;
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return true;
+}
+
+-(BOOL)textFieldShouldClear:(UITextField *)textField {
+    return true;
+}
+
+#pragma mark - segue method
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"detail"]) {
+        FoodDetailViewController *vc = [segue destinationViewController];
+        vc.receiveData = sender;
+        [self.searchTextField resignFirstResponder];
+    }
+}
+
 @end
