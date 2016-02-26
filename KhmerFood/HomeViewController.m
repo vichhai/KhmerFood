@@ -242,7 +242,10 @@
 }
 
 -(void)tapDidTap:(id)sender {
-    //    NSLog(@"sender is %f",((myScrollView.contentOffset.x + screenWidth) - (myScrollView.contentSize.width / headerArray.count))/screenWidth);
+    NSLog(@"sender is %f",((myScrollView.contentOffset.x + screenWidth) - (myScrollView.contentSize.width / headerArray.count))/screenWidth);
+    int index = floorf(((myScrollView.contentOffset.x + screenWidth) - (myScrollView.contentSize.width / headerArray.count))/screenWidth);
+    NSDictionary *tempDic = [headerArray objectAtIndex:index];
+    [self performSegueWithIdentifier:@"detail" sender:tempDic];
 }
 
 #pragma mark - request and response
@@ -298,10 +301,58 @@
         } // end list main food
         else if ([[dic objectForKey:@"API_KEY"] isEqualToString:@"KF_LSTFOODS"]) { // get all foods
             if ([[AllFoodModel allObjects] count] == 0) {
-                AllFoodModel *allFoodsObj = [[AllFoodModel alloc] init];
-                allFoodsObj.allFoods = [NSKeyedArchiver archivedDataWithRootObject:[dic objectForKey:@"RES_DATA"]];
-                [AppUtils writeObjectToRealm:allFoodsObj];
-                NSLog(@"all food : %@",allFoodsObj.allFoods);
+                for (NSDictionary *tmpDic in [dic objectForKey:@"RES_DATA"]) {
+                    AllFoodModel *allFoodsObj = [[AllFoodModel alloc] init];
+                    if ([AppUtils isNull: [tmpDic objectForKey:@"FD_ID"]] == false) {
+                        allFoodsObj.foodID = [tmpDic objectForKey:@"FD_ID"];
+                    } else {
+                        allFoodsObj.foodID = @"";
+                    }
+                    
+                    if ([AppUtils isNull: [tmpDic objectForKey:@"FD_NAME"]] == false) {
+                        allFoodsObj.foodName = [tmpDic objectForKey:@"FD_NAME"];
+                    } else {
+                        allFoodsObj.foodName = @"";
+                    }
+                    
+                    if ([AppUtils isNull: [tmpDic objectForKey:@"FD_DETAIL"]] == false) {
+                        allFoodsObj.foodDetail = [tmpDic objectForKey:@"FD_DETAIL"];
+                    } else {
+                        allFoodsObj.foodDetail = @"";
+                    }
+                    
+                    if ([AppUtils isNull: [tmpDic objectForKey:@"FD_COOK_TIME"]] == false) {
+                        allFoodsObj.foodCookTime = [tmpDic objectForKey:@"FD_COOK_TIME"];
+                    } else {
+                        allFoodsObj.foodCookTime = @"";
+                    }
+                    
+                    if ([AppUtils isNull: [tmpDic objectForKey:@"FD_IMG"]] == false) {
+                        allFoodsObj.foodImage = [tmpDic objectForKey:@"FD_IMG"];
+                    } else {
+                        allFoodsObj.foodImage = @"";
+                    }
+                    
+                    if ([AppUtils isNull: [tmpDic objectForKey:@"FD_RATE"]] == false) {
+                        allFoodsObj.foodRate = [tmpDic objectForKey:@"FD_RATE"];
+                    } else {
+                        allFoodsObj.foodRate = @"";
+                    }
+                    
+                    if ([AppUtils isNull: [tmpDic objectForKey:@"FD_TYPE"]] == false) {
+                        allFoodsObj.foodType = [tmpDic objectForKey:@"FD_TYPE"];
+                    } else {
+                        allFoodsObj.foodType = @"";
+                    }
+                    
+                    if ([AppUtils isNull: [tmpDic objectForKey:@"FD_TIME_WATCH"]] == false) {
+                        allFoodsObj.foodTimeWatch = [tmpDic objectForKey:@"FD_TIME_WATCH"];
+                    } else {
+                        allFoodsObj.foodTimeWatch = @"";
+                    }
+                    
+                    [AppUtils writeObjectToRealm:allFoodsObj];
+                }
             }
         }
     }
