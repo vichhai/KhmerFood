@@ -7,16 +7,18 @@
 //
 
 #import "SaveFoodsViewController.h"
-
 #import "CardViewMe.h"
 #import "YSLDraggableCardContainer.h"
-
+#import "FoodDetailViewController.h"
 #define RGB(r, g, b)	 [UIColor colorWithRed: (r) / 255.0 green: (g) / 255.0 blue: (b) / 255.0 alpha : 1]
 
-@interface SaveFoodsViewController () <YSLDraggableCardContainerDelegate, YSLDraggableCardContainerDataSource>
+@interface SaveFoodsViewController () <YSLDraggableCardContainerDelegate, YSLDraggableCardContainerDataSource>{
+    SaveFoodModel *realmSaveFood;
+}
 
 @property (nonatomic, strong) YSLDraggableCardContainer *container;
 @property (nonatomic, strong) NSMutableArray *datas;
+@property (strong, nonatomic) IBOutlet UIView *viewMessage;
 
 @end
 
@@ -34,17 +36,24 @@
     _container.canDraggableDirection = YSLDraggableDirectionLeft | YSLDraggableDirectionRight ;
     [self.view addSubview:_container];
     
+
+
+}
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
     _datas = [NSMutableArray array];
     
-     NSArray *array = [[NSArray alloc] initWithObjects:@"header.jpg",@"food1.jpg",@"Test",@"food.jpg",@"Test",@"food.jpg",@"header.jpg", nil];
-    
-    for (int i = 0; i < array.count; i++) {
-        NSDictionary *dict = @{@"image" : [NSString stringWithFormat:@"%@",array[i]],
-                               @"name" : @"Yo Testing Demo"};
-        [_datas addObject:dict];
+  
+    realmSaveFood = [[SaveFoodModel alloc]init];
+    for (int i = 0 ; i < [AppUtils readObjectFromRealm:realmSaveFood].count ; i++){
+        [_datas addObject:[AppUtils readObjectFromRealm:realmSaveFood][i]];
     }
-    [_container reloadCardContainer];
-
+    
+    if([ShareDataManager shareDataManager].SCheckRealoadSaveFood == true){
+        [_container reloadCardContainer];
+        [ShareDataManager shareDataManager].SCheckRealoadSaveFood = false;
+    }
 }
 
 #pragma mark -- YSLDraggableCardContainer DataSource
@@ -53,43 +62,48 @@
     CardViewMe *view;
     view = [[CardViewMe alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width - 50, self.view.frame.size.height / 2)];
     view.backgroundColor = [UIColor whiteColor];
-    view.imageView.image = [UIImage imageNamed:dict[@"image"]];
-    view.label.text = [NSString stringWithFormat:@"%@  %ld",dict[@"name"],(long)index];
-    view.labelName.text = [NSString stringWithFormat:@"%@  %ld",dict[@"name"],(long)index];
+    [view.imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",dict[@"FD_IMG"]]]];
+    view.label.text = [NSString stringWithFormat:@"%@",dict[@"FD_NAME"]];
+    view.labelName.text = [NSString stringWithFormat:@"%@",dict[@"FD_COOK_TIME"]];
     return view;
 }
 - (NSInteger)cardContainerViewNumberOfViewInIndex:(NSInteger)index  {
+    if(_datas.count == 0){
+        _viewMessage.hidden = false;
+    }else{
+        _viewMessage.hidden = true;
+    }
     return _datas.count;
 }
 
 #pragma mark -- YSLDraggableCardContainer Delegate
 - (void)cardContainerView:(YSLDraggableCardContainer *)cardContainerView didEndDraggingAtIndex:(NSInteger)index draggableView:(UIView *)draggableView draggableDirection:(YSLDraggableDirection)draggableDirection{
-    if (draggableDirection == YSLDraggableDirectionLeft) {
-        [cardContainerView movePositionWithDirection:draggableDirection
-                                         isAutomatic:NO];
-    }
     
+    if (draggableDirection == YSLDraggableDirectionLeft) {
+        [cardContainerView movePositionWithDirection:draggableDirection isAutomatic:NO];
+    }
     if (draggableDirection == YSLDraggableDirectionRight) {
-        [cardContainerView movePositionWithDirection:YSLDraggableDirectionDown isAutomatic:YES undoHandler:^{
-            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Information"
-                                                                                     message:@"Delete man ?"
+        [cardContainerView movePositionWithDirection:draggableDirection isAutomatic:NO undoHandler:^{
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"ពត៏មាន"
+                                                                                     message:@"តេីអ្នកចង់លុបអាហារចេញពីកន្លែងរក្សាទុករបស់អ្នកមែន៎ទេ ?"
                                                                               preferredStyle:UIAlertControllerStyleAlert];
             
-            [alertController addAction:[UIAlertAction actionWithTitle:@"YES" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-                [cardContainerView movePositionWithDirection:YSLDraggableDirectionRight isAutomatic:YES];
+            [alertController addAction:[UIAlertAction actionWithTitle:@"បាន" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                [cardContainerView movePositionWithDirection:draggableDirection isAutomatic:NO];
+                [AppUtils DeleteObjectToRealm:[AppUtils readObjectFromRealm:realmSaveFood][index]];
+                [_datas removeObjectAtIndex:index];
+                [_container reloadCardContainer];
             }]];
             
-            [alertController addAction:[UIAlertAction actionWithTitle:@"NO" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            [alertController addAction:[UIAlertAction actionWithTitle:@"អត់ទេ បាន" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
                 [cardContainerView movePositionWithDirection:YSLDraggableDirectionDefault isAutomatic:YES];
             }]];
             
             [self presentViewController:alertController animated:YES completion:nil];
         }];
     }
-    
-    NSLog(@"---> %d",index);
-}
 
+}
 - (void)cardContainderView:(YSLDraggableCardContainer *)cardContainderView updatePositionWithDraggableView:(UIView *)draggableView draggableDirection:(YSLDraggableDirection)draggableDirection widthRatio:(CGFloat)widthRatio heightRatio:(CGFloat)heightRatio{
     CardViewMe *view = (CardViewMe *)draggableView;
     
@@ -108,17 +122,25 @@
     }
     
 }
-
 - (void)cardContainerViewDidCompleteAll:(YSLDraggableCardContainer *)container;{
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{\
         [container reloadCardContainer];
     });
 }
-
 - (void)cardContainerView:(YSLDraggableCardContainer *)cardContainerView didSelectAtIndex:(NSInteger)index draggableView:(UIView *)draggableView{
-    NSLog(@"++ index : %ld",(long)index);
+    
+    NSDictionary *receiveData = [[NSDictionary alloc]initWithObjectsAndKeys:_datas[index][@"FD_ID"],@"FD_ID",_datas[index][@"FD_NAME"],@"FD_NAME",_datas[index][@"FD_DETAIL"],@"FD_DETAIL",_datas[index][@"FD_COOK_TIME"],@"FD_COOK_TIME",_datas[index][@"FD_IMG"],@"FD_IMG",_datas[index][@"FD_RATE"],@"FD_RATE",_datas[index][@"FD_TYPE"],@"FD_TYPE",_datas[index][@"FD_TIME_WATCH"],@"FD_TIME_WATCH",nil];
+    
+    [self performSegueWithIdentifier:@"SaveFDDFSegue" sender:receiveData];
 }
 
+#pragma mark - segue method
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"SaveFDDFSegue"]) {
+        FoodDetailViewController *vc = [segue destinationViewController];
+        vc.receiveData = sender;
+    }
+}
 
 
 @end

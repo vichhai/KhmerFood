@@ -8,11 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-@interface ShareDataManager : NSObject
+@interface ShareDataManager : NSObject{
+    BOOL     _SCheckRealoadSaveFood;
+}
 
 +(ShareDataManager *)shareDataManager;
 
 @property (strong,nonatomic) UIImage *shareImage;
+@property (nonatomic) BOOL SCheckRealoadSaveFood;
 
 
 @end

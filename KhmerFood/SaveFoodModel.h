@@ -10,14 +10,14 @@
 
 @interface SaveFoodModel : RLMObject
 
-@property NSString *foodID;
-@property NSString *foodName;
-@property NSString *foodDetail;
-@property NSString *foodCookTime;
-@property NSString *foodImage;
-@property NSString *foodRate;
-@property NSString *foodType;
-@property NSString *foodTimeWatch;
+@property NSString *FD_ID;
+@property NSString *FD_NAME;
+@property NSString *FD_DETAIL;
+@property NSString *FD_COOK_TIME;
+@property NSString *FD_IMG;
+@property NSString *FD_RATE;
+@property NSString *FD_TYPE;
+@property NSString *FD_TIME_WATCH;
 
 @end
 

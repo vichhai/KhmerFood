@@ -40,7 +40,6 @@
     titleLable.textColor = [UIColor whiteColor];
     titleLable.textAlignment = NSTextAlignmentCenter;
     
-    
     if ([AppUtils isNull:[_receiveData objectForKey:@"FD_IMG"]] == false) {
         [_foodImage sd_setImageWithURL:[NSURL URLWithString:[_receiveData objectForKey:@"FD_IMG"]]];
     } else {
@@ -97,7 +96,7 @@
         height = height - 100;
     }
     
-    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(8, 8, cell.contentView.frame.size.width - 16,height)];
+    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(8, 8, cell.contentView.frame.size.width - 16,600)];
     webView.scrollView.scrollEnabled = false;
     [webView loadHTMLString:[_receiveData objectForKey:@"FD_DETAIL"] baseURL:nil];
     [cell.contentView addSubview:webView];
@@ -151,7 +150,7 @@
     BOOL isHave = false;
     for (int i = 0 ; i < [saveFoods count]; i++) {
         SaveFoodModel *obj = [saveFoods objectAtIndex:i];
-        if ([obj.foodName isEqualToString:foodName]) {
+        if ([obj.FD_NAME isEqualToString:foodName]) {
             isHave = true;
             break;
         }
@@ -161,54 +160,57 @@
         SaveFoodModel *saveObject = [[SaveFoodModel alloc] init];
         
         if ([AppUtils isNull: [_receiveData objectForKey:@"FD_ID"]] == false) {
-            saveObject.foodID = [_receiveData objectForKey:@"FD_ID"];
+            saveObject.FD_ID = [_receiveData objectForKey:@"FD_ID"];
         } else {
-            saveObject.foodID = @"";
+            saveObject.FD_ID = @"";
         }
         
         if ([AppUtils isNull: [_receiveData objectForKey:@"FD_NAME"]] == false) {
-            saveObject.foodName = [_receiveData objectForKey:@"FD_NAME"];
+            saveObject.FD_NAME = [_receiveData objectForKey:@"FD_NAME"];
         } else {
-            saveObject.foodName = @"";
+            saveObject.FD_NAME = @"";
         }
         
         if ([AppUtils isNull: [_receiveData objectForKey:@"FD_DETAIL"]] == false) {
-            saveObject.foodDetail = [_receiveData objectForKey:@"FD_DETAIL"];
+            saveObject.FD_DETAIL = [_receiveData objectForKey:@"FD_DETAIL"];
         } else {
-            saveObject.foodDetail = @"";
+            saveObject.FD_DETAIL = @"";
         }
         
         if ([AppUtils isNull: [_receiveData objectForKey:@"FD_COOK_TIME"]] == false) {
-            saveObject.foodCookTime = [_receiveData objectForKey:@"FD_COOK_TIME"];
+            saveObject.FD_COOK_TIME = [_receiveData objectForKey:@"FD_COOK_TIME"];
         } else {
-            saveObject.foodCookTime = @"";
+            saveObject.FD_COOK_TIME = @"";
         }
         
         if ([AppUtils isNull: [_receiveData objectForKey:@"FD_IMG"]] == false) {
-            saveObject.foodImage = [_receiveData objectForKey:@"FD_IMG"];
+            saveObject.FD_IMG = [_receiveData objectForKey:@"FD_IMG"];
         } else {
-            saveObject.foodImage = @"";
+            saveObject.FD_IMG = @"";
         }
         
         if ([AppUtils isNull: [_receiveData objectForKey:@"FD_RATE"]] == false) {
-            saveObject.foodRate = [_receiveData objectForKey:@"FD_RATE"];
+            saveObject.FD_RATE = [_receiveData objectForKey:@"FD_RATE"];
         } else {
-            saveObject.foodRate = @"";
+            saveObject.FD_RATE = @"";
         }
         
         if ([AppUtils isNull: [_receiveData objectForKey:@"FD_TYPE"]] == false) {
-            saveObject.foodType = [_receiveData objectForKey:@"FD_TYPE"];
+            saveObject.FD_TYPE = [_receiveData objectForKey:@"FD_TYPE"];
         } else {
-            saveObject.foodType = @"";
+            saveObject.FD_TYPE = @"";
         }
         
         if ([AppUtils isNull: [_receiveData objectForKey:@"FD_TIME_WATCH"]] == false) {
-            saveObject.foodTimeWatch = [_receiveData objectForKey:@"FD_TIME_WATCH"];
+            saveObject.FD_TIME_WATCH = [_receiveData objectForKey:@"FD_TIME_WATCH"];
         } else {
-            saveObject.foodTimeWatch = @"";
+            saveObject.FD_TIME_WATCH = @"";
         }
         
         [AppUtils writeObjectToRealm:saveObject];
+        
+        ///=====just for checking to reload at Save Food Screen
+        [ShareDataManager shareDataManager].SCheckRealoadSaveFood = true;
     } else {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"ម្ហូបនេះបានរក្សាទុករួចម្ដងហើយ" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *ok = [UIAlertAction actionWithTitle:@"យល់ព្រម" style:UIAlertActionStyleDefault handler:nil];

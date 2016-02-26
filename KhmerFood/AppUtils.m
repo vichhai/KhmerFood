@@ -156,6 +156,11 @@
     [UIRealm addObject:anyObject];
     [UIRealm commitWriteTransaction];
 }
++(void)DeleteObjectToRealm:(RLMObject *)anyObject {
+    [UIRealm beginWriteTransaction];
+    [UIRealm deleteObject:anyObject];
+    [UIRealm commitWriteTransaction];
+}
 
 +(RLMResults *)readObjectFromRealm:(RLMObject *)anyObject{
     return [[anyObject class] allObjects];

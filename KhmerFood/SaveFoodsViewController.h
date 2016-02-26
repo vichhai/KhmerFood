@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "AppUtils.h"
+#import "SaveFoodModel.h"
+#import "UIImageView+WebCache.h"
+#import "ShareDataManager.h"
 @interface SaveFoodsViewController : UIViewController
 
 @end
