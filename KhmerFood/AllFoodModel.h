@@ -10,7 +10,14 @@
 
 @interface AllFoodModel : RLMObject
 
-@property NSData *allFoods;
+@property NSString *foodID;
+@property NSString *foodName;
+@property NSString *foodDetail;
+@property NSString *foodCookTime;
+@property NSString *foodImage;
+@property NSString *foodRate;
+@property NSString *foodType;
+@property NSString *foodTimeWatch;
 
 @end
 

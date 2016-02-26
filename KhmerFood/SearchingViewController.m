@@ -11,15 +11,17 @@
 #import "AllFoodModel.h"
 #import "SearchCustomCellTableViewCell.h"
 #import "FoodDetailViewController.h"
-
+#import <Realm/Realm.h>
 
 @interface SearchingViewController () <UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate>
+
 {
     NSArray *arrayData;
-    NSArray *allFoodsArray;
+    RLMResults<AllFoodModel *> *allFoodsArray;
     NSMutableArray *searchResultArray;
     BOOL isSearching;
 }
+
 @property (weak, nonatomic) IBOutlet JCTagListView *tagView;
 @property (weak, nonatomic) IBOutlet UITextField *searchTextField;
 @property (weak, nonatomic) IBOutlet UITableView *myTableView;
@@ -39,10 +41,38 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    arrayData = [[NSArray alloc] initWithObjects:@"សម្លម្ជូរ",@"សាច់គោអាំងទឹកប្រហុក",@"ម្ហូបធ្វើរហ័ស",@"ម្ហូបបួស",@"ម្ហូបចុងសប្ដាហ៏",@"អាហាពេលព្រឹក",@"អាហារសំរ៉ន់",nil];
+    [self readDataFromRealm];
+    
+    NSMutableSet *set = [[NSMutableSet alloc] init];
+    
+    for (AllFoodModel *obj in allFoodsArray) { // get type of food
+        NSString *foodType = @"";
+        
+        if ([obj.foodType isEqualToString:@"D1"]) {
+            foodType = @"ឆា";
+        }else if ([obj.foodType isEqualToString:@"D2"]) {
+            foodType = @"ស្ងោ";
+        }else if ([obj.foodType isEqualToString:@"D3"]) {
+            foodType = @"ចៀន";
+        }else if ([obj.foodType isEqualToString:@"D4"]) {
+            foodType = @"ញាំ";
+        }else if ([obj.foodType isEqualToString:@"D5"]) {
+            foodType = @"ចំហុយ";
+        }else if ([obj.foodType isEqualToString:@"D6"]) {
+            foodType = @"បំពង";
+        }else if ([obj.foodType isEqualToString:@"D7"]) {
+            foodType = @"ភ្លៀរ";
+        }else if ([obj.foodType isEqualToString:@"D8"]) {
+            foodType = @"អាំង";
+        }
+        
+        [set addObject:foodType];
+    }
+    arrayData = [[NSArray alloc] initWithArray:[set allObjects]];
+    
     [self setupTagViews];
     self.myTableView.hidden = true;
-    [self readDataFromRealm];
+    
 }
 
 #pragma mark - uitableview data source and delegate method
@@ -63,22 +93,34 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *foodTitle = [[searchResultArray objectAtIndex:indexPath.row] string];
-    NSDictionary *tempDic;
-    for (NSDictionary *dic in allFoodsArray) {
-        if ([[dic objectForKey:@"FD_NAME"] isEqualToString:foodTitle]) {
-            tempDic = dic;
-            break;
-        }
-    }
     
+    NSString *foodTitle = [[searchResultArray objectAtIndex:indexPath.row] string];
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"foodName = %@",foodTitle];
+    AllFoodModel *obj = [[ AllFoodModel objectsWithPredicate:pred] objectAtIndex:0];
+    NSDictionary *tempDic = @{@"FD_ID":obj.foodID,
+                              @"FD_NAME":obj.foodName,
+                              @"FD_DETAIL":obj.foodDetail,
+                              @"FD_COOK_TIME":obj.foodCookTime,
+                              @"FD_IMG":obj.foodImage,
+                              @"FD_RATE":obj.foodRate,
+                              @"FD_TYPE":obj.foodType,
+                              @"FD_TIME_WATCH":obj.foodTimeWatch
+                              };
+//    NSDictionary *tempDic;
+//    for (NSDictionary *dic in allFoodsArray) {
+//        if ([[dic objectForKey:@"FD_NAME"] isEqualToString:foodTitle]) {
+//            tempDic = dic;
+//            break;
+//        }
+//    }
     [self performSegueWithIdentifier:@"detail" sender:tempDic];
 }
 
 #pragma mark - read data from Realm
 -(void)readDataFromRealm {
-    AllFoodModel *objFood = [[AppUtils readObjectFromRealm:[[AllFoodModel alloc] init]] objectAtIndex:0];
-    allFoodsArray = (NSArray *)[NSKeyedUnarchiver unarchiveObjectWithData:objFood.allFoods];
+//    AllFoodModel *objFood = [[AppUtils readObjectFromRealm:[[AllFoodModel alloc] init]] objectAtIndex:0];
+//    allFoodsArray = (NSArray *)[NSKeyedUnarchiver unarchiveObjectWithData:objFood.allFoods];
+    allFoodsArray = [AppUtils readObjectFromRealm:[[AllFoodModel alloc] init]];
 }
 
 #pragma mark - other methods
@@ -113,8 +155,8 @@
     NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"SELF CONTAINS[c] %@",newString];
     NSMutableArray *titleArray = [[NSMutableArray alloc] init];
     
-    for (NSDictionary *dic in allFoodsArray) {
-        [titleArray addObject:[dic objectForKey:@"FD_NAME"]];
+    for (AllFoodModel *obj in allFoodsArray) {
+        [titleArray addObject:obj.foodName];
     }
     
     NSArray *tempArray = [titleArray filteredArrayUsingPredicate:searchPredicate];

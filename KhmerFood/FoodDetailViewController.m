@@ -11,6 +11,7 @@
 #import "CustomFoodDetailTableViewCell.h"
 #import "UIImageView+WebCache.h"
 #import "SaveFoodModel.h"
+#import <QuartzCore/QuartzCore.h>
 
 #define NAVBAR_CHANGE_POINT 0
 @interface FoodDetailViewController () <UITableViewDelegate,UITableViewDataSource>
@@ -90,11 +91,15 @@
     CustomFoodDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
     height = [AppUtils measureTextHeight:[_receiveData objectForKey:@"FD_DETAIL"] constrainedToSize:CGSizeMake(cell.contentView.frame.size.width, 2000.0f) fontSize:15.0f] * 1.2;
-    NSLog(@"=====> %f",height);
+    
+    NSLog(@"height %f",height);
+    
     if (height > 1400) {
         height = height + 150;
     } else if (height <= 1096) {
-        height = height - 100;
+        height = height - 50;
+    } else if (height > 1200) {
+        height = height + 100;
     }
     
     UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(8, 8, cell.contentView.frame.size.width - 16,height)];
@@ -137,6 +142,23 @@
 
 -(void)btnShareClicked:(UIButton *)sender {
     NSLog(@"share button work");
+    
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)])
+        UIGraphicsBeginImageContextWithOptions(self.tableView.bounds.size, NO, [UIScreen mainScreen].scale);
+    else
+        UIGraphicsBeginImageContext(self.tableView.bounds.size);
+    
+    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    NSData * imgData = UIImagePNGRepresentation(image);
+    
+//    UIImageWriteToSavedPhotosAlbum([UIImage imageWithData:data], nil, nil, nil);
+    UIImageWriteToSavedPhotosAlbum([UIImage imageWithData:imgData], nil, nil, nil);
+    if(imgData)
+        [imgData writeToFile:@"screenshot.png" atomically:YES];
+    else
+        NSLog(@"error while taking screenshot");
 }
 
 -(void)lettButtonClicked:(UIButton *)sender {
