@@ -36,15 +36,15 @@
     _container.canDraggableDirection = YSLDraggableDirectionLeft | YSLDraggableDirectionRight ;
     [self.view addSubview:_container];
     
-
-
+  
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
     _datas = [NSMutableArray array];
     
-  
+    [self performSegueWithIdentifier:@"ShareFIrSegue" sender:nil];
+    
     realmSaveFood = [[SaveFoodModel alloc]init];
     for (int i = 0 ; i < [AppUtils readObjectFromRealm:realmSaveFood].count ; i++){
         [_datas addObject:[AppUtils readObjectFromRealm:realmSaveFood][i]];
@@ -131,15 +131,16 @@
     
     NSDictionary *receiveData = [[NSDictionary alloc]initWithObjectsAndKeys:_datas[index][@"FD_ID"],@"FD_ID",_datas[index][@"FD_NAME"],@"FD_NAME",_datas[index][@"FD_DETAIL"],@"FD_DETAIL",_datas[index][@"FD_COOK_TIME"],@"FD_COOK_TIME",_datas[index][@"FD_IMG"],@"FD_IMG",_datas[index][@"FD_RATE"],@"FD_RATE",_datas[index][@"FD_TYPE"],@"FD_TYPE",_datas[index][@"FD_TIME_WATCH"],@"FD_TIME_WATCH",nil];
     
-    [self performSegueWithIdentifier:@"SaveFDDFSegue" sender:receiveData];
+//    [self performSegueWithIdentifier:@"SaveFDDFSegue" sender:receiveData];
+   
 }
 
 #pragma mark - segue method
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"SaveFDDFSegue"]) {
-        FoodDetailViewController *vc = [segue destinationViewController];
-        vc.receiveData = sender;
-    }
+//    if ([segue.identifier isEqualToString:@"SaveFDDFSegue"]) {
+//        FoodDetailViewController *vc = [segue destinationViewController];
+//        vc.receiveData = sender;
+//    }
 }
 
 
