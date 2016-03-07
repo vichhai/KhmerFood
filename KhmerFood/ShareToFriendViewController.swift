@@ -38,18 +38,20 @@ class ShareToFriendViewController: UIViewController,UITableViewDataSource,UITabl
         let conn = ConnectionManager()
         conn.delegate = self
         let dic = NSMutableDictionary()
-        dic.setValue("KF_CUSER", forKey: "API_KEY")
-        let dic1 = NSMutableDictionary()
-        dic1.setValue("tiger11", forKey: "USER_ID")
-        dic.setObject(dic1, forKey: "REQ_DATA")
-
-        print(dic)
+        dic.setValue("KF_CHECKEXISTFILE", forKey: "API_KEY")
+        dic.setValue("IMG_0008.JPG", forKey: "FILE_NAME")
+//        let dic1 = NSMutableDictionary()
+//        dic1.setValue("tiger11", forKey: "USER_ID")
+//        dic.setObject(dic1, forKey: "REQ_DATA")
         conn.sendTranData(dic as [NSObject : AnyObject])
     }
     func returnResultWithData(data: NSData!) {
-        print("");
-        
-        
+        do {
+            let jsonDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as! [String: AnyObject]
+            print(jsonDictionary)
+        } catch let error {
+            print("JSON Serialization failed. Error: \(error)")
+        }
     }
     
     // MARK: - View Life Cycle

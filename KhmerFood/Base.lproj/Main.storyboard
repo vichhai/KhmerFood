@@ -635,7 +635,18 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="bookmarks" id="ie3-Hk-t8E"/>
-                    <navigationItem key="navigationItem" id="j76-Mc-m9S"/>
+                    <navigationItem key="navigationItem" id="j76-Mc-m9S">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="P9n-MK-otz">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="MkQ-Eb-WLR">
+                                <rect key="frame" x="233" y="7" width="71" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="btnSaveAction:" destination="MIp-ms-phO" eventType="touchUpInside" id="cng-7a-mIR"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="viewMessage" destination="srv-LT-sVk" id="uou-h6-ZUg"/>
                         <segue destination="Fdf-8w-s2W" kind="show" identifier="SaveFDDFSegue" id="OLd-fb-AWS"/>
@@ -3242,6 +3253,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Zyw-3J-9hg"/>
-        <segue reference="PkX-4E-O4B"/>
+        <segue reference="OLd-fb-AWS"/>
     </inferredMetricsTieBreakers>
 </document>
