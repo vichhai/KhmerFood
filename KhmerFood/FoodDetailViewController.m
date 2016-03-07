@@ -12,12 +12,17 @@
 #import "UIImageView+WebCache.h"
 #import "SaveFoodModel.h"
 #import <QuartzCore/QuartzCore.h>
+#import <Social/Social.h>
+#import "SharePopupViewController.h"
+#import "UIViewController+MJPopupViewController.h"
+
 
 #define NAVBAR_CHANGE_POINT 0
-@interface FoodDetailViewController () <UITableViewDelegate,UITableViewDataSource>
+@interface FoodDetailViewController () <UITableViewDelegate,UITableViewDataSource,SharePopupDelegate>
 {
     UILabel *titleLable;
     CGFloat height;
+    SharePopupViewController *popupView;
 }
 
 @property (weak, nonatomic) IBOutlet UIImageView *foodImage;
@@ -35,26 +40,17 @@
     [AppUtils settingLeftButton:self action:@selector(lettButtonClicked:) normalImageCode:@"go_back.png" highlightImageCode:nil];
     [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor clearColor]];
     [self setupNavigationRightButtons];
+    [self setupNavigationTitle];
+    [self setupTableImageHeader];
     
-    titleLable =[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 25)];
-    [titleLable setFont:[UIFont systemFontOfSize:17]];
-    titleLable.textColor = [UIColor whiteColor];
-    titleLable.textAlignment = NSTextAlignmentCenter;
-    
-    if ([AppUtils isNull:[_receiveData objectForKey:@"FD_IMG"]] == false) {
-        [_foodImage sd_setImageWithURL:[NSURL URLWithString:[_receiveData objectForKey:@"FD_IMG"]]];
-    } else {
-        _foodImage.image = [UIImage imageNamed:@"no_image.jpeg"];
-    }
-    _foodName.text = [_receiveData objectForKey:@"FD_NAME"];
-    _foodType.text = [_receiveData objectForKey:@"FD_NAME"];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self scrollViewDidScroll:self.tableView];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
-
+    
+    
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -62,7 +58,14 @@
     [self.navigationController.navigationBar lt_reset];
 }
 
-#pragma mark - set up navigation button
+#pragma mark - set up navigation
+
+-(void) setupNavigationTitle {
+    titleLable =[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 25)];
+    [titleLable setFont:[UIFont systemFontOfSize:17]];
+    titleLable.textColor = [UIColor whiteColor];
+    titleLable.textAlignment = NSTextAlignmentCenter;
+}
 
 -(void)setupNavigationRightButtons {
     
@@ -99,9 +102,11 @@
         height = height - 50;
     } else if (height > 1200) {
         height = height + 100;
+    } else if (height > 1480) {
+        height = height + 150;
     }
     
-    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(8, 8, cell.contentView.frame.size.width - 16,600)];
+    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(8, 8, cell.contentView.frame.size.width - 16,height)];
     webView.scrollView.scrollEnabled = false;
     [webView loadHTMLString:[_receiveData objectForKey:@"FD_DETAIL"] baseURL:nil];
     [cell.contentView addSubview:webView];
@@ -140,30 +145,50 @@
 }
 
 -(void)btnShareClicked:(UIButton *)sender {
-    NSLog(@"share button work");
-    
-    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)])
-        UIGraphicsBeginImageContextWithOptions(self.tableView.bounds.size, NO, [UIScreen mainScreen].scale);
-    else
-        UIGraphicsBeginImageContext(self.tableView.bounds.size);
-    
-    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    NSData * imgData = UIImagePNGRepresentation(image);
-    
-//    UIImageWriteToSavedPhotosAlbum([UIImage imageWithData:data], nil, nil, nil);
-    UIImageWriteToSavedPhotosAlbum([UIImage imageWithData:imgData], nil, nil, nil);
-    if(imgData)
-        [imgData writeToFile:@"screenshot.png" atomically:YES];
-    else
-        NSLog(@"error while taking screenshot");
+    popupView = nil;
+    popupView = [[SharePopupViewController alloc] initWithNibName:@"SharePopupViewController" bundle:nil];
+    popupView.delegate = self;
+    [self presentPopupViewController:popupView animationType:MJPopupViewAnimationFade contentInteraction:MJPopupViewContentInteractionDismissBackgroundOnly];
 }
 
 -(void)lettButtonClicked:(UIButton *)sender {
     [self.navigationController popViewControllerAnimated:true];
 }
 
+-(void)closeButtonClicked:(SharePopupViewController *)sharePopupViewController {
+    [self dismissPopupViewController:sharePopupViewController
+                       animationType:MJPopupViewAnimationFade];
+    popupView = nil;
+    
+}
+
+-(void)shareToFaceBookClicked:(SharePopupViewController *)sharePopupViewController {
+    
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
+        SLComposeViewController *cont = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+        [cont addImage:[UIImage imageNamed:@"face.png"]];
+        [self presentViewController:cont animated:true completion:nil];
+    }
+    
+}
+
+-(void)shareToTwitterClicked:(SharePopupViewController *)sharePopupViewController {
+    
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
+        SLComposeViewController *cont = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+        [cont addImage:[UIImage imageNamed:@"face.png"]];
+        [self presentViewController:cont animated:true completion:nil];
+    }
+    
+}
+
+-(void)shareToFriendClicked:(SharePopupViewController *)sharePopupViewController {
+    
+    [self dismissPopupViewController:sharePopupViewController
+                       animationType:MJPopupViewAnimationFade];
+    popupView = nil;
+    
+}
 #pragma mark - check and save
 
 -(void)checkAndSave:(NSString *)foodName {
@@ -239,6 +264,17 @@
         [alert addAction:ok];
         [self presentViewController:alert animated:true completion:nil];
     }
+}
+
+#pragma mark - other methods
+-(void)setupTableImageHeader {
+    if ([AppUtils isNull:[_receiveData objectForKey:@"FD_IMG"]] == false) {
+        [_foodImage sd_setImageWithURL:[NSURL URLWithString:[_receiveData objectForKey:@"FD_IMG"]]];
+    } else {
+        _foodImage.image = [UIImage imageNamed:@"no_image.jpeg"];
+    }
+    _foodName.text = [_receiveData objectForKey:@"FD_NAME"];
+    _foodType.text = [_receiveData objectForKey:@"FD_NAME"];
 }
 
 @end

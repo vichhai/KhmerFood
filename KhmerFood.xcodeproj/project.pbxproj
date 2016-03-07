@@ -89,6 +89,18 @@
 		ED83010B1C22ABAD00779E8D /* SecondCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED83010A1C22ABAD00779E8D /* SecondCollectionViewController.m */; };
 		ED8C5A371C2291A600BE9001 /* CustomCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED8C5A361C2291A600BE9001 /* CustomCollectionViewCell.m */; };
 		ED8C5A3A1C2291B400BE9001 /* HomeCustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED8C5A391C2291B400BE9001 /* HomeCustomTableViewCell.m */; };
+		ED94DBB11C8D033E001DC6DB /* EmailRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED94DBB01C8D033E001DC6DB /* EmailRegisterViewController.m */; };
+		ED94DBB91C8D047D001DC6DB /* MJPopupBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED94DBB41C8D047D001DC6DB /* MJPopupBackgroundView.m */; };
+		ED94DBBA1C8D047D001DC6DB /* MJPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED94DBB61C8D047D001DC6DB /* MJPopupViewController.m */; };
+		ED94DBBB1C8D047D001DC6DB /* UIViewController+MJPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED94DBB81C8D047D001DC6DB /* UIViewController+MJPopupViewController.m */; };
+		ED94DBC01C8D04AE001DC6DB /* SharePopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED94DBBE1C8D04AE001DC6DB /* SharePopupViewController.m */; };
+		ED94DBC11C8D04AE001DC6DB /* SharePopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED94DBBF1C8D04AE001DC6DB /* SharePopupViewController.xib */; };
+		ED94DBC81C8D05EC001DC6DB /* show_more_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = ED94DBC21C8D05EC001DC6DB /* show_more_icon.png */; };
+		ED94DBC91C8D05EC001DC6DB /* close_x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED94DBC31C8D05EC001DC6DB /* close_x.png */; };
+		ED94DBCA1C8D05EC001DC6DB /* to_friend_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = ED94DBC41C8D05EC001DC6DB /* to_friend_btn.png */; };
+		ED94DBCB1C8D05EC001DC6DB /* facebook_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = ED94DBC51C8D05EC001DC6DB /* facebook_icon.png */; };
+		ED94DBCC1C8D05EC001DC6DB /* line_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = ED94DBC61C8D05EC001DC6DB /* line_icon.png */; };
+		ED94DBCD1C8D05EC001DC6DB /* twitter_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = ED94DBC71C8D05EC001DC6DB /* twitter_icon.png */; };
 		EDAD81971C0D8851009E53F9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAD81961C0D8851009E53F9 /* main.m */; };
 		EDAD819A1C0D8851009E53F9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAD81991C0D8851009E53F9 /* AppDelegate.m */; };
 		EDAD81A01C0D8851009E53F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDAD819E1C0D8851009E53F9 /* Main.storyboard */; };
@@ -257,6 +269,23 @@
 		ED8C5A361C2291A600BE9001 /* CustomCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCollectionViewCell.m; sourceTree = "<group>"; };
 		ED8C5A381C2291B400BE9001 /* HomeCustomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeCustomTableViewCell.h; sourceTree = "<group>"; };
 		ED8C5A391C2291B400BE9001 /* HomeCustomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCustomTableViewCell.m; sourceTree = "<group>"; };
+		ED94DBAF1C8D033E001DC6DB /* EmailRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailRegisterViewController.h; sourceTree = "<group>"; };
+		ED94DBB01C8D033E001DC6DB /* EmailRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailRegisterViewController.m; sourceTree = "<group>"; };
+		ED94DBB31C8D047D001DC6DB /* MJPopupBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPopupBackgroundView.h; sourceTree = "<group>"; };
+		ED94DBB41C8D047D001DC6DB /* MJPopupBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPopupBackgroundView.m; sourceTree = "<group>"; };
+		ED94DBB51C8D047D001DC6DB /* MJPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPopupViewController.h; sourceTree = "<group>"; };
+		ED94DBB61C8D047D001DC6DB /* MJPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPopupViewController.m; sourceTree = "<group>"; };
+		ED94DBB71C8D047D001DC6DB /* UIViewController+MJPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+MJPopupViewController.h"; sourceTree = "<group>"; };
+		ED94DBB81C8D047D001DC6DB /* UIViewController+MJPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MJPopupViewController.m"; sourceTree = "<group>"; };
+		ED94DBBD1C8D04AE001DC6DB /* SharePopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharePopupViewController.h; sourceTree = "<group>"; };
+		ED94DBBE1C8D04AE001DC6DB /* SharePopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharePopupViewController.m; sourceTree = "<group>"; };
+		ED94DBBF1C8D04AE001DC6DB /* SharePopupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SharePopupViewController.xib; sourceTree = "<group>"; };
+		ED94DBC21C8D05EC001DC6DB /* show_more_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = show_more_icon.png; sourceTree = "<group>"; };
+		ED94DBC31C8D05EC001DC6DB /* close_x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close_x.png; sourceTree = "<group>"; };
+		ED94DBC41C8D05EC001DC6DB /* to_friend_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = to_friend_btn.png; sourceTree = "<group>"; };
+		ED94DBC51C8D05EC001DC6DB /* facebook_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook_icon.png; sourceTree = "<group>"; };
+		ED94DBC61C8D05EC001DC6DB /* line_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = line_icon.png; sourceTree = "<group>"; };
+		ED94DBC71C8D05EC001DC6DB /* twitter_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter_icon.png; sourceTree = "<group>"; };
 		EDAD81921C0D8851009E53F9 /* Khmer Food.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Khmer Food.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDAD81961C0D8851009E53F9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		EDAD81981C0D8851009E53F9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -354,6 +383,12 @@
 		398055931C22861C002144AC /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				ED94DBC21C8D05EC001DC6DB /* show_more_icon.png */,
+				ED94DBC31C8D05EC001DC6DB /* close_x.png */,
+				ED94DBC41C8D05EC001DC6DB /* to_friend_btn.png */,
+				ED94DBC51C8D05EC001DC6DB /* facebook_icon.png */,
+				ED94DBC61C8D05EC001DC6DB /* line_icon.png */,
+				ED94DBC71C8D05EC001DC6DB /* twitter_icon.png */,
 				39A6C50C1C8912F400AECE0A /* Checkbox.png */,
 				39A6C50D1C8912F400AECE0A /* Checkedbox.png */,
 				ED335EC71C7D3D820094AF76 /* loading */,
@@ -682,6 +717,38 @@
 			name = Home;
 			sourceTree = "<group>";
 		};
+		ED94DBAE1C8D0318001DC6DB /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				ED94DBAF1C8D033E001DC6DB /* EmailRegisterViewController.h */,
+				ED94DBB01C8D033E001DC6DB /* EmailRegisterViewController.m */,
+			);
+			name = Register;
+			sourceTree = "<group>";
+		};
+		ED94DBB21C8D0473001DC6DB /* MJPopup */ = {
+			isa = PBXGroup;
+			children = (
+				ED94DBB31C8D047D001DC6DB /* MJPopupBackgroundView.h */,
+				ED94DBB41C8D047D001DC6DB /* MJPopupBackgroundView.m */,
+				ED94DBB51C8D047D001DC6DB /* MJPopupViewController.h */,
+				ED94DBB61C8D047D001DC6DB /* MJPopupViewController.m */,
+				ED94DBB71C8D047D001DC6DB /* UIViewController+MJPopupViewController.h */,
+				ED94DBB81C8D047D001DC6DB /* UIViewController+MJPopupViewController.m */,
+			);
+			name = MJPopup;
+			sourceTree = "<group>";
+		};
+		ED94DBBC1C8D049E001DC6DB /* SharePopup */ = {
+			isa = PBXGroup;
+			children = (
+				ED94DBBD1C8D04AE001DC6DB /* SharePopupViewController.h */,
+				ED94DBBE1C8D04AE001DC6DB /* SharePopupViewController.m */,
+				ED94DBBF1C8D04AE001DC6DB /* SharePopupViewController.xib */,
+			);
+			name = SharePopup;
+			sourceTree = "<group>";
+		};
 		EDAD81891C0D8851009E53F9 = {
 			isa = PBXGroup;
 			children = (
@@ -708,11 +775,13 @@
 				398055811C227D42002144AC /* SaveFoodsViewController.h */,
 				398055821C227D42002144AC /* SaveFoodsViewController.m */,
 				39A6C50A1C890AB100AECE0A /* ShareToFriendViewController.swift */,
+				ED94DBBC1C8D049E001DC6DB /* SharePopup */,
 				EDAD81CF1C0D8B4B009E53F9 /* KFViewController */,
 				ED1709181C3B501000F92EC0 /* SearchViewcontroller */,
 				ED8C5A3D1C2292B900BE9001 /* Home */,
 				ED4DDCBF1C293D0900DE5FBA /* Detail */,
 				ED019D141C2B713C008D6BBE /* People */,
+				ED94DBAE1C8D0318001DC6DB /* Register */,
 				EDAD819E1C0D8851009E53F9 /* Main.storyboard */,
 				EDAD81951C0D8851009E53F9 /* Supporting Files */,
 				3980557E1C227CDA002144AC /* KhmerFood-Bridging-Header.h */,
@@ -724,6 +793,7 @@
 			isa = PBXGroup;
 			children = (
 				ED4E337D1C7BE60100A3D29A /* Constants.h */,
+				ED94DBB21C8D0473001DC6DB /* MJPopup */,
 				ED4E33771C7BE1D200A3D29A /* RealmModel */,
 				ED4E33781C7BE1DB00A3D29A /* NSString+MD5 */,
 				ED4DCB951C7AF0A900986CEA /* SDWebImage */,
@@ -854,16 +924,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED94DBC91C8D05EC001DC6DB /* close_x.png in Resources */,
+				ED94DBCA1C8D05EC001DC6DB /* to_friend_btn.png in Resources */,
 				ED335ED71C7D3D8A0094AF76 /* load_04.png in Resources */,
 				EDEB136F1C2A26D500772E1F /* go_back.png in Resources */,
 				ED335ED81C7D3D8A0094AF76 /* load_05.png in Resources */,
 				ED333AA21C7EC03800F011A9 /* delete.png in Resources */,
+				ED94DBC11C8D04AE001DC6DB /* SharePopupViewController.xib in Resources */,
 				ED335EDD1C7D3D8A0094AF76 /* load_10.png in Resources */,
 				39A6C50F1C8912F400AECE0A /* Checkedbox.png in Resources */,
 				39A6C50E1C8912F400AECE0A /* Checkbox.png in Resources */,
 				EDAD81A81C0D8851009E53F9 /* LaunchScreen.storyboard in Resources */,
 				ED335ED91C7D3D8A0094AF76 /* load_06.png in Resources */,
 				ED4DDCB51C28E47800DE5FBA /* menu_all_icon.png in Resources */,
+				ED94DBCB1C8D05EC001DC6DB /* facebook_icon.png in Resources */,
+				ED94DBCC1C8D05EC001DC6DB /* line_icon.png in Resources */,
 				ED335EDA1C7D3D8A0094AF76 /* load_07.png in Resources */,
 				ED333AA01C7EB69000F011A9 /* no_image.jpeg in Resources */,
 				ED793F061C325481006D79FE /* TwitterKitResources.bundle in Resources */,
@@ -873,10 +948,12 @@
 				ED335EDF1C7D3D8A0094AF76 /* load_12.png in Resources */,
 				ED335EDC1C7D3D8A0094AF76 /* load_09.png in Resources */,
 				EDAD81A01C0D8851009E53F9 /* Main.storyboard in Resources */,
+				ED94DBC81C8D05EC001DC6DB /* show_more_icon.png in Resources */,
 				ED333AA41C7EC13500F011A9 /* pop_close_btn.png in Resources */,
 				EDE694951C2391D600A413A6 /* info.png in Resources */,
 				ED335ED41C7D3D8A0094AF76 /* load_01.png in Resources */,
 				EDEB13731C2A598E00772E1F /* pin.png in Resources */,
+				ED94DBCD1C8D05EC001DC6DB /* twitter_icon.png in Resources */,
 				ED5A446A1C2A77C70004DF8C /* face.png in Resources */,
 				ED4DDCC51C293E6700DE5FBA /* Assets.xcassets in Resources */,
 				ED335EDB1C7D3D8A0094AF76 /* load_08.png in Resources */,
@@ -919,6 +996,7 @@
 				ED333AA81C7EC50400F011A9 /* SaveFoodModel.m in Sources */,
 				ED8301051C22A73700779E8D /* FirstRowCollectionViewCell.m in Sources */,
 				EDCD2F3D1C0E66F20074E8A0 /* Reachability.m in Sources */,
+				ED94DBBB1C8D047D001DC6DB /* UIViewController+MJPopupViewController.m in Sources */,
 				EDAD81A31C0D8851009E53F9 /* KhmerFood.xcdatamodeld in Sources */,
 				ED4DDCBC1C2919FC00DE5FBA /* CExpandHeader.m in Sources */,
 				ED83010B1C22ABAD00779E8D /* SecondCollectionViewController.m in Sources */,
@@ -948,11 +1026,14 @@
 				ED019D201C2B8991008D6BBE /* NameSettingTableViewController.m in Sources */,
 				EDAD81D81C0D8C0B009E53F9 /* ConnectionManager.m in Sources */,
 				ED4DCBC21C7AF0C100986CEA /* UIImage+MultiFormat.m in Sources */,
+				ED94DBB11C8D033E001DC6DB /* EmailRegisterViewController.m in Sources */,
 				ED4DCBBB1C7AF0C100986CEA /* SDWebImageDecoder.m in Sources */,
 				ED8C5A3A1C2291B400BE9001 /* HomeCustomTableViewCell.m in Sources */,
+				ED94DBBA1C8D047D001DC6DB /* MJPopupViewController.m in Sources */,
 				397CB7741C7C352800DC47CA /* YSLDraggableCardContainer.m in Sources */,
 				39A6C50B1C890AB100AECE0A /* ShareToFriendViewController.swift in Sources */,
 				ED31CE541C0FDE6C00F8A644 /* AppUtils.m in Sources */,
+				ED94DBC01C8D04AE001DC6DB /* SharePopupViewController.m in Sources */,
 				ED5A44681C2A6B560004DF8C /* CustomFoodDetailTableViewCell.m in Sources */,
 				ED1709161C3B457300F92EC0 /* JCTagCell.m in Sources */,
 				ED4DCBC01C7AF0C100986CEA /* UIButton+WebCache.m in Sources */,
@@ -963,6 +1044,7 @@
 				ED4DCBC61C7AF0C100986CEA /* UIView+WebCacheOperation.m in Sources */,
 				398055921C227E4E002144AC /* ZLSwipeableView.m in Sources */,
 				EDAD81971C0D8851009E53F9 /* main.m in Sources */,
+				ED94DBB91C8D047D001DC6DB /* MJPopupBackgroundView.m in Sources */,
 				ED019D231C2B899D008D6BBE /* AccountSettingTableViewController.m in Sources */,
 				ED4DCBC11C7AF0C100986CEA /* UIImage+GIF.m in Sources */,
 				ED019D1A1C2B7219008D6BBE /* CustomPeopleTableViewCell.m in Sources */,
