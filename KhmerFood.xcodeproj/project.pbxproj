@@ -95,6 +95,12 @@
 		ED94DBBB1C8D047D001DC6DB /* UIViewController+MJPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED94DBB81C8D047D001DC6DB /* UIViewController+MJPopupViewController.m */; };
 		ED94DBC01C8D04AE001DC6DB /* SharePopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED94DBBE1C8D04AE001DC6DB /* SharePopupViewController.m */; };
 		ED94DBC11C8D04AE001DC6DB /* SharePopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED94DBBF1C8D04AE001DC6DB /* SharePopupViewController.xib */; };
+		ED94DBC81C8D05EC001DC6DB /* show_more_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = ED94DBC21C8D05EC001DC6DB /* show_more_icon.png */; };
+		ED94DBC91C8D05EC001DC6DB /* close_x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED94DBC31C8D05EC001DC6DB /* close_x.png */; };
+		ED94DBCA1C8D05EC001DC6DB /* to_friend_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = ED94DBC41C8D05EC001DC6DB /* to_friend_btn.png */; };
+		ED94DBCB1C8D05EC001DC6DB /* facebook_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = ED94DBC51C8D05EC001DC6DB /* facebook_icon.png */; };
+		ED94DBCC1C8D05EC001DC6DB /* line_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = ED94DBC61C8D05EC001DC6DB /* line_icon.png */; };
+		ED94DBCD1C8D05EC001DC6DB /* twitter_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = ED94DBC71C8D05EC001DC6DB /* twitter_icon.png */; };
 		EDAD81971C0D8851009E53F9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAD81961C0D8851009E53F9 /* main.m */; };
 		EDAD819A1C0D8851009E53F9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAD81991C0D8851009E53F9 /* AppDelegate.m */; };
 		EDAD81A01C0D8851009E53F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDAD819E1C0D8851009E53F9 /* Main.storyboard */; };
@@ -274,6 +280,12 @@
 		ED94DBBD1C8D04AE001DC6DB /* SharePopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharePopupViewController.h; sourceTree = "<group>"; };
 		ED94DBBE1C8D04AE001DC6DB /* SharePopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharePopupViewController.m; sourceTree = "<group>"; };
 		ED94DBBF1C8D04AE001DC6DB /* SharePopupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SharePopupViewController.xib; sourceTree = "<group>"; };
+		ED94DBC21C8D05EC001DC6DB /* show_more_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = show_more_icon.png; sourceTree = "<group>"; };
+		ED94DBC31C8D05EC001DC6DB /* close_x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close_x.png; sourceTree = "<group>"; };
+		ED94DBC41C8D05EC001DC6DB /* to_friend_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = to_friend_btn.png; sourceTree = "<group>"; };
+		ED94DBC51C8D05EC001DC6DB /* facebook_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook_icon.png; sourceTree = "<group>"; };
+		ED94DBC61C8D05EC001DC6DB /* line_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = line_icon.png; sourceTree = "<group>"; };
+		ED94DBC71C8D05EC001DC6DB /* twitter_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter_icon.png; sourceTree = "<group>"; };
 		EDAD81921C0D8851009E53F9 /* Khmer Food.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Khmer Food.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDAD81961C0D8851009E53F9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		EDAD81981C0D8851009E53F9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -371,6 +383,12 @@
 		398055931C22861C002144AC /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				ED94DBC21C8D05EC001DC6DB /* show_more_icon.png */,
+				ED94DBC31C8D05EC001DC6DB /* close_x.png */,
+				ED94DBC41C8D05EC001DC6DB /* to_friend_btn.png */,
+				ED94DBC51C8D05EC001DC6DB /* facebook_icon.png */,
+				ED94DBC61C8D05EC001DC6DB /* line_icon.png */,
+				ED94DBC71C8D05EC001DC6DB /* twitter_icon.png */,
 				39A6C50C1C8912F400AECE0A /* Checkbox.png */,
 				39A6C50D1C8912F400AECE0A /* Checkedbox.png */,
 				ED335EC71C7D3D820094AF76 /* loading */,
@@ -906,6 +924,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED94DBC91C8D05EC001DC6DB /* close_x.png in Resources */,
+				ED94DBCA1C8D05EC001DC6DB /* to_friend_btn.png in Resources */,
 				ED335ED71C7D3D8A0094AF76 /* load_04.png in Resources */,
 				EDEB136F1C2A26D500772E1F /* go_back.png in Resources */,
 				ED335ED81C7D3D8A0094AF76 /* load_05.png in Resources */,
@@ -917,6 +937,8 @@
 				EDAD81A81C0D8851009E53F9 /* LaunchScreen.storyboard in Resources */,
 				ED335ED91C7D3D8A0094AF76 /* load_06.png in Resources */,
 				ED4DDCB51C28E47800DE5FBA /* menu_all_icon.png in Resources */,
+				ED94DBCB1C8D05EC001DC6DB /* facebook_icon.png in Resources */,
+				ED94DBCC1C8D05EC001DC6DB /* line_icon.png in Resources */,
 				ED335EDA1C7D3D8A0094AF76 /* load_07.png in Resources */,
 				ED333AA01C7EB69000F011A9 /* no_image.jpeg in Resources */,
 				ED793F061C325481006D79FE /* TwitterKitResources.bundle in Resources */,
@@ -926,10 +948,12 @@
 				ED335EDF1C7D3D8A0094AF76 /* load_12.png in Resources */,
 				ED335EDC1C7D3D8A0094AF76 /* load_09.png in Resources */,
 				EDAD81A01C0D8851009E53F9 /* Main.storyboard in Resources */,
+				ED94DBC81C8D05EC001DC6DB /* show_more_icon.png in Resources */,
 				ED333AA41C7EC13500F011A9 /* pop_close_btn.png in Resources */,
 				EDE694951C2391D600A413A6 /* info.png in Resources */,
 				ED335ED41C7D3D8A0094AF76 /* load_01.png in Resources */,
 				EDEB13731C2A598E00772E1F /* pin.png in Resources */,
+				ED94DBCD1C8D05EC001DC6DB /* twitter_icon.png in Resources */,
 				ED5A446A1C2A77C70004DF8C /* face.png in Resources */,
 				ED4DDCC51C293E6700DE5FBA /* Assets.xcassets in Resources */,
 				ED335EDB1C7D3D8A0094AF76 /* load_08.png in Resources */,

@@ -12,6 +12,7 @@
 #import "SearchCustomCellTableViewCell.h"
 #import "FoodDetailViewController.h"
 #import <Realm/Realm.h>
+#import "RecommendFoodViewController.h"
 
 @interface SearchingViewController () <UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate>
 
@@ -20,6 +21,7 @@
     RLMResults<AllFoodModel *> *allFoodsArray;
     NSMutableArray *searchResultArray;
     BOOL isSearching;
+    NSMutableSet *set;
 }
 
 @property (weak, nonatomic) IBOutlet JCTagListView *tagView;
@@ -33,8 +35,8 @@
 #pragma mark - view life cycle
 
 -(void)viewWillAppear:(BOOL)animated {
-//    [searchResultArray removeAllObjects];
-//    [self.myTableView reloadData];
+    //    [searchResultArray removeAllObjects];
+    //    [self.myTableView reloadData];
     self.navigationController.navigationBar.barTintColor = NaviStandartColor;
 }
 
@@ -43,7 +45,7 @@
     
     [self readDataFromRealm];
     
-    NSMutableSet *set = [[NSMutableSet alloc] init];
+    set = [[NSMutableSet alloc] init];
     
     for (AllFoodModel *obj in allFoodsArray) { // get type of food
         NSString *foodType = @"";
@@ -106,20 +108,20 @@
                               @"FD_TYPE":obj.foodType,
                               @"FD_TIME_WATCH":obj.foodTimeWatch
                               };
-//    NSDictionary *tempDic;
-//    for (NSDictionary *dic in allFoodsArray) {
-//        if ([[dic objectForKey:@"FD_NAME"] isEqualToString:foodTitle]) {
-//            tempDic = dic;
-//            break;
-//        }
-//    }
+    //    NSDictionary *tempDic;
+    //    for (NSDictionary *dic in allFoodsArray) {
+    //        if ([[dic objectForKey:@"FD_NAME"] isEqualToString:foodTitle]) {
+    //            tempDic = dic;
+    //            break;
+    //        }
+    //    }
     [self performSegueWithIdentifier:@"detail" sender:tempDic];
 }
 
 #pragma mark - read data from Realm
 -(void)readDataFromRealm {
-//    AllFoodModel *objFood = [[AppUtils readObjectFromRealm:[[AllFoodModel alloc] init]] objectAtIndex:0];
-//    allFoodsArray = (NSArray *)[NSKeyedUnarchiver unarchiveObjectWithData:objFood.allFoods];
+    //    AllFoodModel *objFood = [[AppUtils readObjectFromRealm:[[AllFoodModel alloc] init]] objectAtIndex:0];
+    //    allFoodsArray = (NSArray *)[NSKeyedUnarchiver unarchiveObjectWithData:objFood.allFoods];
     allFoodsArray = [AppUtils readObjectFromRealm:[[AllFoodModel alloc] init]];
 }
 
@@ -131,7 +133,7 @@
     [self.tagView.tags addObjectsFromArray:arrayData];
     
     [self.tagView setCompletionBlockWithSeleted:^(NSInteger index) {
-        [self performSegueWithIdentifier:@"recommend" sender:nil];
+        [self performSegueWithIdentifier:@"recommend" sender:[[set allObjects] objectAtIndex:index]];
     }];
 }
 
@@ -145,7 +147,7 @@
     [self.searchTextField resignFirstResponder];
 }
 
-#pragma mark - textfield delegate 
+#pragma mark - textfield delegate
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
@@ -170,7 +172,7 @@
         
         NSRange range = NSMakeRange(0, [baseString length]);
         [regex enumerateMatchesInString:baseString options:0 range:range usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
-        
+            
             [attributed addAttribute:NSBackgroundColorAttributeName value:[UIColor brownColor] range:[result rangeAtIndex:0]];
             [stringColorArray addObject:attributed];
             
@@ -205,6 +207,9 @@
         FoodDetailViewController *vc = [segue destinationViewController];
         vc.receiveData = sender;
         [self.searchTextField resignFirstResponder];
+    } else if ([segue.identifier isEqualToString:@"recommend"]) {
+        RecommendFoodViewController *vc = [segue destinationViewController];
+        vc.receiveData = sender;
     }
 }
 
