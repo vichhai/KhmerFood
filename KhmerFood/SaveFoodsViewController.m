@@ -10,11 +10,17 @@
 #import "CardViewMe.h"
 #import "YSLDraggableCardContainer.h"
 #import "FoodDetailViewController.h"
+#import <AssetsLibrary/AssetsLibrary.h>
+
 #define RGB(r, g, b)	 [UIColor colorWithRed: (r) / 255.0 green: (g) / 255.0 blue: (b) / 255.0 alpha : 1]
 
-@interface SaveFoodsViewController () <YSLDraggableCardContainerDelegate, YSLDraggableCardContainerDataSource>{
+@interface SaveFoodsViewController () <YSLDraggableCardContainerDelegate, YSLDraggableCardContainerDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate>{
     SaveFoodModel *realmSaveFood;
+    UIImage *StrImageData;
+    NSString *StrImageName;
+    
 }
+
 
 @property (nonatomic, strong) YSLDraggableCardContainer *container;
 @property (nonatomic, strong) NSMutableArray *datas;
@@ -23,8 +29,50 @@
 @end
 
 @implementation SaveFoodsViewController
+//=====YOMAM======//
+- (IBAction)btnSaveAction:(UIButton *)sender {
+    [self uploadImage:UIImageJPEGRepresentation(StrImageData, 1.0) filename:StrImageName];
+}
+- (BOOL)uploadImage:(NSData *)imageData filename:(NSString *)filename   {
+    NSString *urlString = @"http://yomankhmerfood.yofoodkh.5gbfree.com/yoman/UploadFileImage.php";
+    
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"POST"];
+    
+    NSString *boundary = @"---------------------------14737809831466499882746641449";
+    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
+    [request addValue:contentType forHTTPHeaderField: @"Content-Type"];
+    NSMutableData *body = [NSMutableData data];
+    [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithString:[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"userfile\"; filename=\"%@\"\r\n",filename]] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[NSData dataWithData:imageData]];
+    [body appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPBody:body];
+    
+    NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+    NSLog(@"%@",returnString);
+    return ([returnString isEqualToString:@"OK"]);
+}
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
 
-- (void)viewDidLoad {
+    NSURL *refURL = [info valueForKey:UIImagePickerControllerReferenceURL];
+    ALAssetsLibraryAssetForURLResultBlock resultblock = ^(ALAsset *imageAsset){
+        ALAssetRepresentation *imageRep = [imageAsset defaultRepresentation];
+
+        StrImageName =[imageRep filename];
+        StrImageData =info[UIImagePickerControllerEditedImage]; // image
+    };
+    ALAssetsLibrary* assetslibrary = [[ALAssetsLibrary alloc] init];
+    [assetslibrary assetForURL:refURL resultBlock:resultblock failureBlock:nil];
+    
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)viewDidLoad                     {
     [super viewDidLoad];
     
     self.view.backgroundColor = RGB(235, 235, 235);
@@ -32,18 +80,27 @@
     _container = [[YSLDraggableCardContainer alloc]init];
     _container.frame = CGRectMake(25 , self.view.frame.size.height / 6 , self.view.frame.size.width - 50, self.view.frame.size.height / 2);
     _container.dataSource = self;
-    _container.delegate = self;
+    _container.delegate   = self;
     _container.canDraggableDirection = YSLDraggableDirectionLeft | YSLDraggableDirectionRight ;
     [self.view addSubview:_container];
     
   
+    //=====YOMAM======//
+//    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+//    picker.delegate      = self;
+//    picker.allowsEditing = YES;
+//    picker.sourceType    = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+//    [self presentViewController:picker animated:YES completion:nil];
+    
+    
 }
-- (void)viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated   {
     [super viewWillAppear:animated];
     
     _datas = [NSMutableArray array];
     
-    [self performSegueWithIdentifier:@"ShareFIrSegue" sender:nil];
+//    [self performSegueWithIdentifier:@"ShareFIrSegue" sender:nil];
+    
     
     realmSaveFood = [[SaveFoodModel alloc]init];
     for (int i = 0 ; i < [AppUtils readObjectFromRealm:realmSaveFood].count ; i++){
