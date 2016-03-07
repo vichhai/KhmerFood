@@ -161,6 +161,8 @@
         [titleArray addObject:obj.foodName];
     }
     
+    NSLog(@"====> %ld",(long)[titleArray count]);
+    
     NSArray *tempArray = [titleArray filteredArrayUsingPredicate:searchPredicate];
     
     NSMutableArray *stringColorArray = [[NSMutableArray alloc] init];

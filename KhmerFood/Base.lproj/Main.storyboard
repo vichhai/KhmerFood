@@ -27,13 +27,13 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ROn-AO-ouU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="168" y="333"/>
+            <point key="canvasLocation" x="192" y="294"/>
         </scene>
-        <!--Main Navigation Controller-->
+        <!--ទំព័រដើម-->
         <scene sceneID="agp-iH-exC">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="OV0-0C-U4X" customClass="MainNavigationController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="more" id="V22-Wu-th8"/>
+                    <tabBarItem key="tabBarItem" title="ទំព័រដើម" image="home" selectedImage="home_f" id="V22-Wu-th8"/>
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Q0g-Z7-S09">
@@ -48,13 +48,13 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UYj-j2-X9C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="916.5" y="282"/>
+            <point key="canvasLocation" x="901.5" y="294"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--ស្វែងរក-->
         <scene sceneID="0F5-cC-0e9">
             <objects>
                 <navigationController id="Yzn-0u-hIk" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="recents" id="gK6-Qd-yJu"/>
+                    <tabBarItem key="tabBarItem" title="ស្វែងរក" image="search" selectedImage="search_f" id="gK6-Qd-yJu"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="HwR-sX-mI2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -465,7 +465,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IMS-XJ-vcL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1614" y="2157"/>
+            <point key="canvasLocation" x="1593" y="1938"/>
         </scene>
         <!--Name Setting Table View Controller-->
         <scene sceneID="VTu-M2-VNX">
@@ -572,7 +572,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XpH-ri-uJU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2346" y="2011.5"/>
+            <point key="canvasLocation" x="2253" y="1938"/>
         </scene>
         <!--Item-->
         <scene sceneID="oAD-Z3-gzZ">
@@ -591,7 +591,7 @@
             </objects>
             <point key="canvasLocation" x="888" y="1085"/>
         </scene>
-        <!--Save Foods View Controller-->
+        <!--រក្សាទុក-->
         <scene sceneID="SYC-M3-hfd">
             <objects>
                 <viewController id="MIp-ms-phO" customClass="SaveFoodsViewController" sceneMemberID="viewController">
@@ -634,7 +634,7 @@
                             <constraint firstItem="srv-LT-sVk" firstAttribute="centerX" secondItem="Fmh-GF-7M7" secondAttribute="centerX" id="YmB-Yo-r1N"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="bookmarks" id="ie3-Hk-t8E"/>
+                    <tabBarItem key="tabBarItem" title="រក្សាទុក" image="save" selectedImage="save_f" id="ie3-Hk-t8E"/>
                     <navigationItem key="navigationItem" id="j76-Mc-m9S"/>
                     <connections>
                         <outlet property="viewMessage" destination="srv-LT-sVk" id="uou-h6-ZUg"/>
@@ -644,13 +644,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C2t-qr-MJv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1320" y="769"/>
+            <point key="canvasLocation" x="1545" y="756.75"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--ប្រវេទន៏-->
         <scene sceneID="nfk-VD-jA4">
             <objects>
                 <navigationController id="6S9-Pc-tCK" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="favorites" id="Hnl-nN-5TK"/>
+                    <tabBarItem key="tabBarItem" title="ប្រវេទន៏" image="bell" selectedImage="bell_f" id="Hnl-nN-5TK"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dCR-ag-FpC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -826,7 +826,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w6Q-6y-IoN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-247" y="2163"/>
+            <point key="canvasLocation" x="-247.5" y="1663.5"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="4wl-U7-kdy">
@@ -1586,11 +1586,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4wR-SW-HS1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1707" y="162.75"/>
+            <point key="canvasLocation" x="3041.25" y="301.875"/>
         </scene>
         <!--First Row Collection View Cell-->
         <scene sceneID="YXh-QL-31W">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tSY-Ny-mwH" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="kuR-8w-NVG" customClass="FirstRowCollectionViewCell" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="VaT-h3-d1L"/>
@@ -1725,13 +1726,13 @@
                         <outlet property="firstCollectionView" destination="yzc-Vm-OCD" id="8xg-2y-Zov"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tSY-Ny-mwH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1531.5" y="-1082.25"/>
         </scene>
         <!--Second Collection View Controller-->
         <scene sceneID="vmp-fk-RJn">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fY4-dJ-cGv" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="ubd-h3-E3u" customClass="SecondCollectionViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="VJF-Km-SMK"/>
@@ -1865,13 +1866,13 @@
                         <outlet property="firstCollectionView" destination="ifk-h5-J7h" id="Boy-pV-Qoc"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fY4-dJ-cGv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2143.5" y="-1082.25"/>
         </scene>
         <!--Third Collection View Controller-->
         <scene sceneID="Y2v-Bo-qBH">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="beQ-7R-h9z" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="ffj-H8-AF1" customClass="ThirdCollectionViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4uE-Ed-aEc"/>
@@ -2005,7 +2006,6 @@
                         <outlet property="firstCollectionView" destination="tAX-Rr-Oio" id="kYH-d8-Sha"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="beQ-7R-h9z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2791.5" y="-1082.25"/>
         </scene>
@@ -2176,7 +2176,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IhL-gl-PbM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2439" y="1262.25"/>
+            <point key="canvasLocation" x="3000" y="1663.5"/>
         </scene>
         <!--Recommend Food View Controller-->
         <scene sceneID="5Hd-RZ-mdu">
@@ -2208,22 +2208,20 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="YNl-3i-Bam" firstAttribute="top" secondItem="PC8-Mp-vpf" secondAttribute="bottom" id="cK1-jd-1vp">
-                                <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
-                            </constraint>
-                            <constraint firstItem="YNl-3i-Bam" firstAttribute="leading" secondItem="9nD-fa-m5T" secondAttribute="leading" id="cdl-zw-Wdd"/>
-                            <constraint firstItem="pkh-gl-USQ" firstAttribute="top" secondItem="YNl-3i-Bam" secondAttribute="bottom" id="kut-Hp-t7P"/>
-                            <constraint firstAttribute="trailing" secondItem="YNl-3i-Bam" secondAttribute="trailing" id="nzW-ap-VII"/>
+                            <constraint firstItem="YNl-3i-Bam" firstAttribute="bottom" secondItem="pkh-gl-USQ" secondAttribute="top" id="5QQ-Ns-pUP"/>
+                            <constraint firstAttribute="trailing" secondItem="YNl-3i-Bam" secondAttribute="trailing" id="Bgx-At-Eqe"/>
+                            <constraint firstItem="YNl-3i-Bam" firstAttribute="top" secondItem="PC8-Mp-vpf" secondAttribute="bottom" id="YqQ-uG-j6U"/>
+                            <constraint firstItem="YNl-3i-Bam" firstAttribute="leading" secondItem="9nD-fa-m5T" secondAttribute="leading" id="pPH-zK-eMK"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="YNl-3i-Bam"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="kut-Hp-t7P"/>
-                                <exclude reference="cK1-jd-1vp"/>
-                                <exclude reference="cdl-zw-Wdd"/>
-                                <exclude reference="nzW-ap-VII"/>
+                                <exclude reference="5QQ-Ns-pUP"/>
+                                <exclude reference="Bgx-At-Eqe"/>
+                                <exclude reference="YqQ-uG-j6U"/>
+                                <exclude reference="pPH-zK-eMK"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -2231,13 +2229,14 @@
                                 <include reference="YNl-3i-Bam"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="kut-Hp-t7P"/>
-                                <include reference="cK1-jd-1vp"/>
-                                <include reference="cdl-zw-Wdd"/>
-                                <include reference="nzW-ap-VII"/>
+                                <include reference="5QQ-Ns-pUP"/>
+                                <include reference="Bgx-At-Eqe"/>
+                                <include reference="YqQ-uG-j6U"/>
+                                <include reference="pPH-zK-eMK"/>
                             </mask>
                         </variation>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <connections>
                         <outlet property="collectionView" destination="YNl-3i-Bam" id="p4w-3n-GNW"/>
                         <segue destination="Fdf-8w-s2W" kind="show" identifier="detail" id="RkH-vt-Q5q"/>
@@ -2245,13 +2244,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vOL-pF-jiG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1712" y="1077"/>
+            <point key="canvasLocation" x="1545" y="1383"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--អ្នកប្រើប្រាស់-->
         <scene sceneID="QPp-wC-eCF">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Qi3-RV-8Dp" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="mostViewed" id="5kf-1M-svl"/>
+                    <tabBarItem key="tabBarItem" title="អ្នកប្រើប្រាស់" image="profile" selectedImage="profile_f" id="5kf-1M-svl"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="opt-Tc-Kin">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -2721,7 +2720,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Y7-JT-IWV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="348" y="2163"/>
+            <point key="canvasLocation" x="348" y="1938"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wIV-0u-PlN">
@@ -2739,7 +2738,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gbc-NK-OxC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="975" y="2163"/>
+            <point key="canvasLocation" x="981" y="1938"/>
         </scene>
         <!--Account Setting Table View Controller-->
         <scene sceneID="XHn-qH-sDc">
@@ -3084,7 +3083,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EiD-lA-gGx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3264" y="2511.75"/>
+            <point key="canvasLocation" x="1593" y="2456.25"/>
         </scene>
         <!--Share To Friend View Controller-->
         <scene sceneID="Mam-IX-h8X">
@@ -3229,7 +3228,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Quv-i4-RnS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2354" y="473"/>
+            <point key="canvasLocation" x="2203.5" y="566.25"/>
         </scene>
         <!--Email Register View Controller-->
         <scene sceneID="Ghl-5e-T4e">
@@ -3587,7 +3586,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tKc-qP-6BN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="348" y="3168.75"/>
+            <point key="canvasLocation" x="348" y="2943.75"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="kcR-vV-RYo">
@@ -3606,20 +3605,30 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wNe-Yt-HaN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="348" y="2665.5"/>
+            <point key="canvasLocation" x="348" y="2440.5"/>
         </scene>
     </scenes>
     <resources>
         <image name="Checkbox.png" width="50" height="50"/>
         <image name="Checkedbox.png" width="50" height="50"/>
+        <image name="bell" width="25" height="25"/>
+        <image name="bell_f" width="25" height="25"/>
         <image name="face.png" width="900" height="896"/>
         <image name="food.jpg" width="1920" height="1200"/>
         <image name="go_back.png" width="45" height="45"/>
+        <image name="home" width="25" height="25"/>
+        <image name="home_f" width="25" height="25"/>
         <image name="info.png" width="512" height="512"/>
+        <image name="profile" width="25" height="25"/>
+        <image name="profile_f" width="25" height="25"/>
+        <image name="save" width="25" height="25"/>
+        <image name="save_f" width="25" height="25"/>
+        <image name="search" width="25" height="25"/>
+        <image name="search_f" width="25" height="25"/>
         <image name="x_button.png" width="45" height="45"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Zyw-3J-9hg"/>
-        <segue reference="PkX-4E-O4B"/>
+        <segue reference="gsn-qq-Pal"/>
+        <segue reference="OLd-fb-AWS"/>
     </inferredMetricsTieBreakers>
 </document>

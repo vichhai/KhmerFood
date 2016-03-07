@@ -17,6 +17,7 @@
 #import "UIView+WebCacheOperation.h"
 #import "FoodDetailViewController.h"
 #import "AllFoodModel.h"
+
 #define NAVBAR_CHANGE_POINT 0
 @interface HomeViewController ()<UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,ConnectionManagerDelegate>
 
@@ -27,6 +28,7 @@
     NSMutableArray *rateArray;
     NSMutableArray *randomArray;
     NSMutableArray *aFoodArray;
+    NSTimer *scrollViewTimer;
     
 }
 @property (weak, nonatomic) IBOutlet UIView *headerView;
@@ -66,6 +68,9 @@
     
     [self initialScrollView];
     
+//    [NSTimer scheduledTimerWithTimeInterval:20.0 target:self selector:@selector(repeatAction:) userInfo:nil repeats:true]; // auto repeat an action
+    
+    
     if ([[FoodModel allObjects] count] == 0) {
         [self sendTranData:@"KF_LSTMFOOD"];
     } else {
@@ -82,6 +87,7 @@
         }
     }
 }
+
 
 #pragma mark - UICollectionView delegate and datasource methods
 
@@ -163,11 +169,17 @@
 -(void)gotoDetailAction:(NSNotification *)note {
 
     NSDictionary *dic = [[NSDictionary alloc] initWithDictionary:note.userInfo];
-
     [self performSegueWithIdentifier:@"detail" sender:dic];
 }
 
 #pragma mark - other methods
+
+-(void)repeatAction:(NSTimer *)timer {
+    [scrollViewTimer invalidate];
+    [myScrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+    _pageControl.currentPage = 0;
+    [self sendTranData:@"KF_LSTMFOOD"];
+}
 
 -(void)scrollingTimer{
     // access the scroll view with the tag
@@ -229,7 +241,7 @@
     self.pageControl.currentPage = 0;
     self.pageControl.numberOfPages = headerArray.count;
 
-    [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(scrollingTimer) userInfo:nil repeats:YES];
+    scrollViewTimer = [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(scrollingTimer) userInfo:nil repeats:YES];
 }
 
 #pragma mark - button method
@@ -275,6 +287,10 @@
         if ([[dic objectForKey:@"API_KEY"] isEqualToString:@"KF_LSTMFOOD"]) { // list main food
           
             if ([[dic objectForKey:@"STATUS"] isEqualToString:@"1"]) {// if success
+                
+                [UIRealm beginWriteTransaction];
+                [UIRealm deleteObjects:[FoodModel allObjects]];
+                [UIRealm commitWriteTransaction];
                 
                 if ([[FoodModel allObjects] count] == 0 || ![[FoodModel allObjects] count]) {
                     
@@ -353,6 +369,7 @@
                     
                     [AppUtils writeObjectToRealm:allFoodsObj];
                 }
+                NSLog(@"=====> %ld",(long)[[AllFoodModel allObjects] count]);
             }
         }
     }
