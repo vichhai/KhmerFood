@@ -34,13 +34,17 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-
+    
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"login_data"] != nil) {
         [self closeCoverView];
     } else {
         [self setupRegisterView];
     }
-
+    
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"isComplateWithEmail"] == false) {
+        
+    }
+    
 }
 
 - (void)viewDidLoad {
@@ -115,7 +119,7 @@
                 
                 [dataDic setObject:[user objectForKey:@"ACC_TYPE"] forKey:@"ACC_TYPE"];
                 [dataDic setObject:@"" forKey:@"USER_PHONE"];
-//                [dataDic setObject: forKey:@"USER_PWD"];
+                //                [dataDic setObject: forKey:@"USER_PWD"];
                 
             } else if ([[user objectForKey:@"ACC_TYPE"] isEqualToString:@"T"]) { // twitter
                 
@@ -135,7 +139,7 @@
 -(void)checkExistingUser:(NSString *)userId {
     NSMutableDictionary *reqDic = [[NSMutableDictionary alloc] init];
     NSMutableDictionary *dataDic = [[NSMutableDictionary alloc] init];
-
+    
     if ([AppUtils isNull:userId] == false) {
         [dataDic setObject:userId forKey:@"USER_ID"];
     }
@@ -164,9 +168,9 @@
     } else if ([[transaction objectForKey:@"API_KEY"] isEqualToString:@"KF_SINGIN"]) { // user sign in
         
         /* Status type:
-            A - Login success
-            Z - No User
-            L - please comfirm email
+         A - Login success
+         Z - No User
+         L - please comfirm email
          */
         if ([[transaction objectForKey:@"STATUS"] isEqualToString:@"A"]) { // login success
             
@@ -193,32 +197,32 @@
     loginManager.loginBehavior = FBSDKLoginBehaviorWeb;
     [loginManager logInWithReadPermissions:@[@"public_profile",@"email",@"user_birthday"] fromViewController:self
                                    handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
-        if (error) {
-           NSLog(@"error : %@",[error localizedDescription]);
-        } else if ([result isCancelled]) {
-           NSLog(@"Cancelled");
-        } else {
-
-           if ([result.grantedPermissions containsObject:@"public_profile"]) {
-               if ([FBSDKAccessToken currentAccessToken]) {
-                   NSMutableDictionary* parameters = [NSMutableDictionary dictionary];
-                   [parameters setValue:@"id,email,first_name,last_name,name,picture.type(large),gender,birthday" forKey:@"fields"];
-                   
-                   [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:parameters]
-                    startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
-                        if (!error)
-                        {
-                            
-//                            NSString *name = [[result valueForKey:@"name"] lowercaseString];
-                            fbDataDic = [[NSMutableDictionary alloc] initWithDictionary:result];
-                            [fbDataDic setObject:@"F" forKey:@"ACC_TYPE"];
-                            [self checkExistingUser:[result objectForKey:@"id"]];
-                        }
-                    }];
-               }
-           }
-        }
-    }];
+                                       if (error) {
+                                           NSLog(@"error : %@",[error localizedDescription]);
+                                       } else if ([result isCancelled]) {
+                                           NSLog(@"Cancelled");
+                                       } else {
+                                           
+                                           if ([result.grantedPermissions containsObject:@"public_profile"]) {
+                                               if ([FBSDKAccessToken currentAccessToken]) {
+                                                   NSMutableDictionary* parameters = [NSMutableDictionary dictionary];
+                                                   [parameters setValue:@"id,email,first_name,last_name,name,picture.type(large),gender,birthday" forKey:@"fields"];
+                                                   
+                                                   [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:parameters]
+                                                    startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+                                                        if (!error)
+                                                        {
+                                                            
+                                                            //                            NSString *name = [[result valueForKey:@"name"] lowercaseString];
+                                                            fbDataDic = [[NSMutableDictionary alloc] initWithDictionary:result];
+                                                            [fbDataDic setObject:@"F" forKey:@"ACC_TYPE"];
+                                                            [self checkExistingUser:[result objectForKey:@"id"]];
+                                                        }
+                                                    }];
+                                               }
+                                           }
+                                       }
+                                   }];
 }
 
 -(void)loginWithTwitter {
@@ -251,7 +255,7 @@
                          [[NSUserDefaults standardUserDefaults] synchronize];
                          
                          
-//                         [self closeCoverView];
+                         [self closeCoverView];
                      }
                      else {
                          NSLog(@"Error code: %ld | Error description: %@", (long)[connectionError code], [connectionError localizedDescription]);
@@ -272,12 +276,16 @@
 }
 
 -(void) loginMethodAction:(UIButton *)sender {
+    
     if (sender.tag == 2000) {
         // login with facebook
         [self loginWithFacebookAction];
     } else if (sender.tag == 2001) {
         [self loginWithTwitter];
+    } else {
+        [self performSegueWithIdentifier:@"emailRegister" sender:nil];
     }
+    
 }
 
 -(void)setupRegisterView {
@@ -285,13 +293,13 @@
     for (int i = 0; i < 3; i++) {
         [[[_registerButton objectAtIndex:i] layer]setBorderWidth:1.0];
         [[[_registerButton objectAtIndex:i] layer]setBorderColor:[[UIColor whiteColor]CGColor]];
-//        [[_registerButton objectAtIndex:i] setTag:2000 + i];
-//        [[_registerButton objectAtIndex:i] addTarget:self action:@selector(registerButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+        //        [[_registerButton objectAtIndex:i] setTag:2000 + i];
+        //        [[_registerButton objectAtIndex:i] addTarget:self action:@selector(registerButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     
-//    self.coverView.frame = self.view.frame;
-//    [self.view addSubview:self.coverView];
-//    [self.view bringSubviewToFront:self.coverView];
+    //    self.coverView.frame = self.view.frame;
+    //    [self.view addSubview:self.coverView];
+    //    [self.view bringSubviewToFront:self.coverView];
     self.coverView.hidden = false;
     self.tableView.hidden = true;
     
@@ -301,7 +309,7 @@
 }
 
 -(void)setupSearch {
-
+    
     UISearchBar *searchBar = [[UISearchBar alloc] init];
     searchBar.delegate = self;
     searchBar.placeholder = @"ស្វែងរក";
@@ -338,7 +346,7 @@
 #pragma mark : table view method
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
+    
     CustomPeopleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
     if (indexPath.section == 0) {
@@ -348,7 +356,7 @@
                 
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                     // retrive image on global queue
-       
+                    
                     UIImage * img = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[dicData objectForKey:@"profile_pic"]]]]];
                     [ShareDataManager shareDataManager].shareImage = img;
                     dispatch_async(dispatch_get_main_queue(), ^{
@@ -363,7 +371,7 @@
         cell.myImage.image = [UIImage imageNamed:@"face.png"];
     }
     return cell;
-
+    
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -406,7 +414,6 @@
             [self performSegueWithIdentifier:@"viewProfile" sender:nil];
         }
     }
-    
 }
 
 @end
