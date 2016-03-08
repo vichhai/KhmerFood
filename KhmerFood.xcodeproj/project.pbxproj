@@ -50,6 +50,7 @@
 		ED335EDD1C7D3D8A0094AF76 /* load_10.png in Resources */ = {isa = PBXBuildFile; fileRef = ED335ED11C7D3D8A0094AF76 /* load_10.png */; };
 		ED335EDE1C7D3D8A0094AF76 /* load_11.png in Resources */ = {isa = PBXBuildFile; fileRef = ED335ED21C7D3D8A0094AF76 /* load_11.png */; };
 		ED335EDF1C7D3D8A0094AF76 /* load_12.png in Resources */ = {isa = PBXBuildFile; fileRef = ED335ED31C7D3D8A0094AF76 /* load_12.png */; };
+		ED4102481C8E4C8100688EC9 /* NSMutableAttributedString+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4102471C8E4C8100688EC9 /* NSMutableAttributedString+Color.m */; };
 		ED4DCBB71C7AF0C100986CEA /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4DCB971C7AF0C100986CEA /* MKAnnotationView+WebCache.m */; };
 		ED4DCBB81C7AF0C100986CEA /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4DCB991C7AF0C100986CEA /* NSData+ImageContentType.m */; };
 		ED4DCBB91C7AF0C100986CEA /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4DCB9B1C7AF0C100986CEA /* SDImageCache.m */; };
@@ -202,6 +203,8 @@
 		ED335ED11C7D3D8A0094AF76 /* load_10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = load_10.png; sourceTree = "<group>"; };
 		ED335ED21C7D3D8A0094AF76 /* load_11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = load_11.png; sourceTree = "<group>"; };
 		ED335ED31C7D3D8A0094AF76 /* load_12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = load_12.png; sourceTree = "<group>"; };
+		ED4102461C8E4C8100688EC9 /* NSMutableAttributedString+Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+Color.h"; sourceTree = "<group>"; };
+		ED4102471C8E4C8100688EC9 /* NSMutableAttributedString+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+Color.m"; sourceTree = "<group>"; };
 		ED4DCB961C7AF0C100986CEA /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
 		ED4DCB971C7AF0C100986CEA /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+WebCache.m"; sourceTree = "<group>"; };
 		ED4DCB981C7AF0C100986CEA /* NSData+ImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ImageContentType.h"; sourceTree = "<group>"; };
@@ -792,6 +795,8 @@
 		EDAD81951C0D8851009E53F9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				ED4102461C8E4C8100688EC9 /* NSMutableAttributedString+Color.h */,
+				ED4102471C8E4C8100688EC9 /* NSMutableAttributedString+Color.m */,
 				ED4E337D1C7BE60100A3D29A /* Constants.h */,
 				ED94DBB21C8D0473001DC6DB /* MJPopup */,
 				ED4E33771C7BE1D200A3D29A /* RealmModel */,
@@ -1001,6 +1006,7 @@
 				ED4DDCBC1C2919FC00DE5FBA /* CExpandHeader.m in Sources */,
 				ED83010B1C22ABAD00779E8D /* SecondCollectionViewController.m in Sources */,
 				ED4DCBBE1C7AF0C100986CEA /* SDWebImageManager.m in Sources */,
+				ED4102481C8E4C8100688EC9 /* NSMutableAttributedString+Color.m in Sources */,
 				ED4DCBC51C7AF0C100986CEA /* UIImageView+WebCache.m in Sources */,
 				EDAD819A1C0D8851009E53F9 /* AppDelegate.m in Sources */,
 				ED1436011C3DED0E009B382A /* NSString+MD5.m in Sources */,

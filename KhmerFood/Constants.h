@@ -7,4 +7,4 @@
 //
 
 #define UIRealm     [RLMRealm defaultRealm]
-#define NaviStandartColor [UIColor colorWithRed:53/255.0 green:201/255.0 blue:147/255.0 alpha:1];
+#define NaviStandartColor [UIColor colorWithRed:53/255.0 green:201/255.0 blue:147/255.0 alpha:1]
