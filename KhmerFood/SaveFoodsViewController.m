@@ -91,15 +91,15 @@
 //    picker.sourceType    = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
 //    [self presentViewController:picker animated:YES completion:nil];
     
+
+    
+
     
 }
 - (void)viewWillAppear:(BOOL)animated   {
     [super viewWillAppear:animated];
     
     _datas = [NSMutableArray array];
-    
-    [self performSegueWithIdentifier:@"ShareFIrSegue" sender:nil];
-    
     
     realmSaveFood = [[SaveFoodModel alloc]init];
     for (int i = 0 ; i < [AppUtils readObjectFromRealm:realmSaveFood].count ; i++){
@@ -151,7 +151,7 @@
                 [_container reloadCardContainer];
             }]];
             
-            [alertController addAction:[UIAlertAction actionWithTitle:@"អត់ទេ បាន" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            [alertController addAction:[UIAlertAction actionWithTitle:@"អត់ទេ" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
                 [cardContainerView movePositionWithDirection:YSLDraggableDirectionDefault isAutomatic:YES];
             }]];
             

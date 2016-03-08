@@ -184,8 +184,11 @@
 
 -(void)shareToFriendClicked:(SharePopupViewController *)sharePopupViewController {
     
-    [self dismissPopupViewController:sharePopupViewController
-                       animationType:MJPopupViewAnimationFade];
+
+    //=====GO to Share to Friend
+    [self performSegueWithIdentifier:@"ShareFIrSegue" sender:nil];
+    
+    [self dismissPopupViewController:sharePopupViewController animationType:MJPopupViewAnimationFade];
     popupView = nil;
     
 }

@@ -635,22 +635,10 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="រក្សាទុក" image="save" selectedImage="save_f" id="ie3-Hk-t8E"/>
-                    <navigationItem key="navigationItem" id="j76-Mc-m9S">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="P9n-MK-otz">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="MkQ-Eb-WLR">
-                                <rect key="frame" x="233" y="7" width="71" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Save"/>
-                                <connections>
-                                    <action selector="btnSaveAction:" destination="MIp-ms-phO" eventType="touchUpInside" id="cng-7a-mIR"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="j76-Mc-m9S"/>
                     <connections>
                         <outlet property="viewMessage" destination="srv-LT-sVk" id="uou-h6-ZUg"/>
                         <segue destination="Fdf-8w-s2W" kind="show" identifier="SaveFDDFSegue" id="OLd-fb-AWS"/>
-                        <segue destination="p60-x3-rDV" kind="show" identifier="ShareFIrSegue" id="CFm-0j-ibY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C2t-qr-MJv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2029,11 +2017,11 @@
             <objects>
                 <tableViewController id="Fdf-8w-s2W" customClass="FoodDetailViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="593" sectionHeaderHeight="28" sectionFooterHeight="28" id="RXN-7r-oOE">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="Yzk-Xr-LZQ">
-                            <rect key="frame" x="0.0" y="64" width="375" height="128"/>
+                            <rect key="frame" x="0.0" y="64" width="320" height="128"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="s6n-k7-NoT">
@@ -2132,10 +2120,10 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="593" id="2YC-W4-uhY" customClass="CustomFoodDetailTableViewCell">
-                                <rect key="frame" x="0.0" y="220" width="375" height="593"/>
+                                <rect key="frame" x="0.0" y="220" width="320" height="593"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2YC-W4-uhY" id="iDF-Ma-fM7">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="592"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="592"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2h9-4G-ghO">
@@ -2187,6 +2175,7 @@
                         <outlet property="foodImage" destination="s6n-k7-NoT" id="atA-5A-boc"/>
                         <outlet property="foodName" destination="zod-za-NKa" id="qbp-Ir-hjY"/>
                         <outlet property="foodType" destination="0gT-eN-OxC" id="KEE-4Y-qRQ"/>
+                        <segue destination="p60-x3-rDV" kind="show" identifier="ShareFIrSegue" id="pjD-Ge-opR"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IhL-gl-PbM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3118,8 +3107,9 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="gwY-7h-grL"/>
                                 </constraints>
+                                <color key="barTintColor" red="0.20784313725490197" green="0.78823529411764703" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
                                 <offsetWrapper key="searchTextPositionAdjustment" horizontal="0.0" vertical="0.0"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardAppearance="alert"/>
                                 <connections>
                                     <outlet property="delegate" destination="p60-x3-rDV" id="zVR-4N-exr"/>
                                 </connections>
@@ -3234,6 +3224,25 @@
                                 </connections>
                             </button>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="8II-qV-gs2">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="uS0-5A-Z73">
+                                <rect key="frame" x="254" y="9" width="50" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <inset key="contentEdgeInsets" minX="4" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="ផ្ញើចេញ">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <state key="selected">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnSaveAction:" destination="p60-x3-rDV" eventType="touchUpInside" id="GLg-kZ-h1J"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="mainScrollHeigthConstraint" destination="NxT-Zt-Mj4" id="CcP-g5-Tu2"/>
@@ -3244,7 +3253,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Quv-i4-RnS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1492" y="2454"/>
+            <point key="canvasLocation" x="2081.5" y="1720.5"/>
         </scene>
         <!--Email Register View Controller-->
         <scene sceneID="Ghl-5e-T4e">
@@ -3644,7 +3653,7 @@
         <image name="x_button.png" width="45" height="45"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="OLd-fb-AWS"/>
         <segue reference="gsn-qq-Pal"/>
-        <segue reference="9XR-VD-ZmP"/>
     </inferredMetricsTieBreakers>
 </document>
