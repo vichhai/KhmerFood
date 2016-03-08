@@ -11,7 +11,6 @@
 #import "HomeCustomTableViewCell.h"
 #import "CustomCollectionViewCell.h"
 #import "AppUtils.h"
-#import "CExpandHeader.h"
 #import "UIImageView+WebCache.h"
 #import "FoodModel.h"
 #import "UIView+WebCacheOperation.h"

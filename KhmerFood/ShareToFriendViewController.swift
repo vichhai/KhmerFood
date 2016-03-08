@@ -38,11 +38,13 @@ class ShareToFriendViewController: UIViewController,UITableViewDataSource,UITabl
         let conn = ConnectionManager()
         conn.delegate = self
         let dic = NSMutableDictionary()
-        dic.setValue("KF_CHECKEXISTFILE", forKey: "API_KEY")
-        dic.setValue("IMG_0008.JPG", forKey: "FILE_NAME")
+        dic.setValue("KF_UPDATETOKEN", forKey: "API_KEY")
+        dic.setValue("yoman", forKey: "USER_ID")
+        dic.setValue("TestingTesting", forKey: "TOKEN_ID")
 //        let dic1 = NSMutableDictionary()
 //        dic1.setValue("tiger11", forKey: "USER_ID")
 //        dic.setObject(dic1, forKey: "REQ_DATA")
+        print(dic)
         conn.sendTranData(dic as [NSObject : AnyObject])
     }
     func returnResultWithData(data: NSData!) {

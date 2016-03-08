@@ -68,7 +68,6 @@
 		ED4DCBC61C7AF0C100986CEA /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4DCBB61C7AF0C100986CEA /* UIView+WebCacheOperation.m */; };
 		ED4DDCB51C28E47800DE5FBA /* menu_all_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = ED4DDCB41C28E47800DE5FBA /* menu_all_icon.png */; };
 		ED4DDCB81C29139B00DE5FBA /* UINavigationBar+Awesome.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4DDCB71C29139B00DE5FBA /* UINavigationBar+Awesome.m */; };
-		ED4DDCBC1C2919FC00DE5FBA /* CExpandHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4DDCBB1C2919FC00DE5FBA /* CExpandHeader.m */; };
 		ED4DDCC31C293D3300DE5FBA /* FoodDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4DDCC21C293D3300DE5FBA /* FoodDetailViewController.m */; };
 		ED4DDCC51C293E6700DE5FBA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED4DDCC41C293E6700DE5FBA /* Assets.xcassets */; };
 		ED4E337B1C7BE20000A3D29A /* FoodModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4E337A1C7BE20000A3D29A /* FoodModel.m */; };
@@ -238,8 +237,6 @@
 		ED4DDCB41C28E47800DE5FBA /* menu_all_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_all_icon.png; sourceTree = "<group>"; };
 		ED4DDCB61C29139B00DE5FBA /* UINavigationBar+Awesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+Awesome.h"; sourceTree = "<group>"; };
 		ED4DDCB71C29139B00DE5FBA /* UINavigationBar+Awesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+Awesome.m"; sourceTree = "<group>"; };
-		ED4DDCBA1C2919FC00DE5FBA /* CExpandHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CExpandHeader.h; sourceTree = "<group>"; };
-		ED4DDCBB1C2919FC00DE5FBA /* CExpandHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CExpandHeader.m; sourceTree = "<group>"; };
 		ED4DDCC11C293D3300DE5FBA /* FoodDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodDetailViewController.h; sourceTree = "<group>"; };
 		ED4DDCC21C293D3300DE5FBA /* FoodDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodDetailViewController.m; sourceTree = "<group>"; };
 		ED4DDCC41C293E6700DE5FBA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -565,15 +562,6 @@
 			name = FadeNavigationController;
 			sourceTree = "<group>";
 		};
-		ED4DDCB91C2919EA00DE5FBA /* CExpendHeader */ = {
-			isa = PBXGroup;
-			children = (
-				ED4DDCBA1C2919FC00DE5FBA /* CExpandHeader.h */,
-				ED4DDCBB1C2919FC00DE5FBA /* CExpandHeader.m */,
-			);
-			name = CExpendHeader;
-			sourceTree = "<group>";
-		};
 		ED4DDCBF1C293D0900DE5FBA /* Detail */ = {
 			isa = PBXGroup;
 			children = (
@@ -800,7 +788,6 @@
 				ED17090E1C3B456400F92EC0 /* TagView */,
 				ED793EFE1C3253AC006D79FE /* Twitter */,
 				ED793EF71C325392006D79FE /* Facebook */,
-				ED4DDCB91C2919EA00DE5FBA /* CExpendHeader */,
 				ED4DDCB01C28D98B00DE5FBA /* FadeNavigationController */,
 				398055931C22861C002144AC /* Image */,
 				398055841C227E4E002144AC /* CardView_Lib */,
@@ -998,7 +985,6 @@
 				EDCD2F3D1C0E66F20074E8A0 /* Reachability.m in Sources */,
 				ED94DBBB1C8D047D001DC6DB /* UIViewController+MJPopupViewController.m in Sources */,
 				EDAD81A31C0D8851009E53F9 /* KhmerFood.xcdatamodeld in Sources */,
-				ED4DDCBC1C2919FC00DE5FBA /* CExpandHeader.m in Sources */,
 				ED83010B1C22ABAD00779E8D /* SecondCollectionViewController.m in Sources */,
 				ED4DCBBE1C7AF0C100986CEA /* SDWebImageManager.m in Sources */,
 				ED4DCBC51C7AF0C100986CEA /* UIImageView+WebCache.m in Sources */,

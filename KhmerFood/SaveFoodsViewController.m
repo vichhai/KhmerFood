@@ -36,7 +36,6 @@
 - (BOOL)uploadImage:(NSData *)imageData filename:(NSString *)filename   {
     NSString *urlString = @"http://yomankhmerfood.yofoodkh.5gbfree.com/yoman/UploadFileImage.php";
     
-    
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:urlString]];
     [request setHTTPMethod:@"POST"];
@@ -99,7 +98,7 @@
     
     _datas = [NSMutableArray array];
     
-//    [self performSegueWithIdentifier:@"ShareFIrSegue" sender:nil];
+    [self performSegueWithIdentifier:@"ShareFIrSegue" sender:nil];
     
     
     realmSaveFood = [[SaveFoodModel alloc]init];
