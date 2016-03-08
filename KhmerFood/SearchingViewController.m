@@ -13,6 +13,7 @@
 #import "FoodDetailViewController.h"
 #import <Realm/Realm.h>
 #import "RecommendFoodViewController.h"
+#import "NSMutableAttributedString+Color.h"
 
 @interface SearchingViewController () <UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate>
 
@@ -161,6 +162,8 @@
         [titleArray addObject:obj.foodName];
     }
     
+    NSLog(@"====> %ld",(long)[titleArray count]);
+    
     NSArray *tempArray = [titleArray filteredArrayUsingPredicate:searchPredicate];
     
     NSMutableArray *stringColorArray = [[NSMutableArray alloc] init];
@@ -168,15 +171,18 @@
     for (int i = 0; i < [tempArray count]; i++) {
         NSString *baseString = [tempArray objectAtIndex:i];
         NSMutableAttributedString *attributed = [[NSMutableAttributedString alloc] initWithString:baseString];
-        NSRegularExpression *regex = [[NSRegularExpression alloc] initWithPattern:newString options:NSRegularExpressionCaseInsensitive error:nil];
-        
-        NSRange range = NSMakeRange(0, [baseString length]);
-        [regex enumerateMatchesInString:baseString options:0 range:range usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
-            
-            [attributed addAttribute:NSBackgroundColorAttributeName value:[UIColor brownColor] range:[result rangeAtIndex:0]];
-            [stringColorArray addObject:attributed];
-            
-        }];
+//        NSRegularExpression *regex = [[NSRegularExpression alloc] initWithPattern:newString options:NSRegularExpressionCaseInsensitive error:nil];
+//        
+//        NSRange range = NSMakeRange(0, [baseString length]);
+//        [regex enumerateMatchesInString:baseString options:0 range:range usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+//            
+//            [attributed addAttribute:NSBackgroundColorAttributeName value:[UIColor brownColor] range:[result rangeAtIndex:0]];
+//            [stringColorArray addObject:attributed];
+//            
+//        }];
+        [attributed setColorForText:newString withColor:[UIColor yellowColor]];
+//        NSLog(@"Attibute string : %@",attributed);
+        [stringColorArray addObject:attributed];
     }
     
     if ([stringColorArray count] != 0 ) {

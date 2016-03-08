@@ -62,7 +62,7 @@
 //    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"ការណែនាំ" message:message delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
 //    [alert show];
 
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"កំហុសឆ្គង" message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"ព័ត៌មាន" message:message preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *okButton = [UIAlertAction actionWithTitle:@"យល់ព្រម" style:UIAlertActionStyleDefault handler:nil];
     [alert addAction:okButton];

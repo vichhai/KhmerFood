@@ -20,20 +20,20 @@
                     <connections>
                         <segue destination="OV0-0C-U4X" kind="relationship" relationship="viewControllers" id="SgW-gF-wLC"/>
                         <segue destination="Yzn-0u-hIk" kind="relationship" relationship="viewControllers" id="p64-FB-z5p"/>
+                        <segue destination="zhS-v3-X6v" kind="relationship" relationship="viewControllers" id="DZB-Na-1A0"/>
                         <segue destination="6S9-Pc-tCK" kind="relationship" relationship="viewControllers" id="AQp-41-aaV"/>
                         <segue destination="Qi3-RV-8Dp" kind="relationship" relationship="viewControllers" id="mY0-bl-kGP"/>
-                        <segue destination="zhS-v3-X6v" kind="relationship" relationship="viewControllers" id="DZB-Na-1A0"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ROn-AO-ouU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="168" y="333"/>
+            <point key="canvasLocation" x="192" y="294"/>
         </scene>
-        <!--Main Navigation Controller-->
+        <!--ទំព័រដើម-->
         <scene sceneID="agp-iH-exC">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="OV0-0C-U4X" customClass="MainNavigationController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="more" id="V22-Wu-th8"/>
+                    <tabBarItem key="tabBarItem" title="ទំព័រដើម" image="home" selectedImage="home_f" id="V22-Wu-th8"/>
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Q0g-Z7-S09">
@@ -48,13 +48,13 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UYj-j2-X9C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="916.5" y="282"/>
+            <point key="canvasLocation" x="901.5" y="294"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--ស្វែងរក-->
         <scene sceneID="0F5-cC-0e9">
             <objects>
                 <navigationController id="Yzn-0u-hIk" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="recents" id="gK6-Qd-yJu"/>
+                    <tabBarItem key="tabBarItem" title="ស្វែងរក" image="search" selectedImage="search_f" id="gK6-Qd-yJu"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="HwR-sX-mI2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -465,7 +465,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IMS-XJ-vcL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1614" y="2157"/>
+            <point key="canvasLocation" x="1593" y="1938"/>
         </scene>
         <!--Name Setting Table View Controller-->
         <scene sceneID="VTu-M2-VNX">
@@ -591,7 +591,7 @@
             </objects>
             <point key="canvasLocation" x="888" y="1085"/>
         </scene>
-        <!--Save Foods View Controller-->
+        <!--រក្សាទុក-->
         <scene sceneID="SYC-M3-hfd">
             <objects>
                 <viewController id="MIp-ms-phO" customClass="SaveFoodsViewController" sceneMemberID="viewController">
@@ -634,7 +634,7 @@
                             <constraint firstItem="srv-LT-sVk" firstAttribute="centerX" secondItem="Fmh-GF-7M7" secondAttribute="centerX" id="YmB-Yo-r1N"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="bookmarks" id="ie3-Hk-t8E"/>
+                    <tabBarItem key="tabBarItem" title="រក្សាទុក" image="save" selectedImage="save_f" id="ie3-Hk-t8E"/>
                     <navigationItem key="navigationItem" id="j76-Mc-m9S">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="P9n-MK-otz">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="MkQ-Eb-WLR">
@@ -655,21 +655,90 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C2t-qr-MJv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1320" y="769"/>
+            <point key="canvasLocation" x="1545" y="756.75"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--ប្រវេទន៏-->
         <scene sceneID="nfk-VD-jA4">
             <objects>
                 <navigationController id="6S9-Pc-tCK" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="favorites" id="Hnl-nN-5TK"/>
+                    <tabBarItem key="tabBarItem" title="ប្រវេទន៏" image="bell" selectedImage="bell_f" id="Hnl-nN-5TK"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dCR-ag-FpC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <connections>
+                        <segue destination="twF-pA-HXP" kind="relationship" relationship="rootViewController" id="dXl-7C-zR2"/>
+                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mgr-iA-H3A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-903" y="1093"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="KZh-uJ-Oam">
+            <objects>
+                <viewController id="twF-pA-HXP" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bxH-P1-Yu1"/>
+                        <viewControllerLayoutGuide type="bottom" id="LeE-u3-0dl"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Hog-CJ-psw">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="comming soon" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QFH-8r-Qge">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="113" id="FZR-xo-6QP"/>
+                                    <constraint firstAttribute="height" constant="21" id="Kpk-8Z-mRU"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="FZR-xo-6QP"/>
+                                        <exclude reference="Kpk-8Z-mRU"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="FZR-xo-6QP"/>
+                                        <include reference="Kpk-8Z-mRU"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="QFH-8r-Qge" firstAttribute="centerY" secondItem="Hog-CJ-psw" secondAttribute="centerY" id="FAJ-9c-7aU"/>
+                            <constraint firstItem="QFH-8r-Qge" firstAttribute="centerX" secondItem="Hog-CJ-psw" secondAttribute="centerX" id="J9y-Ie-SN4"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="QFH-8r-Qge"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="FAJ-9c-7aU"/>
+                                <exclude reference="J9y-Ie-SN4"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="QFH-8r-Qge"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="FAJ-9c-7aU"/>
+                                <include reference="J9y-Ie-SN4"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationItem key="navigationItem" id="DFP-2W-TkO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="avG-E8-mUm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-903" y="1632.75"/>
         </scene>
         <!--Searching View Controller-->
         <scene sceneID="ltI-rN-a9T">
@@ -710,7 +779,8 @@
                                                             <exclude reference="2MX-v8-3kd"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="8" y="12" width="224" height="21"/>
                                                         <mask key="constraints">
                                                             <include reference="2MX-v8-3kd"/>
                                                         </mask>
@@ -837,7 +907,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w6Q-6y-IoN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-247" y="2163"/>
+            <point key="canvasLocation" x="-247.5" y="1663.5"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="55e-dN-rIU">
@@ -1531,7 +1601,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4wR-SW-HS1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1707" y="162.75"/>
+            <point key="canvasLocation" x="3041.25" y="301.875"/>
         </scene>
         <!--First Row Collection View Cell-->
         <scene sceneID="YXh-QL-31W">
@@ -2153,22 +2223,20 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="YNl-3i-Bam" firstAttribute="top" secondItem="PC8-Mp-vpf" secondAttribute="bottom" id="cK1-jd-1vp">
-                                <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
-                            </constraint>
-                            <constraint firstItem="YNl-3i-Bam" firstAttribute="leading" secondItem="9nD-fa-m5T" secondAttribute="leading" id="cdl-zw-Wdd"/>
-                            <constraint firstItem="pkh-gl-USQ" firstAttribute="top" secondItem="YNl-3i-Bam" secondAttribute="bottom" id="kut-Hp-t7P"/>
-                            <constraint firstAttribute="trailing" secondItem="YNl-3i-Bam" secondAttribute="trailing" id="nzW-ap-VII"/>
+                            <constraint firstItem="YNl-3i-Bam" firstAttribute="bottom" secondItem="pkh-gl-USQ" secondAttribute="top" id="5QQ-Ns-pUP"/>
+                            <constraint firstAttribute="trailing" secondItem="YNl-3i-Bam" secondAttribute="trailing" id="Bgx-At-Eqe"/>
+                            <constraint firstItem="YNl-3i-Bam" firstAttribute="top" secondItem="PC8-Mp-vpf" secondAttribute="bottom" id="YqQ-uG-j6U"/>
+                            <constraint firstItem="YNl-3i-Bam" firstAttribute="leading" secondItem="9nD-fa-m5T" secondAttribute="leading" id="pPH-zK-eMK"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="YNl-3i-Bam"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="kut-Hp-t7P"/>
-                                <exclude reference="cK1-jd-1vp"/>
-                                <exclude reference="cdl-zw-Wdd"/>
-                                <exclude reference="nzW-ap-VII"/>
+                                <exclude reference="5QQ-Ns-pUP"/>
+                                <exclude reference="Bgx-At-Eqe"/>
+                                <exclude reference="YqQ-uG-j6U"/>
+                                <exclude reference="pPH-zK-eMK"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -2176,13 +2244,14 @@
                                 <include reference="YNl-3i-Bam"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="kut-Hp-t7P"/>
-                                <include reference="cK1-jd-1vp"/>
-                                <include reference="cdl-zw-Wdd"/>
-                                <include reference="nzW-ap-VII"/>
+                                <include reference="5QQ-Ns-pUP"/>
+                                <include reference="Bgx-At-Eqe"/>
+                                <include reference="YqQ-uG-j6U"/>
+                                <include reference="pPH-zK-eMK"/>
                             </mask>
                         </variation>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <connections>
                         <outlet property="collectionView" destination="YNl-3i-Bam" id="p4w-3n-GNW"/>
                         <segue destination="Fdf-8w-s2W" kind="show" identifier="detail" id="RkH-vt-Q5q"/>
@@ -2192,11 +2261,11 @@
             </objects>
             <point key="canvasLocation" x="1692" y="1262"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--អ្នកប្រើប្រាស់-->
         <scene sceneID="QPp-wC-eCF">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Qi3-RV-8Dp" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="mostViewed" id="5kf-1M-svl"/>
+                    <tabBarItem key="tabBarItem" title="អ្នកប្រើប្រាស់" image="profile" selectedImage="profile_f" id="5kf-1M-svl"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="opt-Tc-Kin">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -2271,7 +2340,8 @@
                                                             <exclude reference="T6p-EE-9m0"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="212" y="25" width="20" height="20"/>
                                                         <mask key="constraints">
                                                             <include reference="DBp-un-z4m"/>
                                                             <include reference="T6p-EE-9m0"/>
@@ -2666,7 +2736,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Y7-JT-IWV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="348" y="2163"/>
+            <point key="canvasLocation" x="348" y="1938"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wIV-0u-PlN">
@@ -2684,7 +2754,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gbc-NK-OxC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="975" y="2163"/>
+            <point key="canvasLocation" x="981" y="1938"/>
         </scene>
         <!--Account Setting Table View Controller-->
         <scene sceneID="XHn-qH-sDc">
@@ -3174,7 +3244,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Quv-i4-RnS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2354" y="473"/>
+            <point key="canvasLocation" x="2203.5" y="566.25"/>
         </scene>
         <!--Email Register View Controller-->
         <scene sceneID="Ghl-5e-T4e">
@@ -3557,10 +3627,20 @@
     <resources>
         <image name="Checkbox.png" width="50" height="50"/>
         <image name="Checkedbox.png" width="50" height="50"/>
+        <image name="bell" width="25" height="25"/>
+        <image name="bell_f" width="25" height="25"/>
         <image name="face.png" width="900" height="896"/>
         <image name="food.jpg" width="1920" height="1200"/>
         <image name="go_back.png" width="45" height="45"/>
+        <image name="home" width="25" height="25"/>
+        <image name="home_f" width="25" height="25"/>
         <image name="info.png" width="512" height="512"/>
+        <image name="profile" width="25" height="25"/>
+        <image name="profile_f" width="25" height="25"/>
+        <image name="save" width="25" height="25"/>
+        <image name="save_f" width="25" height="25"/>
+        <image name="search" width="25" height="25"/>
+        <image name="search_f" width="25" height="25"/>
         <image name="x_button.png" width="45" height="45"/>
     </resources>
     <inferredMetricsTieBreakers>
