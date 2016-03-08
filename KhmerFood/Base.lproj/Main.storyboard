@@ -627,11 +627,24 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Ug-vA-Ijq">
+                                <rect key="frame" x="127" y="424" width="65" height="65"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="65" id="9zq-ae-KmI"/>
+                                    <constraint firstAttribute="height" constant="65" id="I3B-Ht-2zZ"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="food_share_btn.png"/>
+                                <connections>
+                                    <action selector="btnShareAction:" destination="MIp-ms-phO" eventType="touchUpInside" id="eJB-gr-CPy"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.89411764705882357" green="0.89411764705882357" blue="0.89411764705882357" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="4Ug-vA-Ijq" firstAttribute="centerX" secondItem="Fmh-GF-7M7" secondAttribute="centerX" id="FlI-4u-skF"/>
                             <constraint firstItem="srv-LT-sVk" firstAttribute="centerY" secondItem="Fmh-GF-7M7" secondAttribute="centerY" id="Pcb-WD-oKW"/>
                             <constraint firstItem="srv-LT-sVk" firstAttribute="centerX" secondItem="Fmh-GF-7M7" secondAttribute="centerX" id="YmB-Yo-r1N"/>
+                            <constraint firstItem="v9Y-bA-meX" firstAttribute="top" secondItem="4Ug-vA-Ijq" secondAttribute="bottom" constant="30" id="t6y-c6-R5L"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="រក្សាទុក" image="save" selectedImage="save_f" id="ie3-Hk-t8E"/>
@@ -681,7 +694,7 @@
                                     <constraint firstAttribute="height" constant="21" id="Kpk-8Z-mRU"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -3121,7 +3134,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="25"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <prototypes>
@@ -3640,6 +3653,7 @@
         <image name="bell_f" width="25" height="25"/>
         <image name="face.png" width="900" height="896"/>
         <image name="food.jpg" width="1920" height="1200"/>
+        <image name="food_share_btn.png" width="100" height="100"/>
         <image name="go_back.png" width="45" height="45"/>
         <image name="home" width="25" height="25"/>
         <image name="home_f" width="25" height="25"/>
