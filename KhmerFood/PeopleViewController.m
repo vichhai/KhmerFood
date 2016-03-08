@@ -283,6 +283,7 @@
     } else if (sender.tag == 2001) {
         [self loginWithTwitter];
     } else {
+        EmailRegisterViewController * emailRegisterViewController = [[EmailRegisterViewController alloc] init];
         [self performSegueWithIdentifier:@"emailRegister" sender:nil];
     }
     

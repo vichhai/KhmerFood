@@ -10,6 +10,6 @@
 #import "AppUtils.h"
 
 
-@interface EmailRegisterViewController : KFViewController
+@interface EmailRegisterViewController : KFViewController <UITextFieldDelegate>
 
 @end
