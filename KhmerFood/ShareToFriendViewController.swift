@@ -62,13 +62,14 @@ class ShareToFriendViewController: UIViewController,UITableViewDataSource,UITabl
         
         checkSearch = false
         
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 53/255, green: 201/255, blue: 147/255, alpha: 1)
+        self.navigationController?.navigationBar.translucent = false
+        
         mainScrollHeigthConstraint.constant = 0
         mainScrollVIew.showsHorizontalScrollIndicator = false
         
         sendRequest("")
         
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 53/255, green: 201/255, blue: 147/255, alpha: 1)
-        self.navigationController?.navigationBar.translucent = false
 
         let vTit = UIView(frame: CGRectMake(0,0,150,30))
         
@@ -153,6 +154,7 @@ class ShareToFriendViewController: UIViewController,UITableViewDataSource,UITabl
             userTitleLabel.tag                  = 25000 + dataIncreaseInt
             userTitleLabel.text                 = testArr[dataIncreaseInt].valueForKey("FULL_NAME") as? String
             mainScrollVIew.addSubview(userTitleLabel)
+            
             
             userDelImageV = UIImageView(frame:  CGRectMake(41 + CGFloat(66 * dataIncreaseInt), 5, 20, 20))
             userDelImageV.backgroundColor       = UIColor.whiteColor()
