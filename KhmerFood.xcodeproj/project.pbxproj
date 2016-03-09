@@ -50,6 +50,8 @@
 		ED335EDD1C7D3D8A0094AF76 /* load_10.png in Resources */ = {isa = PBXBuildFile; fileRef = ED335ED11C7D3D8A0094AF76 /* load_10.png */; };
 		ED335EDE1C7D3D8A0094AF76 /* load_11.png in Resources */ = {isa = PBXBuildFile; fileRef = ED335ED21C7D3D8A0094AF76 /* load_11.png */; };
 		ED335EDF1C7D3D8A0094AF76 /* load_12.png in Resources */ = {isa = PBXBuildFile; fileRef = ED335ED31C7D3D8A0094AF76 /* load_12.png */; };
+		ED341DF71C8FBD700095C1C6 /* AddFriendByIDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED341DF61C8FBD700095C1C6 /* AddFriendByIDViewController.m */; };
+		ED341DFB1C8FDC230095C1C6 /* IDCustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED341DFA1C8FDC230095C1C6 /* IDCustomTableViewCell.m */; };
 		ED4102481C8E4C8100688EC9 /* NSMutableAttributedString+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4102471C8E4C8100688EC9 /* NSMutableAttributedString+Color.m */; };
 		ED4DCBB71C7AF0C100986CEA /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4DCB971C7AF0C100986CEA /* MKAnnotationView+WebCache.m */; };
 		ED4DCBB81C7AF0C100986CEA /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4DCB991C7AF0C100986CEA /* NSData+ImageContentType.m */; };
@@ -203,6 +205,10 @@
 		ED335ED11C7D3D8A0094AF76 /* load_10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = load_10.png; sourceTree = "<group>"; };
 		ED335ED21C7D3D8A0094AF76 /* load_11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = load_11.png; sourceTree = "<group>"; };
 		ED335ED31C7D3D8A0094AF76 /* load_12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = load_12.png; sourceTree = "<group>"; };
+		ED341DF51C8FBD700095C1C6 /* AddFriendByIDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendByIDViewController.h; sourceTree = "<group>"; };
+		ED341DF61C8FBD700095C1C6 /* AddFriendByIDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFriendByIDViewController.m; sourceTree = "<group>"; };
+		ED341DF91C8FDC230095C1C6 /* IDCustomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDCustomTableViewCell.h; sourceTree = "<group>"; };
+		ED341DFA1C8FDC230095C1C6 /* IDCustomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDCustomTableViewCell.m; sourceTree = "<group>"; };
 		ED4102461C8E4C8100688EC9 /* NSMutableAttributedString+Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+Color.h"; sourceTree = "<group>"; };
 		ED4102471C8E4C8100688EC9 /* NSMutableAttributedString+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+Color.m"; sourceTree = "<group>"; };
 		ED4DCB961C7AF0C100986CEA /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
@@ -519,6 +525,33 @@
 			name = loading;
 			sourceTree = "<group>";
 		};
+		ED341DF31C8FBD490095C1C6 /* AddFriend */ = {
+			isa = PBXGroup;
+			children = (
+				ED341DF41C8FBD530095C1C6 /* AddFriendByID */,
+			);
+			name = AddFriend;
+			sourceTree = "<group>";
+		};
+		ED341DF41C8FBD530095C1C6 /* AddFriendByID */ = {
+			isa = PBXGroup;
+			children = (
+				ED341DF81C8FDC040095C1C6 /* Custom Cell */,
+				ED341DF51C8FBD700095C1C6 /* AddFriendByIDViewController.h */,
+				ED341DF61C8FBD700095C1C6 /* AddFriendByIDViewController.m */,
+			);
+			name = AddFriendByID;
+			sourceTree = "<group>";
+		};
+		ED341DF81C8FDC040095C1C6 /* Custom Cell */ = {
+			isa = PBXGroup;
+			children = (
+				ED341DF91C8FDC230095C1C6 /* IDCustomTableViewCell.h */,
+				ED341DFA1C8FDC230095C1C6 /* IDCustomTableViewCell.m */,
+			);
+			name = "Custom Cell";
+			sourceTree = "<group>";
+		};
 		ED4DCB951C7AF0A900986CEA /* SDWebImage */ = {
 			isa = PBXGroup;
 			children = (
@@ -785,6 +818,7 @@
 				ED4DDCBF1C293D0900DE5FBA /* Detail */,
 				ED019D141C2B713C008D6BBE /* People */,
 				ED94DBAE1C8D0318001DC6DB /* Register */,
+				ED341DF31C8FBD490095C1C6 /* AddFriend */,
 				EDAD819E1C0D8851009E53F9 /* Main.storyboard */,
 				EDAD81951C0D8851009E53F9 /* Supporting Files */,
 				3980557E1C227CDA002144AC /* KhmerFood-Bridging-Header.h */,
@@ -990,6 +1024,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED341DF71C8FBD700095C1C6 /* AddFriendByIDViewController.m in Sources */,
 				ED4DCBC41C7AF0C100986CEA /* UIImageView+HighlightedWebCache.m in Sources */,
 				EDAD81CE1C0D89D6009E53F9 /* ShareDataManager.m in Sources */,
 				ED019D171C2B715E008D6BBE /* PeopleViewController.m in Sources */,
@@ -1028,6 +1063,7 @@
 				ED4DCBC31C7AF0C100986CEA /* UIImage+WebP.m in Sources */,
 				ED4DCBBC1C7AF0C100986CEA /* SDWebImageDownloader.m in Sources */,
 				ED4E337B1C7BE20000A3D29A /* FoodModel.m in Sources */,
+				ED341DFB1C8FDC230095C1C6 /* IDCustomTableViewCell.m in Sources */,
 				ED4DDCC31C293D3300DE5FBA /* FoodDetailViewController.m in Sources */,
 				ED019D201C2B8991008D6BBE /* NameSettingTableViewController.m in Sources */,
 				EDAD81D81C0D8C0B009E53F9 /* ConnectionManager.m in Sources */,

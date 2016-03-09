@@ -17,6 +17,8 @@
 #import "FHSStream.h"
 #import "FHSTwitterEngine.h"
 #import "NSString+MD5.h"
+#import "UIImageView+WebCache.h"
+
 
 @interface PeopleViewController () <UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
 {
@@ -25,6 +27,12 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UIView *coverView;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *registerButton;
+@property (strong, nonatomic) IBOutlet UIView *sectionView;
+@property (weak, nonatomic) IBOutlet UIImageView *headerImage;
+@property (weak, nonatomic) IBOutlet UILabel *headerName;
+@property (weak, nonatomic) IBOutlet UILabel *headerID;
+@property (weak, nonatomic) IBOutlet UILabel *headerTotalFriends;
+@property (weak, nonatomic) IBOutlet UILabel *headerTotalFood;
 
 @end
 
@@ -52,8 +60,8 @@
     // Do any additional setup after loading the view.
     self.navigationController.navigationBar.barTintColor = NaviStandartColor;
     
-    [self setupSearch];
-    
+//    [self setupSearch];
+    self.tableView.tableHeaderView.frame = CGRectMake(0, 0, self.view.frame.size.width, 130);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -318,28 +326,40 @@
     
 }
 
--(IBAction)registerButtonClick:(UIButton *)sender {
-    
-    [self loginMethodAction:sender];
-    
-}
-
 -(void)closeCoverView {
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.navigationController.navigationBar lt_reset];
-        UILabel *titleLable =[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 25)];
-        [titleLable setFont:[UIFont systemFontOfSize:17]];
-        titleLable.textColor = [UIColor whiteColor];
-        titleLable.textAlignment = NSTextAlignmentCenter;
-        titleLable.text = @"អំពីខ្ញុំ";
-        self.navigationItem.titleView = titleLable;
+//        [self.navigationController.navigationBar lt_reset];
+//        UILabel *titleLable =[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 25)];
+//        [titleLable setFont:[UIFont systemFontOfSize:17]];
+//        titleLable.textColor = [UIColor whiteColor];
+//        titleLable.textAlignment = NSTextAlignmentCenter;
+//        titleLable.text = @"អំពីខ្ញុំ";
+//        self.navigationItem.titleView = titleLable;
         
         //    [self.coverView removeFromSuperview];
         self.tableView.hidden = false;
         self.coverView.hidden = true;
         [self.tableView reloadData];
     });
+    
+    NSDictionary *dicData = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"login_data"]];
+    
+    NSLog(@"dicData : %@",dicData);
+    [_headerImage sd_setImageWithURL:[NSURL URLWithString:[dicData objectForKey:@"profile_pic"]]];
+    _headerName.text = [dicData objectForKey:@"user_name"];
+    
+}
+
+#pragma mark : buttons method
+-(IBAction)registerButtonClick:(UIButton *)sender {
+    
+    [self loginMethodAction:sender];
+    
+}
+
+- (IBAction)addFriendByIDClicked:(UIButton *)sender {
+    [self performSegueWithIdentifier:@"addFriendByID" sender:nil];
 }
 
 
@@ -348,72 +368,31 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     CustomPeopleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    
-    if (indexPath.section == 0) {
-        if (indexPath.row == 0) {
-            if ([[NSUserDefaults standardUserDefaults] objectForKey:@"login_data"] != nil) {
-                NSDictionary *dicData = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"login_data"]];
-                
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    // retrive image on global queue
-                    
-                    UIImage * img = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[dicData objectForKey:@"profile_pic"]]]]];
-                    [ShareDataManager shareDataManager].shareImage = img;
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        cell.myImage.image = img;
-                    });
-                });
-                
-                return cell;
-            }
-        }
-    } else if (indexPath.section == 1) {
-        cell.myImage.image = [UIImage imageNamed:@"face.png"];
-    }
     return cell;
     
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 0) {
-        return 1;
-    }
     return 10;
 }
 
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
-}
-
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 50;
+    return 119;
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 50)];
-    view.backgroundColor = [UIColor lightGrayColor];
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, 10, tableView.frame.size.width - 20, 30)];
-    [label setFont:[UIFont systemFontOfSize:17]];
-    [label setTextColor:[UIColor blackColor]];
-    [view addSubview:label];
-    
-    if (section == 0) {
-        label.text = @"អំពីខ្ញុំ";
-    } else {
-        label.text = @"មិត្តរបស់ខ្ញុំ";
-    }
-    return view;
+    return  _sectionView;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     [tableView deselectRowAtIndexPath:indexPath animated:true];
     
-    if (indexPath.section == 0) {
+//    if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             [self performSegueWithIdentifier:@"viewProfile" sender:nil];
         }
-    }
+//    }
 }
 
 @end

@@ -11,12 +11,17 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <FBSDKShareKit/FBSDKShareKit.h>
+#import <AssetsLibrary/AssetsLibrary.h>
+#import "ConnectionManager.h"
+#import "AppUtils.h"
 
-@interface ProfileTableViewController ()
+@interface ProfileTableViewController () <UIImagePickerControllerDelegate,ConnectionManagerDelegate>
+{
+    UIImage *profileImageUpload;
+}
 @property (weak, nonatomic) IBOutlet UILabel *userName;
 @property (weak, nonatomic) IBOutlet UILabel *connectionType;
 @property (weak, nonatomic) IBOutlet UIImageView *profileImage;
-@property (strong,nonatomic) ACAccountStore *account;
 @end
 
 @implementation ProfileTableViewController
@@ -47,9 +52,6 @@
                 _profileImage.image = img;
             });
         });
-        _profileImage.image = [ShareDataManager shareDataManager].shareImage;
-        
-        
     }
     
 }
@@ -93,11 +95,77 @@
         }
     }
 }
-
-#pragma mark - other methods
--(void)otherMethod {
-  
+- (IBAction)chageProfileImage:(UIButton *)sender {
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate      = self;
+    picker.allowsEditing = YES;
+    picker.sourceType    = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+    [self presentViewController:picker animated:YES completion:nil];
+    
 }
 
+#pragma mark : Image picker viewcotroller delegate
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
+    
+    NSURL *refURL = [info valueForKey:UIImagePickerControllerReferenceURL];
+    
+    ALAssetsLibraryAssetForURLResultBlock resultBlock = ^(ALAsset *imageAsset){
+        
+        profileImageUpload = info[UIImagePickerControllerEditedImage];
+        NSDictionary *dicData = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"login_data"]];
+        
+        if ([self uploadImage:UIImageJPEGRepresentation(profileImageUpload, 1.0) filename:[NSString stringWithFormat:@"%@.png",[dicData objectForKey:@"user_name"]] ]) {
+            [self sendTranData]; // On hold
+            dispatch_async(dispatch_get_main_queue(), ^{
+                _profileImage.image = profileImageUpload;
+                [AppUtils showErrorMessage:@"ជោគជ័យ\nរូបភាពត្រូវបានប្ដូរ" anyView:self];
+            });
+        }
+    };
+    
+    ALAssetsLibrary* assetslibrary = [[ALAssetsLibrary alloc] init];
+    [assetslibrary assetForURL:refURL resultBlock:resultBlock failureBlock:nil];
+    
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark : send image to server
+- (BOOL)uploadImage:(NSData *)imageData filename:(NSString *)filename   {
+    NSString *urlString = @"http://yomankhmerfood.yofoodkh.5gbfree.com/yoman/UploadFileImage.php";
+    
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"POST"];
+    
+    NSString *boundary = @"---------------------------14737809831466499882746641449";
+    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
+    [request addValue:contentType forHTTPHeaderField: @"Content-Type"];
+    NSMutableData *body = [NSMutableData data];
+    [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithString:[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"userfile\"; filename=\"%@\"\r\n",filename]] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[NSData dataWithData:imageData]];
+    [body appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPBody:body];
+    
+    NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+    NSLog(@"%@",returnString);
+    return ([returnString isEqualToString:@"OK"]);
+}
+
+#pragma request and response 
+
+-(void)sendTranData {
+    NSDictionary *dicData = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"login_data"]];
+    ConnectionManager *con = [[ConnectionManager alloc] init];
+    con.delegate = self;
+    [con sendTranData:dicData];
+}
+
+-(void)returnResultWithData:(NSData *)data {
+    
+}
 
 @end

@@ -11,5 +11,6 @@
 @interface RecommendFoodViewController : KFViewController
 
 @property(strong,nonatomic) NSString *receiveData;
+@property(strong,nonatomic) NSArray *receiveArrayData;
 
 @end

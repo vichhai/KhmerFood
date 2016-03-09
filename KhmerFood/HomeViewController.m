@@ -17,6 +17,8 @@
 #import "UIView+WebCacheOperation.h"
 #import "FoodDetailViewController.h"
 #import "AllFoodModel.h"
+#import "RecommendFoodViewController.h"
+
 
 #define NAVBAR_CHANGE_POINT 0
 @interface HomeViewController ()<UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,ConnectionManagerDelegate>
@@ -110,7 +112,10 @@
         sendDic = [[NSDictionary alloc] initWithDictionary:[aFoodArray objectAtIndex:indexPath.row]];
     }
     
-    [self performSegueWithIdentifier:@"detail" sender:sendDic];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self performSegueWithIdentifier:@"detail" sender:sendDic];
+    });
+    
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -137,6 +142,9 @@
     if ([segue.identifier isEqualToString:@"detail"]) {
         FoodDetailViewController *vc = [segue destinationViewController];
         vc.receiveData = sender;
+    } else {
+        RecommendFoodViewController *vc = [segue destinationViewController];
+        vc.receiveArrayData = sender;
     }
 }
 
@@ -169,7 +177,11 @@
 -(void)gotoDetailAction:(NSNotification *)note {
 
     NSDictionary *dic = [[NSDictionary alloc] initWithDictionary:note.userInfo];
-    [self performSegueWithIdentifier:@"detail" sender:dic];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self performSegueWithIdentifier:@"detail" sender:dic];
+    });
+    
 }
 
 #pragma mark - other methods
@@ -245,8 +257,25 @@
 }
 
 #pragma mark - button method
-- (IBAction)shareButtonMethod:(id)sender {
-    [self performSegueWithIdentifier:@"recommend" sender:nil];
+- (IBAction)shareButtonMethod:(UIButton *)sender {
+    NSArray *tempArray = nil;
+    
+    switch (sender.tag) {
+        case 2016:
+            tempArray = randomArray;
+            break;
+        case 2017:
+            tempArray = rateArray;
+            break;
+        default:
+            tempArray = aFoodArray;
+            break;
+    }
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self performSegueWithIdentifier:@"recommend" sender:tempArray];
+    });
+    
 }
 
 -(void)leftButtonAction:(UIButton *)sender {
@@ -257,7 +286,11 @@
     NSLog(@"sender is %f",((myScrollView.contentOffset.x + screenWidth) - (myScrollView.contentSize.width / headerArray.count))/screenWidth);
     int index = floorf(((myScrollView.contentOffset.x + screenWidth) - (myScrollView.contentSize.width / headerArray.count))/screenWidth);
     NSDictionary *tempDic = [headerArray objectAtIndex:index];
-    [self performSegueWithIdentifier:@"detail" sender:tempDic];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self performSegueWithIdentifier:@"detail" sender:tempDic];
+    });
+    
 }
 
 #pragma mark - request and response

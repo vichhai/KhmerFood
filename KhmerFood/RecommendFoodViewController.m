@@ -19,7 +19,6 @@
     UILabel *foodName;
     UILabel *foodType;
     RLMResults<AllFoodModel *> *recommentFoodList;
-    __weak IBOutlet NSLayoutConstraint *topConstraint;
 }
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
@@ -36,14 +35,14 @@
     [AppUtils settingLeftButton:self action:@selector(lettButtonClicked:) normalImageCode:@"go_back.png" highlightImageCode:nil];
     
     [self setTitleForNavigationbar:@"ម្ហូបដែលអ្នកគួរសាក"];
+    if ([_receiveArrayData count] == 0) {
+        NSPredicate *pred = [NSPredicate predicateWithFormat:@"foodType = %@",[self checkFoodType:_receiveData]];
+        recommentFoodList = [AllFoodModel objectsWithPredicate:pred];
+    }
     
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"foodType = %@",[self checkFoodType:_receiveData]];
-    recommentFoodList = [AllFoodModel objectsWithPredicate:pred];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
-    NSLog(@"Top constraint : %f",topConstraint.constant);
-    NSLog(@"collection view frame : %@",_collectionView.frame);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -92,15 +91,25 @@
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
     [cell.contentView addSubview:[self setupViewForCell:cell.contentView.frame.size.width height:cell.contentView.frame.size.height]];
-    [imageView sd_setImageWithURL:[NSURL URLWithString:[recommentFoodList objectAtIndex:indexPath.row].foodImage]];
-    foodType.text = [NSString stringWithFormat:@" %@",[recommentFoodList objectAtIndex:indexPath.row].foodType];
-    foodName.text = [NSString stringWithFormat:@" %@",[recommentFoodList objectAtIndex:indexPath.row].foodName];
+    
+    if ([_receiveArrayData count] == 0) {
+        [imageView sd_setImageWithURL:[NSURL URLWithString:[recommentFoodList objectAtIndex:indexPath.row].foodImage]];
+        foodType.text = [NSString stringWithFormat:@" %@",[recommentFoodList objectAtIndex:indexPath.row].foodType];
+        foodName.text = [NSString stringWithFormat:@" %@",[recommentFoodList objectAtIndex:indexPath.row].foodName];
+    } else {
+        [imageView sd_setImageWithURL:[NSURL URLWithString: [[_receiveArrayData objectAtIndex:indexPath.row] objectForKey:@"FD_IMG"]]];
+        foodType.text = [NSString stringWithFormat:@" %@",[[_receiveArrayData objectAtIndex:indexPath.row] objectForKey:@"FD_NAME"]];
+        foodName.text = [NSString stringWithFormat:@" %@",[[_receiveArrayData objectAtIndex:indexPath.row] objectForKey:@"FD_NAME"]];
+    }
     
     return cell;
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return [recommentFoodList count];
+    if (![_receiveArrayData count] || [_receiveArrayData count] == 0) {
+        return [recommentFoodList count];
+    }
+    return [_receiveArrayData count];
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView
@@ -111,17 +120,36 @@
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    AllFoodModel *obj = [recommentFoodList objectAtIndex:indexPath.row];
-    NSDictionary *tempDic = @{@"FD_ID":obj.foodID,
-                              @"FD_NAME":obj.foodName,
-                              @"FD_DETAIL":obj.foodDetail,
-                              @"FD_COOK_TIME":obj.foodCookTime,
-                              @"FD_IMG":obj.foodImage,
-                              @"FD_RATE":obj.foodRate,
-                              @"FD_TYPE":obj.foodType,
-                              @"FD_TIME_WATCH":obj.foodTimeWatch
-                              };
-    [self performSegueWithIdentifier:@"detail" sender:tempDic];
+    
+    NSDictionary *tempDic = nil;
+    
+    if ([recommentFoodList count] == 0) {
+        tempDic = @{@"FD_ID":[[_receiveArrayData objectAtIndex:indexPath.row] objectForKey:@"FD_ID"],
+                    @"FD_NAME":[[_receiveArrayData objectAtIndex:indexPath.row] objectForKey:@"FD_NAME"],
+                    @"FD_DETAIL":[[_receiveArrayData objectAtIndex:indexPath.row] objectForKey:@"FD_DETAIL"],
+                    @"FD_COOK_TIME":[[_receiveArrayData objectAtIndex:indexPath.row] objectForKey:@"FD_COOK_TIME"],
+                    @"FD_IMG":[[_receiveArrayData objectAtIndex:indexPath.row] objectForKey:@"FD_IMG"],
+                    @"FD_RATE":@"",
+                    @"FD_TYPE":@"",
+                    @"FD_TIME_WATCH":@""
+                    };
+    } else {
+        AllFoodModel *obj = [recommentFoodList objectAtIndex:indexPath.row];
+        tempDic = @{@"FD_ID":obj.foodID,
+                    @"FD_NAME":obj.foodName,
+                    @"FD_DETAIL":obj.foodDetail,
+                    @"FD_COOK_TIME":obj.foodCookTime,
+                    @"FD_IMG":obj.foodImage,
+                    @"FD_RATE":obj.foodRate,
+                    @"FD_TYPE":obj.foodType,
+                    @"FD_TIME_WATCH":obj.foodTimeWatch
+                    };
+    }
+    
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self performSegueWithIdentifier:@"detail" sender:tempDic];
+    });
 }
 
 #pragma mark - segue method
