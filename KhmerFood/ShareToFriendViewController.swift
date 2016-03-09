@@ -34,18 +34,19 @@ class ShareToFriendViewController: UIViewController,UITableViewDataSource,UITabl
         ] as NSArray]
     
     // MARK: - Request Sever
-    func sendRequest(API_NAME:String){
+    func sendRequest(API_NAME:String)           {
         let conn = ConnectionManager()
         conn.delegate = self
         let dic = NSMutableDictionary()
-        dic.setValue("KF_CHECKEXISTFILE", forKey: "API_KEY")
-        dic.setValue("IMG_0008.JPG", forKey: "FILE_NAME")
+        dic.setValue("KF_UPDATETOKEN", forKey: "API_KEY")
+        dic.setValue("yoman", forKey: "USER_ID")
+        dic.setValue("TestingTesting", forKey: "TOKEN_ID")
 //        let dic1 = NSMutableDictionary()
 //        dic1.setValue("tiger11", forKey: "USER_ID")
 //        dic.setObject(dic1, forKey: "REQ_DATA")
         conn.sendTranData(dic as [NSObject : AnyObject])
     }
-    func returnResultWithData(data: NSData!) {
+    func returnResultWithData(data: NSData!)    {
         do {
             let jsonDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as! [String: AnyObject]
             print(jsonDictionary)
@@ -55,53 +56,38 @@ class ShareToFriendViewController: UIViewController,UITableViewDataSource,UITabl
     }
     
     // MARK: - View Life Cycle
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Share To Friend"
-        
         checkSearch = false
+        
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 53/255, green: 201/255, blue: 147/255, alpha: 1)
+        self.navigationController?.navigationBar.translucent = false
         
         mainScrollHeigthConstraint.constant = 0
         mainScrollVIew.showsHorizontalScrollIndicator = false
         
         sendRequest("")
+        
+
+        let vTit = UIView(frame: CGRectMake(0,0,150,30))
+        
+        let vTitLabel = UILabel(frame: CGRectMake(0,0,150,30))
+        vTitLabel.textColor = UIColor.whiteColor()
+        vTitLabel.text = "ជ្រេីសរើស មិត្តរបស់អ្នក"
+        vTit.addSubview(vTitLabel)
+        self.navigationItem.titleView = vTit
+
+        
+        if #available(iOS 9.0, *) {
+            (UIBarButtonItem.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self])).tintColor = UIColor.whiteColor()
+        }
     }
-    
-    // MARK: - Server Action Area
-//    func SendTrat(API_NAME:String){
-//        let dataDicSend = NSMutableDictionary()
-//        
-//        if(API_NAME == "CAMCHAT_LSTFRNDCRM"){
-//            dataDicSend.setValue(API_NAME,                          forKey: "KEY")
-//            dataDicSend.setValue(SingleTonManager.ShareSingleTonManager().userID,      forKey: "USR_ID")
-//        }else if(API_NAME == ""){
-//            
-//            
-//        }
-//        super.sendTransaction(dataDicSend as [NSObject : AnyObject])
-//    }
-//    override func returnTransaction(responseDictionary: [NSObject : AnyObject]!, success: Bool) {
-//        if(success){
-//            if(responseDictionary == nil){
-//                return
-//            }
-//            if(responseDictionary["KEY_API"] as! String == "CAMCHAT_LSTFRNDCRM"){
-//                
-//                dicData = responseDictionary
-//                print(dicData)
-//                mainTableView.reloadData()
-//            }else {
-//                
-//            }
-//        }else{
-//            SysUtils.showMessage("Check your information Again")
-//        }
-//    }
     
     // MARK: - Header View Management
     // MARK: -
-    func headerDelItem() {
+    func headerDelItem()                    {
         var userSelectImageV    : UIImageView
         var sectionTitleBt      : UIButton
         var userTitleLabel      : UILabel
@@ -125,14 +111,13 @@ class ShareToFriendViewController: UIViewController,UITableViewDataSource,UITabl
         mainScrollVIew.contentSize = CGSizeMake(11 +  CGFloat(66 * dataIncreaseInt), 90)
         
     }
-    
-    func headerBtAction(sender:UIButton) {
+    func headerBtAction(sender:UIButton)    {
         headerDelItem()
         testArr.removeAtIndex(sender.tag - 20000)
         headerAddItem()
         
     }
-    func headerAddItem() {
+    func headerAddItem()                    {
         var userSelectImageV    : UIImageView
         var sectionTitleBt      : UIButton
         var userTitleLabel      : UILabel
@@ -170,6 +155,7 @@ class ShareToFriendViewController: UIViewController,UITableViewDataSource,UITabl
             userTitleLabel.text                 = testArr[dataIncreaseInt].valueForKey("FULL_NAME") as? String
             mainScrollVIew.addSubview(userTitleLabel)
             
+            
             userDelImageV = UIImageView(frame:  CGRectMake(41 + CGFloat(66 * dataIncreaseInt), 5, 20, 20))
             userDelImageV.backgroundColor       = UIColor.whiteColor()
             let userSelectDelImage              = UIImage(named: "pop_close_btn.png")
@@ -191,16 +177,16 @@ class ShareToFriendViewController: UIViewController,UITableViewDataSource,UITabl
     }
     
     // MARK: - Search Delegate Method -
-    func searchBarSearchButtonClicked(searchBar: UISearchBar){
+    func searchBarSearchButtonClicked(searchBar: UISearchBar)               {
         
         searchBar.resignFirstResponder()
         searchBar.setShowsCancelButton(false, animated: true)
     }
-    func searchBarTextDidBeginEditing(searchBar: UISearchBar){
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar)               {
         
         searchBar.setShowsCancelButton(true, animated: false)
     }
-    func searchBarCancelButtonClicked(searchBar: UISearchBar){
+    func searchBarCancelButtonClicked(searchBar: UISearchBar)               {
         
         searchBar.resignFirstResponder()
         searchBar.setShowsCancelButton(false, animated: true)
@@ -209,7 +195,7 @@ class ShareToFriendViewController: UIViewController,UITableViewDataSource,UITabl
         
         filterContentForSearchText(searchText)
     }
-    func filterContentForSearchText(searchText: String) {
+    func filterContentForSearchText(searchText: String)                     {
         if(searchText == ""){
             checkSearch = false
         }else{
@@ -371,6 +357,10 @@ class ShareToFriendViewController: UIViewController,UITableViewDataSource,UITabl
         self.navigationController?.popViewControllerAnimated(true)
     }
     
+    @IBAction func btnSaveAction(sender: UIButton) {
+        
+        print("sdfsdf")
+    }
 }
 
 class AddNewChatCellView: UITableViewCell {

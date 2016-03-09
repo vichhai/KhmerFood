@@ -8,6 +8,7 @@
 
 #import "KFViewController.h"
 #import "ShareDataManager.h"
+#import "EmailRegisterViewController.h"
 @interface PeopleViewController : KFViewController
 
 @end

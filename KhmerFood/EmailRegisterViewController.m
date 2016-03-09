@@ -24,6 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationController.navigationBar.barTintColor = NaviStandartColor;
+    self.navigationController.navigationBar.translucent  = NO;
     [AppUtils settingLeftButton:self action:@selector(leftButtonClicked:) normalImageCode:@"x_button" highlightImageCode:nil];
 }
 
@@ -84,6 +85,7 @@
             } else {
                 [AppUtils showErrorMessage:[transaction objectForKey:@"RSLT_MSG"] anyView:self];
                 return;
+                
             }
         }
 
@@ -101,5 +103,16 @@
     [self dismissViewControllerAnimated:true completion:nil];
     [[NSUserDefaults standardUserDefaults] setObject:false forKey:@"isComplateWithEmail"];
     [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+#pragma mark - textfield delegate
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{return true;}
+- (void)textFieldDidBeginEditing:(UITextField *)textField{}
+- (void)textFieldDidEndEditing:(UITextField *)textField{[self.view endEditing:true];}
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
+    long newlength = textField.text.length + string.length - range.length ;
+    if (newlength > 8) {return false;}
+    return true;
 }
 @end

@@ -29,78 +29,22 @@
 @end
 
 @implementation SaveFoodsViewController
-//=====YOMAM======//
-- (IBAction)btnSaveAction:(UIButton *)sender {
-    [self uploadImage:UIImageJPEGRepresentation(StrImageData, 1.0) filename:StrImageName];
-}
-- (BOOL)uploadImage:(NSData *)imageData filename:(NSString *)filename   {
-    NSString *urlString = @"http://yomankhmerfood.yofoodkh.5gbfree.com/yoman/UploadFileImage.php";
-    
-    
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:urlString]];
-    [request setHTTPMethod:@"POST"];
-    
-    NSString *boundary = @"---------------------------14737809831466499882746641449";
-    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
-    [request addValue:contentType forHTTPHeaderField: @"Content-Type"];
-    NSMutableData *body = [NSMutableData data];
-    [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithString:[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"userfile\"; filename=\"%@\"\r\n",filename]] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[NSData dataWithData:imageData]];
-    [body appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [request setHTTPBody:body];
-    
-    NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-    NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-    NSLog(@"%@",returnString);
-    return ([returnString isEqualToString:@"OK"]);
-}
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-
-    NSURL *refURL = [info valueForKey:UIImagePickerControllerReferenceURL];
-    ALAssetsLibraryAssetForURLResultBlock resultblock = ^(ALAsset *imageAsset){
-        ALAssetRepresentation *imageRep = [imageAsset defaultRepresentation];
-
-        StrImageName =[imageRep filename];
-        StrImageData =info[UIImagePickerControllerEditedImage]; // image
-    };
-    ALAssetsLibrary* assetslibrary = [[ALAssetsLibrary alloc] init];
-    [assetslibrary assetForURL:refURL resultBlock:resultblock failureBlock:nil];
-    
-    [picker dismissViewControllerAnimated:YES completion:nil];
-}
-
 - (void)viewDidLoad                     {
     [super viewDidLoad];
-    
+    self.navigationController.navigationBar.barTintColor = NaviStandartColor;
     self.view.backgroundColor = RGB(235, 235, 235);
     
     _container = [[YSLDraggableCardContainer alloc]init];
-    _container.frame = CGRectMake(25 , self.view.frame.size.height / 6 , self.view.frame.size.width - 50, self.view.frame.size.height / 2);
+    _container.frame = CGRectMake(25 , self.view.frame.size.height / 6 + 20 , self.view.frame.size.width - 50, self.view.frame.size.height / 2);
     _container.dataSource = self;
     _container.delegate   = self;
     _container.canDraggableDirection = YSLDraggableDirectionLeft | YSLDraggableDirectionRight ;
     [self.view addSubview:_container];
-    
-  
-    //=====YOMAM======//
-//    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-//    picker.delegate      = self;
-//    picker.allowsEditing = YES;
-//    picker.sourceType    = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
-//    [self presentViewController:picker animated:YES completion:nil];
-    
-    
 }
 - (void)viewWillAppear:(BOOL)animated   {
     [super viewWillAppear:animated];
     
     _datas = [NSMutableArray array];
-    
-//    [self performSegueWithIdentifier:@"ShareFIrSegue" sender:nil];
-    
     
     realmSaveFood = [[SaveFoodModel alloc]init];
     for (int i = 0 ; i < [AppUtils readObjectFromRealm:realmSaveFood].count ; i++){
@@ -113,8 +57,15 @@
     }
 }
 
+- (IBAction)btnShareAction:(UIButton *)sender {
+    NSLog(@"Teste");
+ 
+}
+
 #pragma mark -- YSLDraggableCardContainer DataSource
 - (UIView *)cardContainerViewNextViewWithIndex:(NSInteger)index     {
+
+    
     NSDictionary *dict = _datas[index];
     CardViewMe *view;
     view = [[CardViewMe alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width - 50, self.view.frame.size.height / 2)];
@@ -148,11 +99,16 @@
             [alertController addAction:[UIAlertAction actionWithTitle:@"បាន" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
                 [cardContainerView movePositionWithDirection:draggableDirection isAutomatic:NO];
                 [AppUtils DeleteObjectToRealm:[AppUtils readObjectFromRealm:realmSaveFood][index]];
-                [_datas removeObjectAtIndex:index];
+                [_datas removeAllObjects];
+                realmSaveFood = [[SaveFoodModel alloc]init];
+                for (int i = 0 ; i < [AppUtils readObjectFromRealm:realmSaveFood].count ; i++){
+                    [_datas addObject:[AppUtils readObjectFromRealm:realmSaveFood][i]];
+                }
+                
                 [_container reloadCardContainer];
             }]];
             
-            [alertController addAction:[UIAlertAction actionWithTitle:@"អត់ទេ បាន" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            [alertController addAction:[UIAlertAction actionWithTitle:@"អត់ទេ" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
                 [cardContainerView movePositionWithDirection:YSLDraggableDirectionDefault isAutomatic:YES];
             }]];
             
@@ -169,12 +125,12 @@
     }
     
     if (draggableDirection == YSLDraggableDirectionLeft) {
-        view.selectedView.backgroundColor = RGB(215, 104, 91);
+        view.selectedView.backgroundColor = RGB(114, 209, 142);
         view.selectedView.alpha = widthRatio > 0.8 ? 0.8 : widthRatio;
     }
     
     if (draggableDirection == YSLDraggableDirectionRight) {
-        view.selectedView.backgroundColor = RGB(114, 209, 142);
+        view.selectedView.backgroundColor = RGB(215, 104, 91);
         view.selectedView.alpha = widthRatio > 0.8 ? 0.8 : widthRatio;
     }
     
@@ -182,22 +138,23 @@
 - (void)cardContainerViewDidCompleteAll:(YSLDraggableCardContainer *)container;{
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{\
         [container reloadCardContainer];
+ 
     });
 }
 - (void)cardContainerView:(YSLDraggableCardContainer *)cardContainerView didSelectAtIndex:(NSInteger)index draggableView:(UIView *)draggableView{
     
     NSDictionary *receiveData = [[NSDictionary alloc]initWithObjectsAndKeys:_datas[index][@"FD_ID"],@"FD_ID",_datas[index][@"FD_NAME"],@"FD_NAME",_datas[index][@"FD_DETAIL"],@"FD_DETAIL",_datas[index][@"FD_COOK_TIME"],@"FD_COOK_TIME",_datas[index][@"FD_IMG"],@"FD_IMG",_datas[index][@"FD_RATE"],@"FD_RATE",_datas[index][@"FD_TYPE"],@"FD_TYPE",_datas[index][@"FD_TIME_WATCH"],@"FD_TIME_WATCH",nil];
     
-//    [self performSegueWithIdentifier:@"SaveFDDFSegue" sender:receiveData];
+    [self performSegueWithIdentifier:@"SaveFDDFSegue" sender:receiveData];
    
 }
 
 #pragma mark - segue method
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//    if ([segue.identifier isEqualToString:@"SaveFDDFSegue"]) {
-//        FoodDetailViewController *vc = [segue destinationViewController];
-//        vc.receiveData = sender;
-//    }
+    if ([segue.identifier isEqualToString:@"SaveFDDFSegue"]) {
+        FoodDetailViewController *vc = [segue destinationViewController];
+        vc.receiveData = sender;
+    }
 }
 
 
