@@ -11,6 +11,7 @@
 #import "SaveFoodModel.h"
 #import "UIImageView+WebCache.h"
 #import "ShareDataManager.h"
-@interface SaveFoodsViewController : UIViewController
+#import "KFViewController.h"
+@interface SaveFoodsViewController : KFViewController
 
 @end

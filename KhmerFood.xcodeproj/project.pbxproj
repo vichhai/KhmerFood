@@ -15,6 +15,7 @@
 		398055901C227E4E002144AC /* UIColor+FlatColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 398055891C227E4E002144AC /* UIColor+FlatColors.m */; };
 		398055911C227E4E002144AC /* ZLPanGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3980558C1C227E4E002144AC /* ZLPanGestureRecognizer.m */; };
 		398055921C227E4E002144AC /* ZLSwipeableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3980558E1C227E4E002144AC /* ZLSwipeableView.m */; };
+		39A312431C8E9D6400DD0812 /* food_share_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A312421C8E9D6400DD0812 /* food_share_btn.png */; };
 		39A6C50B1C890AB100AECE0A /* ShareToFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A6C50A1C890AB100AECE0A /* ShareToFriendViewController.swift */; };
 		39A6C50E1C8912F400AECE0A /* Checkbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A6C50C1C8912F400AECE0A /* Checkbox.png */; };
 		39A6C50F1C8912F400AECE0A /* Checkedbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A6C50D1C8912F400AECE0A /* Checkedbox.png */; };
@@ -156,6 +157,7 @@
 		3980558C1C227E4E002144AC /* ZLPanGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPanGestureRecognizer.m; sourceTree = "<group>"; };
 		3980558D1C227E4E002144AC /* ZLSwipeableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLSwipeableView.h; sourceTree = "<group>"; };
 		3980558E1C227E4E002144AC /* ZLSwipeableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLSwipeableView.m; sourceTree = "<group>"; };
+		39A312421C8E9D6400DD0812 /* food_share_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = food_share_btn.png; sourceTree = "<group>"; };
 		39A6C50A1C890AB100AECE0A /* ShareToFriendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareToFriendViewController.swift; sourceTree = "<group>"; };
 		39A6C50C1C8912F400AECE0A /* Checkbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Checkbox.png; sourceTree = "<group>"; };
 		39A6C50D1C8912F400AECE0A /* Checkedbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Checkedbox.png; sourceTree = "<group>"; };
