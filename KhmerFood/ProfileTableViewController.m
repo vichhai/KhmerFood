@@ -115,11 +115,6 @@
         NSDictionary *dicData = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"login_data"]];
         
         if ([self uploadImage:UIImageJPEGRepresentation(profileImageUpload, 1.0) filename:[NSString stringWithFormat:@"%@.png",[dicData objectForKey:@"user_name"]] ]) {
-            [self sendTranData]; // On hold
-            dispatch_async(dispatch_get_main_queue(), ^{
-                _profileImage.image = profileImageUpload;
-                [AppUtils showErrorMessage:@"ជោគជ័យ\nរូបភាពត្រូវបានប្ដូរ" anyView:self];
-            });
         }
     };
     
@@ -152,6 +147,12 @@
     NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
     NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
     NSLog(@"%@",returnString);
+    
+    if ([returnString isEqualToString:@"OK"]) {
+        [self sendTranData];
+    }
+    
+    
     return ([returnString isEqualToString:@"OK"]);
 }
 
