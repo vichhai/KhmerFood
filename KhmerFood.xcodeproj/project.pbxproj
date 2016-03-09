@@ -19,10 +19,10 @@
 		39A6C50B1C890AB100AECE0A /* ShareToFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A6C50A1C890AB100AECE0A /* ShareToFriendViewController.swift */; };
 		39A6C50E1C8912F400AECE0A /* Checkbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A6C50C1C8912F400AECE0A /* Checkbox.png */; };
 		39A6C50F1C8912F400AECE0A /* Checkedbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A6C50D1C8912F400AECE0A /* Checkedbox.png */; };
+		4209915D1C8FDDF700FAE55A /* check_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4209915A1C8FDDF700FAE55A /* check_icon.png */; };
+		4209915E1C8FDDF700FAE55A /* flat_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 4209915B1C8FDDF700FAE55A /* flat_btn.png */; };
+		4209915F1C8FDDF700FAE55A /* success_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 4209915C1C8FDDF700FAE55A /* success_bg.png */; };
 		421C31D41C8E8C05002F5629 /* SucceedReigsiteredXIB.xib in Resources */ = {isa = PBXBuildFile; fileRef = 421C31D31C8E8C05002F5629 /* SucceedReigsiteredXIB.xib */; };
-		421C31D61C8E92DD002F5629 /* success_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 421C31D51C8E92DD002F5629 /* success_bg.png */; };
-		421C31D91C8E9312002F5629 /* check_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 421C31D71C8E9312002F5629 /* check_icon.png */; };
-		421C31DA1C8E9312002F5629 /* flat_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 421C31D81C8E9312002F5629 /* flat_btn.png */; };
 		ED019D171C2B715E008D6BBE /* PeopleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED019D161C2B715E008D6BBE /* PeopleViewController.m */; };
 		ED019D1A1C2B7219008D6BBE /* CustomPeopleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED019D191C2B7219008D6BBE /* CustomPeopleTableViewCell.m */; };
 		ED019D1C1C2B8029008D6BBE /* x_button.png in Resources */ = {isa = PBXBuildFile; fileRef = ED019D1B1C2B8029008D6BBE /* x_button.png */; };
@@ -161,10 +161,10 @@
 		39A6C50A1C890AB100AECE0A /* ShareToFriendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareToFriendViewController.swift; sourceTree = "<group>"; };
 		39A6C50C1C8912F400AECE0A /* Checkbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Checkbox.png; sourceTree = "<group>"; };
 		39A6C50D1C8912F400AECE0A /* Checkedbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Checkedbox.png; sourceTree = "<group>"; };
+		4209915A1C8FDDF700FAE55A /* check_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check_icon.png; sourceTree = "<group>"; };
+		4209915B1C8FDDF700FAE55A /* flat_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flat_btn.png; sourceTree = "<group>"; };
+		4209915C1C8FDDF700FAE55A /* success_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = success_bg.png; sourceTree = "<group>"; };
 		421C31D31C8E8C05002F5629 /* SucceedReigsiteredXIB.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SucceedReigsiteredXIB.xib; sourceTree = "<group>"; };
-		421C31D51C8E92DD002F5629 /* success_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = success_bg.png; sourceTree = "<group>"; };
-		421C31D71C8E9312002F5629 /* check_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check_icon.png; sourceTree = "<group>"; };
-		421C31D81C8E9312002F5629 /* flat_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flat_btn.png; sourceTree = "<group>"; };
 		ED019D151C2B715E008D6BBE /* PeopleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleViewController.h; sourceTree = "<group>"; };
 		ED019D161C2B715E008D6BBE /* PeopleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleViewController.m; sourceTree = "<group>"; };
 		ED019D181C2B7219008D6BBE /* CustomPeopleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPeopleTableViewCell.h; sourceTree = "<group>"; };
@@ -393,9 +393,10 @@
 		398055931C22861C002144AC /* Image */ = {
 			isa = PBXGroup;
 			children = (
-				421C31D71C8E9312002F5629 /* check_icon.png */,
-				421C31D81C8E9312002F5629 /* flat_btn.png */,
-				421C31D51C8E92DD002F5629 /* success_bg.png */,
+				4209915A1C8FDDF700FAE55A /* check_icon.png */,
+				4209915B1C8FDDF700FAE55A /* flat_btn.png */,
+				4209915C1C8FDDF700FAE55A /* success_bg.png */,
+				39A312421C8E9D6400DD0812 /* food_share_btn.png */,
 				ED94DBC21C8D05EC001DC6DB /* show_more_icon.png */,
 				ED94DBC31C8D05EC001DC6DB /* close_x.png */,
 				ED94DBC41C8D05EC001DC6DB /* to_friend_btn.png */,
@@ -940,6 +941,7 @@
 			files = (
 				ED94DBC91C8D05EC001DC6DB /* close_x.png in Resources */,
 				ED94DBCA1C8D05EC001DC6DB /* to_friend_btn.png in Resources */,
+				4209915F1C8FDDF700FAE55A /* success_bg.png in Resources */,
 				ED335ED71C7D3D8A0094AF76 /* load_04.png in Resources */,
 				EDEB136F1C2A26D500772E1F /* go_back.png in Resources */,
 				ED335ED81C7D3D8A0094AF76 /* load_05.png in Resources */,
@@ -948,7 +950,7 @@
 				ED335EDD1C7D3D8A0094AF76 /* load_10.png in Resources */,
 				39A6C50F1C8912F400AECE0A /* Checkedbox.png in Resources */,
 				39A6C50E1C8912F400AECE0A /* Checkbox.png in Resources */,
-				421C31D61C8E92DD002F5629 /* success_bg.png in Resources */,
+				39A312431C8E9D6400DD0812 /* food_share_btn.png in Resources */,
 				EDAD81A81C0D8851009E53F9 /* LaunchScreen.storyboard in Resources */,
 				ED335ED91C7D3D8A0094AF76 /* load_06.png in Resources */,
 				421C31D41C8E8C05002F5629 /* SucceedReigsiteredXIB.xib in Resources */,
@@ -970,9 +972,9 @@
 				ED335ED41C7D3D8A0094AF76 /* load_01.png in Resources */,
 				EDEB13731C2A598E00772E1F /* pin.png in Resources */,
 				ED94DBCD1C8D05EC001DC6DB /* twitter_icon.png in Resources */,
-				421C31DA1C8E9312002F5629 /* flat_btn.png in Resources */,
+				4209915E1C8FDDF700FAE55A /* flat_btn.png in Resources */,
 				ED5A446A1C2A77C70004DF8C /* face.png in Resources */,
-				421C31D91C8E9312002F5629 /* check_icon.png in Resources */,
+				4209915D1C8FDDF700FAE55A /* check_icon.png in Resources */,
 				ED4DDCC51C293E6700DE5FBA /* Assets.xcassets in Resources */,
 				ED335EDB1C7D3D8A0094AF76 /* load_08.png in Resources */,
 				ED019D1C1C2B8029008D6BBE /* x_button.png in Resources */,
