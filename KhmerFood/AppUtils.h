@@ -12,6 +12,9 @@
 #import <Realm/Realm.h>
 #import "Constants.h"
 
+static UIView *wrapperView;
+static UIImageView *loadingImage;
+static UIView *parentView;
 @interface AppUtils : NSObject
 
 +(CGFloat)getDeviceScreenHeight;
@@ -110,5 +113,6 @@
 +(void)DeleteObjectToRealm:(RLMObject *)anyObject;
 +(RLMResults *)readObjectFromRealm:(RLMObject *)anyObject;
 + (CGFloat)measureTextHeight:(NSString*)text constrainedToSize:(CGSize)constrainedToSize fontSize:(CGFloat)fontSize;
-
++(void)showWaitingActivity:(UIView *)anyView;
++(void)hideWaitingActivity;
 @end

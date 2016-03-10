@@ -9,6 +9,7 @@
 #import "AppUtils.h"
 
 
+
 @interface AppUtils ()
 
 @end
@@ -150,18 +151,19 @@
     return [[[UIDevice currentDevice] systemVersion] integerValue];
 }
 
-
+/////////////////////////////////////////////////////////////////////////////////////////////
 +(void)writeObjectToRealm:(RLMObject *)anyObject {
     [UIRealm beginWriteTransaction];
     [UIRealm addObject:anyObject];
     [UIRealm commitWriteTransaction];
 }
+/////////////////////////////////////////////////////////////////////////////////////////////
 +(void)DeleteObjectToRealm:(RLMObject *)anyObject {
     [UIRealm beginWriteTransaction];
     [UIRealm deleteObject:anyObject];
     [UIRealm commitWriteTransaction];
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////////
 +(RLMResults *)readObjectFromRealm:(RLMObject *)anyObject{
     return [[anyObject class] allObjects];
 }
@@ -173,5 +175,56 @@
     return rect.size.height;
     
 }
+/////////////////////////////////////////////////////////////////////////////////////////////
++(void)showWaitingActivity:(UIView *)anyView{
+    
+    parentView = anyView;
+    
+    wrapperView = [[UIView alloc] initWithFrame:anyView.frame];
+    wrapperView.backgroundColor = [UIColor lightGrayColor];
+    wrapperView.alpha = 0.6;
+    
+    UIView *innerWrapperView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 130)];
+    innerWrapperView.center = wrapperView.center;
+    innerWrapperView.backgroundColor = [UIColor clearColor];
+    
+    UILabel *textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 99, 100, 31)];
+    textLabel.textColor = [UIColor darkGrayColor];
+    textLabel.textAlignment = NSTextAlignmentCenter;
+    textLabel.text = @"កំពុងដំណើរការ";
+    
+    loadingImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+    loadingImage.backgroundColor = [UIColor clearColor];
+    loadingImage.layer.cornerRadius = 50;
+    
+    NSMutableArray *arrOfImages = [[NSMutableArray alloc] init];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        for (int i = 1; i <= 161; i++) {
+            NSString *imageName = [NSString stringWithFormat:@"loading-%d (dragged).tiff",i];
+            [arrOfImages addObject:[UIImage imageNamed:imageName]];
+        }
+        
+        loadingImage.animationImages = arrOfImages;
+        
+        // set duration
+        loadingImage.animationDuration = 4.5;
+        [loadingImage startAnimating];
+    });
+    
+    anyView.userInteractionEnabled = false;
+    [innerWrapperView addSubview:loadingImage];
+    [innerWrapperView addSubview:textLabel];
+    [wrapperView addSubview:innerWrapperView];
+    [anyView addSubview:wrapperView];
+}
 
++(void)hideWaitingActivity {
+    if (parentView != nil) {
+        [loadingImage stopAnimating];
+        [wrapperView removeFromSuperview];
+        parentView.userInteractionEnabled = true;
+        parentView = nil;
+    }
+}
 @end

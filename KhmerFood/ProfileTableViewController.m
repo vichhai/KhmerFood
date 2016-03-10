@@ -115,6 +115,11 @@
         NSDictionary *dicData = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"login_data"]];
         
         if ([self uploadImage:UIImageJPEGRepresentation(profileImageUpload, 1.0) filename:[NSString stringWithFormat:@"%@.png",[dicData objectForKey:@"user_name"]] ]) {
+//           dispatch_async(dispatch_get_main_queue(), ^{
+//               _profileImage.image = profileImageUpload;
+//           });
+            [self sendTranData];
+            
         }
     };
     
@@ -148,24 +153,37 @@
     NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
     NSLog(@"%@",returnString);
     
-    if ([returnString isEqualToString:@"OK"]) {
-        [self sendTranData];
-    }
-    
-    
-    return ([returnString isEqualToString:@"OK"]);
+    return ([returnString rangeOfString:@"OK"].location);
 }
 
 #pragma request and response 
 
 -(void)sendTranData {
     NSDictionary *dicData = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"login_data"]];
+    
+    NSDictionary *reqDic = @{@"API_KEY" : @"KF_USERINF",
+                             @"USER_ID" : [dicData objectForKey:@"user_id"]};
+    
     ConnectionManager *con = [[ConnectionManager alloc] init];
     con.delegate = self;
-    [con sendTranData:dicData];
+    [con sendTranData:reqDic];
 }
 
 -(void)returnResultWithData:(NSData *)data {
+    
+    if (![AppUtils isNull:data]) {
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        NSLog(@"data : %@",dic);
+//        
+//        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"login_data"];
+//        [[NSUserDefaults standardUserDefaults] synchronize];
+//        NSDictionary *dicData = @{@"user_name":[json valueForKey:@"screen_name"],@"profile_pic":[json valueForKey:@"profile_image_url"],@"login_type":@"T",@"id" : [json objectForKey:@"id"]};
+        
+        
+        
+        
+        
+    }
     
 }
 

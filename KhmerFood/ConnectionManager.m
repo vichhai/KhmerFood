@@ -21,7 +21,7 @@
     NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:nil];
     
     // create an URLRequest
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://172.20.20.48/~yoman/KF_APP_API/API_MES.php"]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://yomankhmerfood.yofoodkh.5gbfree.com./yoman/API_MES.php"]];
     request.HTTPMethod = @"POST";
 //    [request setValue:@"2a1814171e4c995cbc1a7950a67d3db45b4fd139" forHTTPHeaderField:@"X-API-KEY"];
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:reqDictionary options:0 error:nil];
