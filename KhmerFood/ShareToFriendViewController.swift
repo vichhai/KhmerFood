@@ -5,32 +5,28 @@
 //  Created by Yoman on 3/4/16.
 //  Copyright © 2016 Donut. All rights reserved.
 //
-
 import UIKit
 
-class ShareToFriendViewController: UIViewController,UITableViewDataSource,UITableViewDelegate, UISearchBarDelegate,UISearchDisplayDelegate,ConnectionManagerDelegate {
-
+class ShareToFriendViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,ConnectionManagerDelegate {
+    
     @IBOutlet var mainScrollVIew: UIScrollView!
-    @IBOutlet var txtSearchBar: UISearchBar!
     @IBOutlet var mainTableView: UITableView!
     
+    @IBOutlet var viewSeachBox: UIView!
+    @IBOutlet var btnClearAllText: UIButton!
+    @IBOutlet var txtSearch: UITextField!
     @IBOutlet var mainScrollHeigthConstraint: NSLayoutConstraint!
     
     var testArr = Array<AnyObject>();
-    
-//    var dicData = NSDictionary()
-    
     var resultDicData : NSArray = []
-    
     var checkSearch : Bool!
-    
     var dicData: NSDictionary = ["COUNT":"6","RECORDS": [
-            ["FILE_NM":"","FULL_NAME":"AAA"],
-            ["FILE_NM":"","FULL_NAME":"BBB"],
-            ["FILE_NM":"","FULL_NAME":"CCC"],
-            ["FILE_NM":"","FULL_NAME":"93K Eve"],
-            ["FILE_NM":"","FULL_NAME":"Yoman"],
-            ["FILE_NM":"","FULL_NAME":"XXX"]
+        ["FILE_NM":"","FULL_NAME":"AAA"],
+        ["FILE_NM":"","FULL_NAME":"BBB"],
+        ["FILE_NM":"","FULL_NAME":"CCC"],
+        ["FILE_NM":"","FULL_NAME":"93K Eve"],
+        ["FILE_NM":"","FULL_NAME":"Yoman"],
+        ["FILE_NM":"","FULL_NAME":"XXX"]
         ] as NSArray]
     
     // MARK: - Request Sever
@@ -38,12 +34,9 @@ class ShareToFriendViewController: UIViewController,UITableViewDataSource,UITabl
         let conn = ConnectionManager()
         conn.delegate = self
         let dic = NSMutableDictionary()
-        dic.setValue("KF_UPDATETOKEN", forKey: "API_KEY")
-        dic.setValue("yoman", forKey: "USER_ID")
-        dic.setValue("TestingTesting", forKey: "TOKEN_ID")
-//        let dic1 = NSMutableDictionary()
-//        dic1.setValue("tiger11", forKey: "USER_ID")
-//        dic.setObject(dic1, forKey: "REQ_DATA")
+        dic.setValue("KF_USERINF", forKey: "API_KEY")
+        dic.setValue("1033518843355972", forKey: "USER_ID")
+        
         conn.sendTranData(dic as [NSObject : AnyObject])
     }
     func returnResultWithData(data: NSData!)    {
@@ -56,7 +49,6 @@ class ShareToFriendViewController: UIViewController,UITableViewDataSource,UITabl
     }
     
     // MARK: - View Life Cycle
- 
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -69,16 +61,17 @@ class ShareToFriendViewController: UIViewController,UITableViewDataSource,UITabl
         mainScrollVIew.showsHorizontalScrollIndicator = false
         
         sendRequest("")
+        viewSeachBox.layer.borderColor = UIColor(red: 38/255, green: 180/255, blue: 144/255, alpha: 1).CGColor
         
-
-        let vTit = UIView(frame: CGRectMake(0,0,150,30))
+        let vTit = UIView(frame: CGRectMake(0,0,180,30))
         
-        let vTitLabel = UILabel(frame: CGRectMake(0,0,150,30))
+        let vTitLabel = UILabel(frame: CGRectMake(0,0,180,30))
         vTitLabel.textColor = UIColor.whiteColor()
-        vTitLabel.text = "ជ្រេីសរើស មិត្តរបស់អ្នក"
+        vTitLabel.textAlignment = .Center
+        vTitLabel.text = "ចែករំលែកទៅកាន់មិត្តភក្តិ"
         vTit.addSubview(vTitLabel)
         self.navigationItem.titleView = vTit
-
+        
         
         if #available(iOS 9.0, *) {
             (UIBarButtonItem.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self])).tintColor = UIColor.whiteColor()
@@ -124,9 +117,9 @@ class ShareToFriendViewController: UIViewController,UITableViewDataSource,UITabl
         var userDelImageV       : UIImageView
         
         var dataIncreaseInt = 0
-
+        
         for _ in testArr.reverse() {
-            userSelectImageV = UIImageView(frame:  CGRectMake(16.0 + CGFloat(66 * dataIncreaseInt), 12, 40, 40))
+            userSelectImageV = UIImageView(frame:  CGRectMake(16.0 + CGFloat(66 * dataIncreaseInt), 9, 44, 44))
             if(AppUtils.isNull(testArr[dataIncreaseInt]["FILE_NM"])){
                 userSelectImageV.sd_setImageWithURL(NSURL(string: ""), placeholderImage: UIImage(named: "no_image.jpeg"))
             }else{
@@ -135,11 +128,11 @@ class ShareToFriendViewController: UIViewController,UITableViewDataSource,UITabl
             userSelectImageV.backgroundColor      = UIColor.clearColor()
             userSelectImageV.tag                  = 15000 + dataIncreaseInt
             userSelectImageV.layer.masksToBounds  = true;
-            userSelectImageV.layer.cornerRadius   = 20;
-            userSelectImageV.layer.borderColor    = UIColor.blackColor().CGColor
+            userSelectImageV.layer.cornerRadius   = 22;
+            userSelectImageV.layer.borderColor    = UIColor(red: 38/255, green: 180/255, blue: 144/255, alpha: 1).CGColor
             userSelectImageV.layer.borderWidth    = 1
             mainScrollVIew.addSubview(userSelectImageV)
- 
+            
             sectionTitleBt                      = UIButton(frame:  CGRectMake(16.0 + CGFloat(66 * dataIncreaseInt), 1, 41, 41))
             sectionTitleBt.backgroundColor      = UIColor.clearColor()
             sectionTitleBt.addTarget(self, action: Selector("headerBtAction:"), forControlEvents: .TouchUpInside)
@@ -155,10 +148,8 @@ class ShareToFriendViewController: UIViewController,UITableViewDataSource,UITabl
             userTitleLabel.text                 = testArr[dataIncreaseInt].valueForKey("FULL_NAME") as? String
             mainScrollVIew.addSubview(userTitleLabel)
             
-            
-            userDelImageV = UIImageView(frame:  CGRectMake(41 + CGFloat(66 * dataIncreaseInt), 5, 20, 20))
-            userDelImageV.backgroundColor       = UIColor.whiteColor()
-            let userSelectDelImage              = UIImage(named: "pop_close_btn.png")
+            userDelImageV = UIImageView(frame:  CGRectMake(43 + CGFloat(66 * dataIncreaseInt), 7, 18, 18))
+            let userSelectDelImage              = UIImage(named: "SF_Delete.png")
             userDelImageV.image                 = userSelectDelImage;
             userDelImageV.tag                   = 30000 + dataIncreaseInt
             mainScrollVIew.addSubview(userDelImageV)
@@ -176,25 +167,7 @@ class ShareToFriendViewController: UIViewController,UITableViewDataSource,UITabl
         mainTableView.reloadData()
     }
     
-    // MARK: - Search Delegate Method -
-    func searchBarSearchButtonClicked(searchBar: UISearchBar)               {
-        
-        searchBar.resignFirstResponder()
-        searchBar.setShowsCancelButton(false, animated: true)
-    }
-    func searchBarTextDidBeginEditing(searchBar: UISearchBar)               {
-        
-        searchBar.setShowsCancelButton(true, animated: false)
-    }
-    func searchBarCancelButtonClicked(searchBar: UISearchBar)               {
-        
-        searchBar.resignFirstResponder()
-        searchBar.setShowsCancelButton(false, animated: true)
-    }
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String){
-        
-        filterContentForSearchText(searchText)
-    }
+    // MARK: - TextFeild Delegate Method -
     func filterContentForSearchText(searchText: String)                     {
         if(searchText == ""){
             checkSearch = false
@@ -209,7 +182,7 @@ class ShareToFriendViewController: UIViewController,UITableViewDataSource,UITabl
     
     // MARK: - UITableView Method Area
     // MARK: -
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int                       {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int                           {
         if (checkSearch == false){
             if(dicData.count != 0){
                 if(dicData["COUNT"]?.integerValue! != 0){
@@ -221,9 +194,16 @@ class ShareToFriendViewController: UIViewController,UITableViewDataSource,UITabl
         }
         return 0
     }
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat           {
+        return 55
+    }
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell     {
         let cell = tableView.dequeueReusableCellWithIdentifier("addNewChatCell", forIndexPath: indexPath) as! AddNewChatCellView
         cell.btnCheck.addTarget(self, action: "TickImageAction:", forControlEvents: UIControlEvents.TouchUpInside)
+        
+        let vCellLine = UIView(frame: CGRectMake(0,55,600,0.7))
+        vCellLine.backgroundColor = UIColor.lightGrayColor()
+        cell.contentView.addSubview(vCellLine)
         
         if (checkSearch == false){
             if(dicData.count != 0){
@@ -255,7 +235,7 @@ class ShareToFriendViewController: UIViewController,UITableViewDataSource,UITabl
                 }
             }
             cell.lblName.text = resultDicData[indexPath.row].valueForKey("FULL_NAME") as? String
-           
+            
             if(AppUtils.isNull(resultDicData[indexPath.row]["FILE_NM"])){
                 cell.imageMe.sd_setImageWithURL(NSURL(string: ""), placeholderImage: UIImage(named: "person_icon.png"))
             }else{
@@ -265,7 +245,7 @@ class ShareToFriendViewController: UIViewController,UITableViewDataSource,UITabl
         
         return cell
     }
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)                  {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)                      {
         headerDelItem()
         
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
@@ -309,7 +289,7 @@ class ShareToFriendViewController: UIViewController,UITableViewDataSource,UITabl
     
     // MARK: - Button Action
     // MARK: -
-    func TickImageAction(sender: UIButton)      {
+    func TickImageAction(sender: UIButton)                  {
         self.headerDelItem()
         
         let touchPoint = sender.convertPoint(CGPointZero, toView: mainTableView)
@@ -333,7 +313,7 @@ class ShareToFriendViewController: UIViewController,UITableViewDataSource,UITabl
             var selectCellArrInt : Int = 0;
             for dataDic in testArr {
                 if (checkSearch == false){
-                    if dataDic.objectForKey("FULL_NAME") as? String == dicData["RECORDS"]![indexPath!.row]["FULL_NAME"] {
+                    if dataDic.objectForKey("FULL_NAME") as? String == dicData["RECORDS"]![indexPath!.row]["FULL_NAME"]{
                         testArr.removeAtIndex(selectCellArrInt)
                     }
                 }else{
@@ -351,15 +331,21 @@ class ShareToFriendViewController: UIViewController,UITableViewDataSource,UITabl
             mainScrollHeigthConstraint.constant = 0
         }
         
-        headerAddItem()
+        headerAddItem()    }
+    @IBAction func btnSaveAction(sender: UIButton)          {
+        print(testArr)
+        print("sdfsdf")
     }
-    @IBAction func BackAction(sender: UIButton) {
-        self.navigationController?.popViewControllerAnimated(true)
+    @IBAction func btnSearchAction(sender: UIButton)        {
+        filterContentForSearchText(txtSearch.text!)
+    }
+    @IBAction func btnClearAllTextAction(sender: UIButton)  {
+        txtSearch.text = ""
+        filterContentForSearchText(txtSearch.text!)
     }
     
-    @IBAction func btnSaveAction(sender: UIButton) {
-        
-        print("sdfsdf")
+    @IBAction func btnBackViewController(sender: UIButton) {
+        self.navigationController?.popViewControllerAnimated(true)
     }
 }
 
