@@ -16,9 +16,12 @@
 		398055911C227E4E002144AC /* ZLPanGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3980558C1C227E4E002144AC /* ZLPanGestureRecognizer.m */; };
 		398055921C227E4E002144AC /* ZLSwipeableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3980558E1C227E4E002144AC /* ZLSwipeableView.m */; };
 		39A312431C8E9D6400DD0812 /* food_share_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A312421C8E9D6400DD0812 /* food_share_btn.png */; };
+		39A312531C91488600DD0812 /* SF_Checkbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A3124E1C91488600DD0812 /* SF_Checkbox.png */; };
+		39A312541C91488600DD0812 /* SF_Checkedbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A3124F1C91488600DD0812 /* SF_Checkedbox.png */; };
+		39A312551C91488600DD0812 /* SF_ClearAllText.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A312501C91488600DD0812 /* SF_ClearAllText.png */; };
+		39A312561C91488600DD0812 /* SF_Delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A312511C91488600DD0812 /* SF_Delete.png */; };
+		39A312571C91488600DD0812 /* SF_Search.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A312521C91488600DD0812 /* SF_Search.png */; };
 		39A6C50B1C890AB100AECE0A /* ShareToFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A6C50A1C890AB100AECE0A /* ShareToFriendViewController.swift */; };
-		39A6C50E1C8912F400AECE0A /* Checkbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A6C50C1C8912F400AECE0A /* Checkbox.png */; };
-		39A6C50F1C8912F400AECE0A /* Checkedbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A6C50D1C8912F400AECE0A /* Checkedbox.png */; };
 		4209915D1C8FDDF700FAE55A /* check_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4209915A1C8FDDF700FAE55A /* check_icon.png */; };
 		4209915E1C8FDDF700FAE55A /* flat_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 4209915B1C8FDDF700FAE55A /* flat_btn.png */; };
 		4209915F1C8FDDF700FAE55A /* success_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 4209915C1C8FDDF700FAE55A /* success_bg.png */; };
@@ -322,9 +325,12 @@
 		3980558D1C227E4E002144AC /* ZLSwipeableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLSwipeableView.h; sourceTree = "<group>"; };
 		3980558E1C227E4E002144AC /* ZLSwipeableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLSwipeableView.m; sourceTree = "<group>"; };
 		39A312421C8E9D6400DD0812 /* food_share_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = food_share_btn.png; sourceTree = "<group>"; };
+		39A3124E1C91488600DD0812 /* SF_Checkbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SF_Checkbox.png; sourceTree = "<group>"; };
+		39A3124F1C91488600DD0812 /* SF_Checkedbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SF_Checkedbox.png; sourceTree = "<group>"; };
+		39A312501C91488600DD0812 /* SF_ClearAllText.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SF_ClearAllText.png; sourceTree = "<group>"; };
+		39A312511C91488600DD0812 /* SF_Delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SF_Delete.png; sourceTree = "<group>"; };
+		39A312521C91488600DD0812 /* SF_Search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SF_Search.png; sourceTree = "<group>"; };
 		39A6C50A1C890AB100AECE0A /* ShareToFriendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareToFriendViewController.swift; sourceTree = "<group>"; };
-		39A6C50C1C8912F400AECE0A /* Checkbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Checkbox.png; sourceTree = "<group>"; };
-		39A6C50D1C8912F400AECE0A /* Checkedbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Checkedbox.png; sourceTree = "<group>"; };
 		4209915A1C8FDDF700FAE55A /* check_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check_icon.png; sourceTree = "<group>"; };
 		4209915B1C8FDDF700FAE55A /* flat_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flat_btn.png; sourceTree = "<group>"; };
 		4209915C1C8FDDF700FAE55A /* success_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = success_bg.png; sourceTree = "<group>"; };
@@ -731,12 +737,15 @@
 				39A312421C8E9D6400DD0812 /* food_share_btn.png */,
 				ED94DBC21C8D05EC001DC6DB /* show_more_icon.png */,
 				ED94DBC31C8D05EC001DC6DB /* close_x.png */,
+				39A3124E1C91488600DD0812 /* SF_Checkbox.png */,
+				39A3124F1C91488600DD0812 /* SF_Checkedbox.png */,
+				39A312501C91488600DD0812 /* SF_ClearAllText.png */,
+				39A312511C91488600DD0812 /* SF_Delete.png */,
+				39A312521C91488600DD0812 /* SF_Search.png */,
 				ED94DBC41C8D05EC001DC6DB /* to_friend_btn.png */,
 				ED94DBC51C8D05EC001DC6DB /* facebook_icon.png */,
 				ED94DBC61C8D05EC001DC6DB /* line_icon.png */,
 				ED94DBC71C8D05EC001DC6DB /* twitter_icon.png */,
-				39A6C50C1C8912F400AECE0A /* Checkbox.png */,
-				39A6C50D1C8912F400AECE0A /* Checkedbox.png */,
 				ED335EC71C7D3D820094AF76 /* loading */,
 				ED5A44691C2A77C70004DF8C /* face.png */,
 				ED333AA31C7EC13500F011A9 /* pop_close_btn.png */,
@@ -1503,6 +1512,7 @@
 				ED4CF2221C910B3C001A6474 /* loading-27 (dragged).tiff in Resources */,
 				ED4CF21B1C910B3C001A6474 /* loading-20 (dragged).tiff in Resources */,
 				ED4CF2021C910B3C001A6474 /* loading-143 (dragged).tiff in Resources */,
+				39A312571C91488600DD0812 /* SF_Search.png in Resources */,
 				ED4CF2711C910B3C001A6474 /* loading-99 (dragged).tiff in Resources */,
 				ED4CF1FF1C910B3C001A6474 /* loading-140 (dragged).tiff in Resources */,
 				ED4CF20F1C910B3C001A6474 /* loading-155 (dragged).tiff in Resources */,
@@ -1530,9 +1540,7 @@
 				ED4CF2461C910B3C001A6474 /* loading-6 (dragged).tiff in Resources */,
 				ED4CF2281C910B3C001A6474 /* loading-32 (dragged).tiff in Resources */,
 				ED4CF21E1C910B3C001A6474 /* loading-23 (dragged).tiff in Resources */,
-				39A6C50F1C8912F400AECE0A /* Checkedbox.png in Resources */,
 				ED4CF2081C910B3C001A6474 /* loading-149 (dragged).tiff in Resources */,
-				39A6C50E1C8912F400AECE0A /* Checkbox.png in Resources */,
 				ED4CF21D1C910B3C001A6474 /* loading-22 (dragged).tiff in Resources */,
 				ED4CF20D1C910B3C001A6474 /* loading-153 (dragged).tiff in Resources */,
 				ED4CF2651C910B3C001A6474 /* loading-88 (dragged).tiff in Resources */,
@@ -1616,6 +1624,7 @@
 				ED335EDC1C7D3D8A0094AF76 /* load_09.png in Resources */,
 				ED4CF25A1C910B3C001A6474 /* loading-78 (dragged).tiff in Resources */,
 				ED4CF1D91C910B3C001A6474 /* loading-106 (dragged).tiff in Resources */,
+				39A312551C91488600DD0812 /* SF_ClearAllText.png in Resources */,
 				EDAD81A01C0D8851009E53F9 /* Main.storyboard in Resources */,
 				ED4CF26D1C910B3C001A6474 /* loading-95 (dragged).tiff in Resources */,
 				ED4CF2371C910B3C001A6474 /* loading-46 (dragged).tiff in Resources */,
@@ -1632,6 +1641,7 @@
 				ED333AA41C7EC13500F011A9 /* pop_close_btn.png in Resources */,
 				ED4CF1FE1C910B3C001A6474 /* loading-14 (dragged).tiff in Resources */,
 				ED4CF1E51C910B3C001A6474 /* loading-117 (dragged).tiff in Resources */,
+				39A312531C91488600DD0812 /* SF_Checkbox.png in Resources */,
 				ED4CF2571C910B3C001A6474 /* loading-75 (dragged).tiff in Resources */,
 				ED4CF1F71C910B3C001A6474 /* loading-133 (dragged).tiff in Resources */,
 				ED4CF1E31C910B3C001A6474 /* loading-115 (dragged).tiff in Resources */,
@@ -1639,6 +1649,7 @@
 				ED4CF2091C910B3C001A6474 /* loading-15 (dragged).tiff in Resources */,
 				ED4CF1D71C910B3C001A6474 /* loading-104 (dragged).tiff in Resources */,
 				ED4CF1EA1C910B3C001A6474 /* loading-121 (dragged).tiff in Resources */,
+				39A312541C91488600DD0812 /* SF_Checkedbox.png in Resources */,
 				ED335ED41C7D3D8A0094AF76 /* load_01.png in Resources */,
 				ED4CF24E1C910B3C001A6474 /* loading-67 (dragged).tiff in Resources */,
 				ED4CF21F1C910B3C001A6474 /* loading-24 (dragged).tiff in Resources */,
@@ -1660,6 +1671,7 @@
 				ED4CF2431C910B3C001A6474 /* loading-57 (dragged).tiff in Resources */,
 				ED4CF2441C910B3C001A6474 /* loading-58 (dragged).tiff in Resources */,
 				ED4CF1F61C910B3C001A6474 /* loading-132 (dragged).tiff in Resources */,
+				39A312561C91488600DD0812 /* SF_Delete.png in Resources */,
 				ED4CF22E1C910B3C001A6474 /* loading-38 (dragged).tiff in Resources */,
 				ED4CF22B1C910B3C001A6474 /* loading-35 (dragged).tiff in Resources */,
 				ED4CF2361C910B3C001A6474 /* loading-45 (dragged).tiff in Resources */,
