@@ -208,7 +208,9 @@
             NSData *myData = [NSKeyedArchiver archivedDataWithRootObject:defaultDic];
             [[NSUserDefaults standardUserDefaults] setObject:myData forKey:@"login_data"];
             [[NSUserDefaults standardUserDefaults] synchronize];
-            [AppUtils hideWaitingActivity];
+            dispatch_async(dispatch_get_main_queue(), ^{
+               [AppUtils hideWaitingActivity]; 
+            });
             [self closeCoverView];
         } else {
             

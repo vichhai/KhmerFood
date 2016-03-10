@@ -9,6 +9,7 @@
 #import "AddFriendByIDViewController.h"
 #import "IDCustomTableViewCell.h"
 #import "UIImageView+WebCache.h"
+#import "AppUtils.h"
 
 @interface AddFriendByIDViewController () <UITableViewDataSource,UITextFieldDelegate>
 {
@@ -16,10 +17,19 @@
 }
 @property (weak, nonatomic) IBOutlet UITableView *myTableView;
 @property (weak, nonatomic) IBOutlet UITextField *searchTextField;
+@property (weak, nonatomic) IBOutlet UIView *searchNotFoundView;
 
 @end
 
 @implementation AddFriendByIDViewController
+
+#pragma mark : view life cycle
+
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    _myTableView.hidden = true;
+    _searchNotFoundView.hidden = true;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -71,15 +81,21 @@
 #pragma mark : text field delegate
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    if (textField.text.length <= 0) {
+        [self showTableView:false];
+    } else {
+        [self requestToServer:@"KF_SFRI"];
+    }
+    
     [textField resignFirstResponder];
-    [self requestToServer:@"KF_SFRI"];
     return true;
 }
 
 #pragma mark : request and response
 
 -(void)requestToServer : (NSString *)apiKey {
-    
+    [AppUtils showWaitingActivity:self.view];
     NSDictionary *dicData = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"login_data"]];
     NSMutableDictionary *reqDic = [[NSMutableDictionary alloc] init];
     if ([apiKey isEqualToString:@"KF_SFRI"]) {
@@ -94,14 +110,34 @@
 }
 
 -(void)returnTransaction:(NSDictionary *)transaction {
+    dispatch_async(dispatch_get_main_queue(), ^{
+       [AppUtils hideWaitingActivity];
+    });
     
-    if ([AppUtils isNull:[transaction objectForKey:@"RESP_DATA"]]) {
+    if ([[transaction objectForKey:@"COUNT"] intValue] != 0) {
+        arrayResult = [[NSMutableArray alloc] initWithArray:[transaction objectForKey:@"RESP_DATA"]];
         dispatch_async(dispatch_get_main_queue(), ^{
-            arrayResult = [[NSMutableArray alloc] initWithArray:[transaction objectForKey:@"RESP_DATA"]];
             [self.myTableView reloadData];
+            [self showTableView:true];
+        });
+    } else {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self showTableView:false];
         });
     }
     
+}
+
+#pragma mark : show and hide
+
+-(void)showTableView:(BOOL)show {
+    if (show) {
+        self.myTableView.hidden = false;
+        self.searchNotFoundView.hidden = show;
+    } else {
+        self.myTableView.hidden = true;
+        self.searchNotFoundView.hidden = show;
+    }
 }
 
 @end

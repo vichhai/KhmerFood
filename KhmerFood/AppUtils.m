@@ -218,7 +218,6 @@
 //    });
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        anyView.userInteractionEnabled = false;
         [innerWrapperView addSubview:loadingImage];
         [innerWrapperView addSubview:textLabel];
         [wrapperView addSubview:innerWrapperView];
@@ -228,12 +227,11 @@
 
 +(void)hideWaitingActivity {
     if (parentView != nil) {
-        dispatch_async(dispatch_get_main_queue(), ^{
+//        dispatch_async(dispatch_get_main_queue(), ^{
             [loadingImage stopAnimating];
             [wrapperView removeFromSuperview];
             parentView = nil;
-        });
-        parentView.userInteractionEnabled = true;
+//        });
     }
 }
 @end
