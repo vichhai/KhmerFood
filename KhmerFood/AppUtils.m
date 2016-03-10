@@ -180,16 +180,21 @@
     
     parentView = anyView;
     
-    wrapperView = [[UIView alloc] initWithFrame:anyView.frame];
-    wrapperView.backgroundColor = [UIColor lightGrayColor];
-    wrapperView.alpha = 0.6;
+    
+    if (anyView.tag == 9999999) {
+        wrapperView = [[UIView alloc] initWithFrame:CGRectMake(0, -65, anyView.frame.size.width, anyView.frame.size.height + 90)];
+    } else {
+        wrapperView = [[UIView alloc] initWithFrame:anyView.frame];
+    }
+    wrapperView.backgroundColor = [UIColor darkGrayColor];
+    wrapperView.alpha = 0.7;
     
     UIView *innerWrapperView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 130)];
     innerWrapperView.center = wrapperView.center;
     innerWrapperView.backgroundColor = [UIColor clearColor];
     
     UILabel *textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 99, 100, 31)];
-    textLabel.textColor = [UIColor darkGrayColor];
+    textLabel.textColor = [UIColor whiteColor];
     textLabel.textAlignment = NSTextAlignmentCenter;
     textLabel.text = @"កំពុងដំណើរការ";
     
@@ -199,7 +204,7 @@
     
     NSMutableArray *arrOfImages = [[NSMutableArray alloc] init];
     
-    dispatch_async(dispatch_get_main_queue(), ^{
+//    dispatch_async(dispatch_get_main_queue(), ^{
         for (int i = 1; i <= 161; i++) {
             NSString *imageName = [NSString stringWithFormat:@"loading-%d (dragged).tiff",i];
             [arrOfImages addObject:[UIImage imageNamed:imageName]];
@@ -210,21 +215,25 @@
         // set duration
         loadingImage.animationDuration = 4.5;
         [loadingImage startAnimating];
-    });
+//    });
     
-    anyView.userInteractionEnabled = false;
-    [innerWrapperView addSubview:loadingImage];
-    [innerWrapperView addSubview:textLabel];
-    [wrapperView addSubview:innerWrapperView];
-    [anyView addSubview:wrapperView];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        anyView.userInteractionEnabled = false;
+        [innerWrapperView addSubview:loadingImage];
+        [innerWrapperView addSubview:textLabel];
+        [wrapperView addSubview:innerWrapperView];
+        [anyView addSubview:wrapperView];
+    });
 }
 
 +(void)hideWaitingActivity {
     if (parentView != nil) {
-        [loadingImage stopAnimating];
-        [wrapperView removeFromSuperview];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [loadingImage stopAnimating];
+            [wrapperView removeFromSuperview];
+            parentView = nil;
+        });
         parentView.userInteractionEnabled = true;
-        parentView = nil;
     }
 }
 @end

@@ -19,6 +19,17 @@
 #import "RecommendFoodViewController.h"
 
 
+#import <QuartzCore/QuartzCore.h>
+@implementation CALayer (Additions)
+
+- (void)setBorderColorFromUIColor:(UIColor *)color
+{
+    self.borderColor = color.CGColor;
+}
+
+@end
+
+
 #define NAVBAR_CHANGE_POINT 0
 @interface HomeViewController ()<UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,ConnectionManagerDelegate>
 
@@ -61,7 +72,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.view.tag = 9999999;
     [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor clearColor]];
     [AppUtils settingLeftButton:self action:@selector(leftButtonAction:) normalImageCode:@"menu_all_icon" highlightImageCode:nil];
     
@@ -73,7 +84,9 @@
     
     
     if ([[FoodModel allObjects] count] == 0) {
+        [AppUtils showWaitingActivity:self.view];
         [self sendTranData:@"KF_LSTMFOOD"];
+//        self.tableView.hidden = true;
     } else {
         FoodModel *objFood = [[AppUtils readObjectFromRealm:[[FoodModel alloc] init]] objectAtIndex:0];
         NSDictionary *tempDic = (NSDictionary *)[NSKeyedUnarchiver unarchiveObjectWithData:objFood.foodRecord];
@@ -401,6 +414,10 @@
                     
                     [AppUtils writeObjectToRealm:allFoodsObj];
                 }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    self.tableView.hidden = false;
+                    [AppUtils hideWaitingActivity];
+                });
                 NSLog(@"=====> %ld",(long)[[AllFoodModel allObjects] count]);
             }
         }

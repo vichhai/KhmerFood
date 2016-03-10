@@ -161,6 +161,7 @@
 }
 
 -(void)checkExistingUser:(NSString *)userId {
+    
     NSMutableDictionary *reqDic = [[NSMutableDictionary alloc] init];
     NSMutableDictionary *dataDic = [[NSMutableDictionary alloc] init];
     
@@ -207,6 +208,7 @@
             NSData *myData = [NSKeyedArchiver archivedDataWithRootObject:defaultDic];
             [[NSUserDefaults standardUserDefaults] setObject:myData forKey:@"login_data"];
             [[NSUserDefaults standardUserDefaults] synchronize];
+            [AppUtils hideWaitingActivity];
             [self closeCoverView];
         } else {
             
@@ -250,6 +252,11 @@
 }
 
 -(void)loginWithTwitter {
+    
+//    dispatch_async(dispatch_get_main_queue(), ^{
+        [AppUtils showWaitingActivity:self.view];
+//    });
+    
     [[Twitter sharedInstance] logInWithCompletion:^(TWTRSession *session, NSError *error) {
         if (session) {
             NSLog(@"signed in as %@", [session userID]);
@@ -273,15 +280,16 @@
                                                                               options:0
                                                                                 error:&jsonError];
                          
-                         [self checkExistingUser:[json objectForKey:@"id"]];
-                         
                          NSDictionary *dicData = @{@"user_name":[json valueForKey:@"screen_name"],@"profile_pic":[json valueForKey:@"profile_image_url"],@"login_type":@"T",@"id" : [json objectForKey:@"id"]};
                          socialData = [[NSMutableDictionary alloc] initWithDictionary:dicData];
+                         
+                         [self checkExistingUser:[json objectForKey:@"id"]];
+                         
 //                         NSData *myData = [NSKeyedArchiver archivedDataWithRootObject:dicData];
 //                         [[NSUserDefaults standardUserDefaults] setObject:myData forKey:@"login_data"];
 //                         [[NSUserDefaults standardUserDefaults] synchronize];
                          
-                         NSLog(@"json : %@",json);
+//                         NSLog(@"json : %@",json);
                          
 //                         [self closeCoverView];
                      }

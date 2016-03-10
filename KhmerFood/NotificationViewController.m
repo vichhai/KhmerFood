@@ -18,9 +18,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [AppUtils showWaitingActivity:self.view];
-    
-    [NSTimer scheduledTimerWithTimeInterval:6 target:self selector:@selector(closeWatiing) userInfo:nil repeats:true];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -29,7 +26,6 @@
 }
 
 -(void)closeWatiing{
-    [AppUtils hideWaitingActivity];
 }
 
 /*

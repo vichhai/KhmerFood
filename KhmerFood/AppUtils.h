@@ -113,6 +113,6 @@ static UIView *parentView;
 +(void)DeleteObjectToRealm:(RLMObject *)anyObject;
 +(RLMResults *)readObjectFromRealm:(RLMObject *)anyObject;
 + (CGFloat)measureTextHeight:(NSString*)text constrainedToSize:(CGSize)constrainedToSize fontSize:(CGFloat)fontSize;
-+(void)showWaitingActivity:(UIView *)anyView;
++(void)showWaitingActivity:(id)anyView;
 +(void)hideWaitingActivity;
 @end
