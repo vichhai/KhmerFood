@@ -10,14 +10,22 @@
 #import "AppUtils.h"
 
 @interface NotificationViewController ()
-@property (weak, nonatomic) IBOutlet UIImageView *myImage;
+
+@property (weak, nonatomic) IBOutlet UIButton *foodButton;
+@property (weak, nonatomic) IBOutlet UIButton *friendButton;
+@property (weak, nonatomic) IBOutlet UIImageView *line1;
+@property (weak, nonatomic) IBOutlet UIImageView *line2;
+
+
 
 @end
 
 @implementation NotificationViewController
 
+#pragma mark - view life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationController.navigationBar.barTintColor = NaviStandartColor;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -28,14 +36,33 @@
 -(void)closeWatiing{
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark - buttons action
+- (IBAction)sharedButtonAction:(UIButton *)sender {
+    
+    switch (sender.tag) {
+        case 70:
+            if (sender.selected == false) {
+                sender.selected = true;
+                _line1.backgroundColor = NaviStandartColor;
+                _line2.backgroundColor = [UIColor lightGrayColor];
+                _friendButton.selected = false;
+            }
+            break;
+            
+        default:
+            if (sender.selected == false) {
+                sender.selected = true;
+                _line1.backgroundColor = [UIColor lightGrayColor];
+                _line2.backgroundColor = NaviStandartColor;
+                _foodButton.selected = false;
+            }
+            break;
+    }
+    
 }
-*/
+
+#pragma mark : tableview datasource and delegate methods
+
+
 
 @end

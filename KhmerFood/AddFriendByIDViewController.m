@@ -112,6 +112,7 @@
 -(void)returnTransaction:(NSDictionary *)transaction {
     dispatch_async(dispatch_get_main_queue(), ^{
        [AppUtils hideWaitingActivity];
+        self.view.userInteractionEnabled = true;
     });
     
     if ([[transaction objectForKey:@"COUNT"] intValue] != 0) {

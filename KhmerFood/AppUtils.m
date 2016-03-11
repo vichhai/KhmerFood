@@ -181,7 +181,7 @@
     parentView = anyView;
     
     
-    if (anyView.tag == 9999999) {
+    if (anyView.tag == 9999) {
         wrapperView = [[UIView alloc] initWithFrame:CGRectMake(0, -65, anyView.frame.size.width, anyView.frame.size.height + 90)];
     } else {
         wrapperView = [[UIView alloc] initWithFrame:anyView.frame];
@@ -215,6 +215,7 @@
         // set duration
         loadingImage.animationDuration = 4.5;
         [loadingImage startAnimating];
+    anyView.userInteractionEnabled = false;
 //    });
     
     dispatch_async(dispatch_get_main_queue(), ^{

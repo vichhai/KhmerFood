@@ -209,7 +209,8 @@
             [[NSUserDefaults standardUserDefaults] setObject:myData forKey:@"login_data"];
             [[NSUserDefaults standardUserDefaults] synchronize];
             dispatch_async(dispatch_get_main_queue(), ^{
-               [AppUtils hideWaitingActivity]; 
+               [AppUtils hideWaitingActivity];
+                self.view.userInteractionEnabled = true;
             });
             [self closeCoverView];
         } else {

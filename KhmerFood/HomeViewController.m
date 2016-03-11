@@ -72,7 +72,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.tag = 9999999;
+//    self.view.tag = 9999999;
     [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor clearColor]];
     [AppUtils settingLeftButton:self action:@selector(leftButtonAction:) normalImageCode:@"menu_all_icon" highlightImageCode:nil];
     
@@ -415,8 +415,8 @@
                     [AppUtils writeObjectToRealm:allFoodsObj];
                 }
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    self.tableView.hidden = false;
                     [AppUtils hideWaitingActivity];
+                    self.view.userInteractionEnabled = true;
                 });
                 NSLog(@"=====> %ld",(long)[[AllFoodModel allObjects] count]);
             }

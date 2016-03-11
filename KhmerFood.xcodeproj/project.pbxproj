@@ -276,6 +276,7 @@
 		EDE694931C23868700A413A6 /* ThirdCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE694921C23868700A413A6 /* ThirdCollectionViewController.m */; };
 		EDE694951C2391D600A413A6 /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = EDE694941C2391D600A413A6 /* info.png */; };
 		EDE6A3921C3A015500F71B38 /* RecommendFoodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE6A3911C3A015500F71B38 /* RecommendFoodViewController.m */; };
+		EDE9AC901C9250EB001AA12B /* NotificationCustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE9AC8F1C9250EB001AA12B /* NotificationCustomTableViewCell.m */; };
 		EDEB136F1C2A26D500772E1F /* go_back.png in Resources */ = {isa = PBXBuildFile; fileRef = EDEB136E1C2A26D500772E1F /* go_back.png */; };
 		EDEB13711C2A3E4300772E1F /* upload.png in Resources */ = {isa = PBXBuildFile; fileRef = EDEB13701C2A3E4300772E1F /* upload.png */; };
 		EDEB13731C2A598E00772E1F /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = EDEB13721C2A598E00772E1F /* pin.png */; };
@@ -636,6 +637,8 @@
 		EDE694941C2391D600A413A6 /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
 		EDE6A3901C3A015500F71B38 /* RecommendFoodViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendFoodViewController.h; sourceTree = "<group>"; };
 		EDE6A3911C3A015500F71B38 /* RecommendFoodViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendFoodViewController.m; sourceTree = "<group>"; };
+		EDE9AC8E1C9250EB001AA12B /* NotificationCustomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationCustomTableViewCell.h; sourceTree = "<group>"; };
+		EDE9AC8F1C9250EB001AA12B /* NotificationCustomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationCustomTableViewCell.m; sourceTree = "<group>"; };
 		EDEB136E1C2A26D500772E1F /* go_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = go_back.png; sourceTree = "<group>"; };
 		EDEB13701C2A3E4300772E1F /* upload.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upload.png; sourceTree = "<group>"; };
 		EDEB13721C2A598E00772E1F /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin.png; sourceTree = "<group>"; };
@@ -870,6 +873,8 @@
 			children = (
 				ED4CF12A1C910476001A6474 /* NotificationViewController.h */,
 				ED4CF12B1C910476001A6474 /* NotificationViewController.m */,
+				EDE9AC8E1C9250EB001AA12B /* NotificationCustomTableViewCell.h */,
+				EDE9AC8F1C9250EB001AA12B /* NotificationCustomTableViewCell.m */,
 			);
 			name = Notification;
 			sourceTree = "<group>";
@@ -1693,6 +1698,7 @@
 				ED3116EF1C33B74100061E78 /* FHSTwitterEngine.m in Sources */,
 				ED17090D1C3B451B00F92EC0 /* SearchingViewController.m in Sources */,
 				397CB7731C7C352800DC47CA /* YSLCardView.m in Sources */,
+				EDE9AC901C9250EB001AA12B /* NotificationCustomTableViewCell.m in Sources */,
 				ED5A446E1C2A7A610004DF8C /* ProfileTableViewController.m in Sources */,
 				ED4DCBBD1C7AF0C100986CEA /* SDWebImageDownloaderOperation.m in Sources */,
 				3980558F1C227E4E002144AC /* CardView.m in Sources */,
