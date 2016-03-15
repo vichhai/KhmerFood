@@ -11,14 +11,13 @@
 #import "CustomFoodDetailTableViewCell.h"
 #import "UIImageView+WebCache.h"
 #import "SaveFoodModel.h"
-#import <QuartzCore/QuartzCore.h>
 #import <Social/Social.h>
 #import "SharePopupViewController.h"
 #import "UIViewController+MJPopupViewController.h"
 
 
 #define NAVBAR_CHANGE_POINT 0
-@interface FoodDetailViewController () <UITableViewDelegate,UITableViewDataSource,SharePopupDelegate>
+@interface FoodDetailViewController () <UITableViewDelegate,UITableViewDataSource,SharePopupDelegate,ConnectionManagerDelegate>
 {
     UILabel *titleLable;
     CGFloat height;
@@ -196,76 +195,84 @@
 
 -(void)checkAndSave:(NSString *)foodName {
     
-    RLMResults<SaveFoodModel *> *saveFoods = [AppUtils readObjectFromRealm:[[SaveFoodModel alloc] init]];
-    BOOL isHave = false;
-    for (int i = 0 ; i < [saveFoods count]; i++) {
-        SaveFoodModel *obj = [saveFoods objectAtIndex:i];
-        if ([obj.FD_NAME isEqualToString:foodName]) {
-            isHave = true;
-            break;
-        }
-    }
-    
-    if (isHave == false) {
-        SaveFoodModel *saveObject = [[SaveFoodModel alloc] init];
-        
-        if ([AppUtils isNull: [_receiveData objectForKey:@"FD_ID"]] == false) {
-            saveObject.FD_ID = [_receiveData objectForKey:@"FD_ID"];
-        } else {
-            saveObject.FD_ID = @"";
-        }
-        
-        if ([AppUtils isNull: [_receiveData objectForKey:@"FD_NAME"]] == false) {
-            saveObject.FD_NAME = [_receiveData objectForKey:@"FD_NAME"];
-        } else {
-            saveObject.FD_NAME = @"";
-        }
-        
-        if ([AppUtils isNull: [_receiveData objectForKey:@"FD_DETAIL"]] == false) {
-            saveObject.FD_DETAIL = [_receiveData objectForKey:@"FD_DETAIL"];
-        } else {
-            saveObject.FD_DETAIL = @"";
-        }
-        
-        if ([AppUtils isNull: [_receiveData objectForKey:@"FD_COOK_TIME"]] == false) {
-            saveObject.FD_COOK_TIME = [_receiveData objectForKey:@"FD_COOK_TIME"];
-        } else {
-            saveObject.FD_COOK_TIME = @"";
-        }
-        
-        if ([AppUtils isNull: [_receiveData objectForKey:@"FD_IMG"]] == false) {
-            saveObject.FD_IMG = [_receiveData objectForKey:@"FD_IMG"];
-        } else {
-            saveObject.FD_IMG = @"";
-        }
-        
-        if ([AppUtils isNull: [_receiveData objectForKey:@"FD_RATE"]] == false) {
-            saveObject.FD_RATE = [_receiveData objectForKey:@"FD_RATE"];
-        } else {
-            saveObject.FD_RATE = @"";
-        }
-        
-        if ([AppUtils isNull: [_receiveData objectForKey:@"FD_TYPE"]] == false) {
-            saveObject.FD_TYPE = [_receiveData objectForKey:@"FD_TYPE"];
-        } else {
-            saveObject.FD_TYPE = @"";
-        }
-        
-        if ([AppUtils isNull: [_receiveData objectForKey:@"FD_TIME_WATCH"]] == false) {
-            saveObject.FD_TIME_WATCH = [_receiveData objectForKey:@"FD_TIME_WATCH"];
-        } else {
-            saveObject.FD_TIME_WATCH = @"";
-        }
-        
-        [AppUtils writeObjectToRealm:saveObject];
-        
-        ///=====just for checking to reload at Save Food Screen
-        [ShareDataManager shareDataManager].SCheckRealoadSaveFood = true;
+    if ([AppUtils isNull:[[NSUserDefaults standardUserDefaults] objectForKey:@"login_data"]]) {
+        [AppUtils showErrorMessage:@"សូមធ្វើការ login ដើម្បីអាចរក្សាមុខម្ហូបបាន" anyView:self];
     } else {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"ម្ហូបនេះបានរក្សាទុករួចម្ដងហើយ" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"យល់ព្រម" style:UIAlertActionStyleDefault handler:nil];
-        [alert addAction:ok];
-        [self presentViewController:alert animated:true completion:nil];
+        RLMResults<SaveFoodModel *> *saveFoods = [AppUtils readObjectFromRealm:[[SaveFoodModel alloc] init]];
+        BOOL isHave = false;
+        for (int i = 0 ; i < [saveFoods count]; i++) {
+            SaveFoodModel *obj = [saveFoods objectAtIndex:i];
+            if ([obj.FD_NAME isEqualToString:foodName]) {
+                isHave = true;
+                break;
+            }
+        }
+        
+        if (isHave == false) {
+            SaveFoodModel *saveObject = [[SaveFoodModel alloc] init];
+            
+            if ([AppUtils isNull: [_receiveData objectForKey:@"FD_ID"]] == false) {
+                saveObject.FD_ID = [_receiveData objectForKey:@"FD_ID"];
+            } else {
+                saveObject.FD_ID = @"";
+            }
+            
+            if ([AppUtils isNull: [_receiveData objectForKey:@"FD_NAME"]] == false) {
+                saveObject.FD_NAME = [_receiveData objectForKey:@"FD_NAME"];
+            } else {
+                saveObject.FD_NAME = @"";
+            }
+            
+            if ([AppUtils isNull: [_receiveData objectForKey:@"FD_DETAIL"]] == false) {
+                saveObject.FD_DETAIL = [_receiveData objectForKey:@"FD_DETAIL"];
+            } else {
+                saveObject.FD_DETAIL = @"";
+            }
+            
+            if ([AppUtils isNull: [_receiveData objectForKey:@"FD_COOK_TIME"]] == false) {
+                saveObject.FD_COOK_TIME = [_receiveData objectForKey:@"FD_COOK_TIME"];
+            } else {
+                saveObject.FD_COOK_TIME = @"";
+            }
+            
+            if ([AppUtils isNull: [_receiveData objectForKey:@"FD_IMG"]] == false) {
+                saveObject.FD_IMG = [_receiveData objectForKey:@"FD_IMG"];
+            } else {
+                saveObject.FD_IMG = @"";
+            }
+            
+            if ([AppUtils isNull: [_receiveData objectForKey:@"FD_RATE"]] == false) {
+                saveObject.FD_RATE = [_receiveData objectForKey:@"FD_RATE"];
+            } else {
+                saveObject.FD_RATE = @"";
+            }
+            
+            if ([AppUtils isNull: [_receiveData objectForKey:@"FD_TYPE"]] == false) {
+                saveObject.FD_TYPE = [_receiveData objectForKey:@"FD_TYPE"];
+            } else {
+                saveObject.FD_TYPE = @"";
+            }
+            
+            if ([AppUtils isNull: [_receiveData objectForKey:@"FD_TIME_WATCH"]] == false) {
+                saveObject.FD_TIME_WATCH = [_receiveData objectForKey:@"FD_TIME_WATCH"];
+            } else {
+                saveObject.FD_TIME_WATCH = @"";
+            }
+            
+            [AppUtils writeObjectToRealm:saveObject];
+            
+            ///=====just for checking to reload at Save Food Screen
+            [ShareDataManager shareDataManager].SCheckRealoadSaveFood = true;
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self requestToServer:@"KF_SAVEFOOD"];
+            });
+            
+            [AppUtils showErrorMessage:@"ម្ហូបត្រូវបានរក្សាទុក" anyView:self];
+            
+        } else {
+            [AppUtils showErrorMessage:@"ម្ហូបនេះបានរក្សាទុករួចម្ដងហើយ" anyView:self];
+        }
     }
 }
 
@@ -279,5 +286,35 @@
     _foodName.text = [_receiveData objectForKey:@"FD_NAME"];
     _foodType.text = [_receiveData objectForKey:@"FD_NAME"];
 }
+
+#pragma mark - request and response
+-(void)requestToServer:(NSString *)apiKey {
+    NSMutableDictionary *dataDic = [[NSMutableDictionary alloc] init];
+    if ([apiKey isEqualToString:@"KF_SAVEFOOD"]) {
+        NSDictionary *dicData = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"login_data"]];
+        [dataDic setObject:[dicData objectForKey:@"user_id"] forKey:@"USER_ID"];
+        if ([AppUtils isNull: [_receiveData objectForKey:@"FD_ID"]] == false) {
+            [dataDic setObject:[_receiveData objectForKey:@"FD_ID"] forKey:@"FD_ID"];
+        }
+        [dataDic setObject:apiKey forKey:@"API_KEY"];
+    }
+    
+    ConnectionManager *con = [[ConnectionManager alloc] init];
+    con.delegate = self;
+    [con sendTranData:dataDic];
+}
+
+-(void)returnResultWithData:(NSData *)data {
+    if (![AppUtils isNull:data]) {
+         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        if ([[dic objectForKey:@"STATUS"] integerValue] == 1) {
+            NSLog(@"success");
+        }
+    }
+}
+
+
+
+
 
 @end

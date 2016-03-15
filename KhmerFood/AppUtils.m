@@ -181,7 +181,7 @@
     parentView = anyView;
     
     
-    if (anyView.tag == 9999) {
+    if (anyView.tag == 9999 || anyView.tag == 1111111) {
         wrapperView = [[UIView alloc] initWithFrame:CGRectMake(0, -65, anyView.frame.size.width, anyView.frame.size.height + 90)];
     } else {
         wrapperView = [[UIView alloc] initWithFrame:anyView.frame];

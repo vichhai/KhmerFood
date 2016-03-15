@@ -174,7 +174,11 @@
     if (![AppUtils isNull:data]) {
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
         NSLog(@"data : %@",dic);
-//        
+//
+        if ([[dic objectForKey:@"STATUS"] integerValue] == 1) { // success
+            
+        }
+        
 //        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"login_data"];
 //        [[NSUserDefaults standardUserDefaults] synchronize];
 //        NSDictionary *dicData = @{@"user_name":[json valueForKey:@"screen_name"],@"profile_pic":[json valueForKey:@"profile_image_url"],@"login_type":@"T",@"id" : [json objectForKey:@"id"]};

@@ -35,7 +35,7 @@
 }
 
 
-#pragma mark : table view methods
+#pragma mark - table view methods
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 30;
@@ -54,7 +54,7 @@
     return view;
 }
 
-#pragma mark : button aciton
+#pragma mark - button aciton
 -(void)leftButtonClicked:(UIButton *)sender {
     [self.navigationController popViewControllerAnimated:true];
 }

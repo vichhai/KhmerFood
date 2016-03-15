@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "KhmerFood/WaitingSplashView.m"
-            timestampString = "477970835.45293"
+            filePath = "KhmerFood/ProfileTableViewController.m"
+            timestampString = "479606407.004841"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
-            landmarkName = "-internalInit"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
+            landmarkName = "-uploadImage:filename:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "KhmerFood/RecommendFoodViewController.m"
-            timestampString = "479094923.105327"
+            filePath = "KhmerFood/ProfileTableViewController.m"
+            timestampString = "479606491.032478"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "124"
-            endingLineNumber = "124"
-            landmarkName = "-collectionView:didSelectItemAtIndexPath:"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
+            landmarkName = "-imagePickerController:didFinishPickingMediaWithInfo:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -41,12 +41,28 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "KhmerFood/AddFriendByIDViewController.m"
-            timestampString = "479293292.642321"
+            filePath = "KhmerFood/ProfileTableViewController.m"
+            timestampString = "479606506.973169"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
+            landmarkName = "-returnResultWithData:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KhmerFood/PeopleViewController.m"
+            timestampString = "479696250.58705"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
             landmarkName = "-returnTransaction:"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,12 +74,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "KhmerFood/AddFriendByIDViewController.m"
-            timestampString = "479293288.249066"
+            timestampString = "479716684.153753"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
-            landmarkName = "-requestToServer:"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

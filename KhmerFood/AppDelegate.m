@@ -7,8 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import <Fabric/Fabric.h>
-#import <TwitterKit/TwitterKit.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 
 @interface AppDelegate ()
@@ -20,10 +18,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     [[FBSDKApplicationDelegate sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
-    
-    [[Twitter sharedInstance] startWithConsumerKey:@"566E0YxQZDer1TS1uHsxJ1kVi" consumerSecret:@"6hdXQygZcXXu7q0dx9UKU0NdVRXK4wvFXbWzYkDEuNf5Fa1tp6"];
-    
-    [Fabric with:@[[Twitter sharedInstance]]];
     [[UITabBar appearance] setTintColor:[UIColor colorWithRed:53/255.0 green:201/255.0 blue:147/255.0 alpha:1]];
     
     return YES;

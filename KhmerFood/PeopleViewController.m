@@ -12,10 +12,6 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <FBSDKShareKit/FBSDKShareKit.h>
-#import <Fabric/Fabric.h>
-#import <TwitterKit/TwitterKit.h>
-#import "FHSStream.h"
-#import "FHSTwitterEngine.h"
 #import "NSString+MD5.h"
 #import "UIImageView+WebCache.h"
 
@@ -23,6 +19,7 @@
 @interface PeopleViewController () <UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
 {
     NSMutableDictionary *socialData;
+    NSMutableArray *arrayFriends;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UIView *coverView;
@@ -62,6 +59,7 @@
     
 //    [self setupSearch];
     self.tableView.tableHeaderView.frame = CGRectMake(0, 0, self.view.frame.size.width, 130);
+    arrayFriends = [[NSMutableArray alloc] init];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -131,21 +129,21 @@
                 
             } else if ([[user objectForKey:@"login_type"] isEqualToString:@"T"]) { // twitter
                 
-                NSLog(@"sign up with twitter");
-                if ([AppUtils isNull:[user valueForKey:@"user_name"]] == false) {
-                    [dataDic setObject:[user valueForKey:@"user_name"] forKey:@"FULL_NAME"];
-                }
-                
-                if ([AppUtils isNull:[user valueForKey:@"id"]] == false) {
-                    [dataDic setObject:[user valueForKey:@"id"] forKey:@"USER_ID"];
-                }
-                
-                if ([AppUtils isNull:[user valueForKey:@"profile_pic"]] == false) {
-                    [dataDic setObject:[user valueForKey:@"profile_pic"] forKey:@"USR_PROFILE"];
-                }
-                
-                [dataDic setObject:@"none" forKey:@"USER_EMAIL"];
-                [dataDic setObject:[user objectForKey:@"login_type"] forKey:@"ACC_TYPE"];
+//                NSLog(@"sign up with twitter");
+//                if ([AppUtils isNull:[user valueForKey:@"user_name"]] == false) {
+//                    [dataDic setObject:[user valueForKey:@"user_name"] forKey:@"FULL_NAME"];
+//                }
+//                
+//                if ([AppUtils isNull:[user valueForKey:@"id"]] == false) {
+//                    [dataDic setObject:[user valueForKey:@"id"] forKey:@"USER_ID"];
+//                }
+//                
+//                if ([AppUtils isNull:[user valueForKey:@"profile_pic"]] == false) {
+//                    [dataDic setObject:[user valueForKey:@"profile_pic"] forKey:@"USR_PROFILE"];
+//                }
+//                
+//                [dataDic setObject:@"none" forKey:@"USER_EMAIL"];
+//                [dataDic setObject:[user objectForKey:@"login_type"] forKey:@"ACC_TYPE"];
                 
             } else { // mail
                 
@@ -153,7 +151,10 @@
         } else {
             NSLog(@"missing login type");
         }
-    }
+    } else if ([key isEqualToString:@"KF_LSTFRI"]) { // list friend
+        NSDictionary *dicData = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"login_data"]];
+        [dataDic setObject:[dicData objectForKey:@"user_id"] forKey:@"USER_ID"];
+    } // end list friend
     
     [reqDic setObject:key forKey:@"API_KEY"];
     [reqDic setObject:dataDic forKey:@"REQ_DATA"];
@@ -211,10 +212,21 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                [AppUtils hideWaitingActivity];
                 self.view.userInteractionEnabled = true;
+                [self closeCoverView];
             });
-            [self closeCoverView];
         } else {
             
+        }
+    } else if ([[transaction objectForKey:@"API_KEY"] isEqualToString:@"KF_LSTFRI"]) { // list friend
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [AppUtils hideWaitingActivity];
+            self.view.userInteractionEnabled = true;
+        });
+        if ([[transaction objectForKey:@"COUNT"] integerValue] != 0 ) {
+            arrayFriends = [[NSMutableArray alloc] initWithArray:[transaction objectForKey:@"RESP_DATA"]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+            });
         }
     }
 }
@@ -254,65 +266,51 @@
                                    }];
 }
 
--(void)loginWithTwitter {
-    
-//    dispatch_async(dispatch_get_main_queue(), ^{
-        [AppUtils showWaitingActivity:self.view];
-//    });
-    
-    [[Twitter sharedInstance] logInWithCompletion:^(TWTRSession *session, NSError *error) {
-        if (session) {
-            NSLog(@"signed in as %@", [session userID]);
-            NSString *statusesShowEndpoint = @"https://api.twitter.com/1.1/users/show.json";
-            NSDictionary *params = @{@"user_id": [session userID]};
-            
-            NSError *clientError;
-            NSURLRequest *request = [[[Twitter sharedInstance] APIClient] URLRequestWithMethod:@"GET"
-                                                                                           URL:statusesShowEndpoint
-                                                                                    parameters:params
-                                                                                         error:&clientError];
-            
-            if (request) {
-                [[[Twitter sharedInstance] APIClient]
-                 sendTwitterRequest:request
-                 completion:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-                     if (data) {
-                         // handle the response data e.g.
-                         NSError *jsonError;
-                         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data
-                                                                              options:0
-                                                                                error:&jsonError];
-                         
-                         NSDictionary *dicData = @{@"user_name":[json valueForKey:@"screen_name"],@"profile_pic":[json valueForKey:@"profile_image_url"],@"login_type":@"T",@"id" : [json objectForKey:@"id"]};
-                         socialData = [[NSMutableDictionary alloc] initWithDictionary:dicData];
-                         
-                         [self checkExistingUser:[json objectForKey:@"id"]];
-                         
-//                         NSData *myData = [NSKeyedArchiver archivedDataWithRootObject:dicData];
-//                         [[NSUserDefaults standardUserDefaults] setObject:myData forKey:@"login_data"];
-//                         [[NSUserDefaults standardUserDefaults] synchronize];
-                         
-//                         NSLog(@"json : %@",json);
-                         
-//                         [self closeCoverView];
-                     }
-                     else {
-                         NSLog(@"Error code: %ld | Error description: %@", (long)[connectionError code], [connectionError localizedDescription]);
-                     }
-                 }];
-            }
-            else {
-                NSLog(@"Error: %@", clientError);
-            }
-        } else {
-            NSLog(@"error: %@", [error localizedDescription]);
-            [[FHSTwitterEngine sharedEngine] permanentlySetConsumerKey:@"LGXCB8LxuP4c5OkHwVeKhqobp" andSecret:@"kUIbMY36eaRoYTCRfuMzHWYMuWlKDyhLSqFns340DM53lsNcb0"];
-        }
-    }];
-    
-    
-    
-}
+//-(void)loginWithTwitter {
+//        [AppUtils showWaitingActivity:self.view];
+//    
+//    [[Twitter sharedInstance] logInWithCompletion:^(TWTRSession *session, NSError *error) {
+//        if (session) {
+//            NSLog(@"signed in as %@", [session userID]);
+//            NSString *statusesShowEndpoint = @"https://api.twitter.com/1.1/users/show.json";
+//            NSDictionary *params = @{@"user_id": [session userID]};
+//            
+//            NSError *clientError;
+//            NSURLRequest *request = [[[Twitter sharedInstance] APIClient] URLRequestWithMethod:@"GET"
+//                                                                                           URL:statusesShowEndpoint
+//                                                                                    parameters:params
+//                                                                                         error:&clientError];
+//            
+//            if (request) {
+//                [[[Twitter sharedInstance] APIClient]
+//                 sendTwitterRequest:request
+//                 completion:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+//                     if (data) {
+//                         // handle the response data e.g.
+//                         NSError *jsonError;
+//                         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data
+//                                                                              options:0
+//                                                                                error:&jsonError];
+//                         
+//                         NSDictionary *dicData = @{@"user_name":[json valueForKey:@"screen_name"],@"profile_pic":[json valueForKey:@"profile_image_url"],@"login_type":@"T",@"id" : [json objectForKey:@"id"]};
+//                         socialData = [[NSMutableDictionary alloc] initWithDictionary:dicData];
+//                         
+//                         [self checkExistingUser:[json objectForKey:@"id"]];
+//                     }
+//                     else {
+//                         NSLog(@"Error code: %ld | Error description: %@", (long)[connectionError code], [connectionError localizedDescription]);
+//                     }
+//                 }];
+//            }
+//            else {
+//                NSLog(@"Error: %@", clientError);
+//            }
+//        } else {
+//            NSLog(@"error: %@", [error localizedDescription]);
+//            [[FHSTwitterEngine sharedEngine] permanentlySetConsumerKey:@"LGXCB8LxuP4c5OkHwVeKhqobp" andSecret:@"kUIbMY36eaRoYTCRfuMzHWYMuWlKDyhLSqFns340DM53lsNcb0"];
+//        }
+//    }];
+//}
 
 -(void) loginMethodAction:(UIButton *)sender {
     
@@ -320,10 +318,11 @@
         // login with facebook
         [self loginWithFacebookAction];
     } else if (sender.tag == 2001) {
-        [self loginWithTwitter];
+//        [self loginWithTwitter];
     } else {
-        EmailRegisterViewController * emailRegisterViewController = [[EmailRegisterViewController alloc] init];
-        [self performSegueWithIdentifier:@"emailRegister" sender:nil];
+//        EmailRegisterViewController * emailRegisterViewController = [[EmailRegisterViewController alloc] init];
+//        [self performSegueWithIdentifier:@"emailRegister" sender:nil];
+        [self performSegueWithIdentifier:@"friendDetail" sender:nil];
     }
     
 }
@@ -372,16 +371,16 @@
         //    [self.coverView removeFromSuperview];
         self.tableView.hidden = false;
         self.coverView.hidden = true;
-        [self.tableView reloadData];
+//        [self.tableView reloadData];
     });
     
     NSDictionary *dicData = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"login_data"]];
-    
-    NSLog(@"dicData : %@",dicData);
     [_headerImage sd_setImageWithURL:[NSURL URLWithString:[dicData objectForKey:@"profile_pic"]]];
     _headerName.text = [dicData objectForKey:@"user_name"];
     _headerID.text = [dicData objectForKey:@"user_id"];
     
+    [AppUtils showWaitingActivity:self.view];
+    [self setTrandata:nil apiKey:@"KF_LSTFRI"];
 }
 
 #pragma mark : buttons method
@@ -404,15 +403,17 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    CustomPeopleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    cell.profileName.text = @"Author Name";
-    cell.profileDetail.text = @"Dead Pool";
+    CustomPeopleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell123" forIndexPath:indexPath];
+    cell.contentView.backgroundColor = NaviStandartColor;
+    cell.userName.text = @"Author Name";
+    cell.userID.text = @"Dead Pool";
     return cell;
     
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 30;
+//    return [arrayFriends count];
+    return 10;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -424,6 +425,8 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [self performSegueWithIdentifier:@"friendDetail" sender:nil];
 
 }
 
