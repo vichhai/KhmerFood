@@ -1535,6 +1535,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="not_found_badge.png" translatesAutoresizingMaskIntoConstraints="NO" id="q6g-OZ-8GP">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="4Qz-SZ-zwA"/>
+                                    <constraint firstAttribute="height" constant="80" id="KMh-Fg-JqC"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="4Qz-SZ-zwA"/>
+                                        <exclude reference="KMh-Fg-JqC"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="4Qz-SZ-zwA"/>
+                                        <include reference="KMh-Fg-JqC"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3E2-8G-N0h" userLabel="segment header">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <subviews>
@@ -2179,39 +2198,47 @@
                             <constraint firstItem="3E2-8G-N0h" firstAttribute="leading" secondItem="Hog-CJ-psw" secondAttribute="leading" id="03Y-8o-djl"/>
                             <constraint firstAttribute="trailing" secondItem="3E2-8G-N0h" secondAttribute="trailing" id="KZd-Y5-uuA"/>
                             <constraint firstItem="aee-A9-WZD" firstAttribute="top" secondItem="3E2-8G-N0h" secondAttribute="bottom" id="cww-xu-f6U"/>
+                            <constraint firstItem="q6g-OZ-8GP" firstAttribute="centerY" secondItem="Hog-CJ-psw" secondAttribute="centerY" id="dYW-8E-YAw"/>
                             <constraint firstItem="3E2-8G-N0h" firstAttribute="top" secondItem="bxH-P1-Yu1" secondAttribute="bottom" id="geK-r0-nWK"/>
                             <constraint firstItem="LeE-u3-0dl" firstAttribute="top" secondItem="aee-A9-WZD" secondAttribute="bottom" id="kvj-wM-cW2"/>
                             <constraint firstAttribute="trailing" secondItem="aee-A9-WZD" secondAttribute="trailing" id="pbP-Qz-4nL"/>
+                            <constraint firstItem="q6g-OZ-8GP" firstAttribute="centerX" secondItem="Hog-CJ-psw" secondAttribute="centerX" id="sC3-hm-U4L"/>
                             <constraint firstItem="aee-A9-WZD" firstAttribute="leading" secondItem="Hog-CJ-psw" secondAttribute="leading" id="vPC-Ul-ZhW"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
+                                <exclude reference="q6g-OZ-8GP"/>
                                 <exclude reference="3E2-8G-N0h"/>
                                 <exclude reference="aee-A9-WZD"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="kvj-wM-cW2"/>
                                 <exclude reference="03Y-8o-djl"/>
                                 <exclude reference="KZd-Y5-uuA"/>
                                 <exclude reference="geK-r0-nWK"/>
                                 <exclude reference="cww-xu-f6U"/>
                                 <exclude reference="pbP-Qz-4nL"/>
                                 <exclude reference="vPC-Ul-ZhW"/>
+                                <exclude reference="dYW-8E-YAw"/>
+                                <exclude reference="sC3-hm-U4L"/>
+                                <exclude reference="kvj-wM-cW2"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
+                                <include reference="q6g-OZ-8GP"/>
                                 <include reference="3E2-8G-N0h"/>
                                 <include reference="aee-A9-WZD"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="kvj-wM-cW2"/>
                                 <include reference="03Y-8o-djl"/>
                                 <include reference="KZd-Y5-uuA"/>
                                 <include reference="geK-r0-nWK"/>
                                 <include reference="cww-xu-f6U"/>
                                 <include reference="pbP-Qz-4nL"/>
                                 <include reference="vPC-Ul-ZhW"/>
+                                <include reference="dYW-8E-YAw"/>
+                                <include reference="sC3-hm-U4L"/>
+                                <include reference="kvj-wM-cW2"/>
                             </mask>
                         </variation>
                     </view>
@@ -2233,6 +2260,7 @@
                         <outlet property="line1" destination="Xlw-7O-3Qx" id="Apj-EJ-eL6"/>
                         <outlet property="line2" destination="V1m-kN-WDe" id="pjZ-AO-sja"/>
                         <outlet property="myTableView" destination="aee-A9-WZD" id="d2v-u7-BQQ"/>
+                        <outlet property="notFoundImage" destination="q6g-OZ-8GP" id="qhf-zV-oJq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="avG-E8-mUm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -5371,6 +5399,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="5wE-yy-sgu"/>
         <segue reference="gsn-qq-Pal"/>
-        <segue reference="9XR-VD-ZmP"/>
+        <segue reference="RkH-vt-Q5q"/>
     </inferredMetricsTieBreakers>
 </document>

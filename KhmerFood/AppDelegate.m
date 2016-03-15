@@ -8,9 +8,14 @@
 
 #import "AppDelegate.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import "ConnectionManager.h"
+#import "AppUtils.h"
 
-@interface AppDelegate ()
 
+@interface AppDelegate () <ConnectionManagerDelegate>
+{
+    NSString *token;
+}
 @end
 
 @implementation AppDelegate
@@ -19,7 +24,8 @@
     
     [[FBSDKApplicationDelegate sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
     [[UITabBar appearance] setTintColor:[UIColor colorWithRed:53/255.0 green:201/255.0 blue:147/255.0 alpha:1]];
-    
+    [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
     return YES;
 }
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
@@ -38,6 +44,67 @@
     // Saves changes in the application's managed object context before the application terminates.
     [self saveContext];
 }
+
+
+#pragma mark - push notificaiton
+
+
+-(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    [self handlerNotification:application didWithData:userInfo];
+}
+
+-(void)handlerNotification:(UIApplication *)application didWithData:(NSDictionary *)userInfo{
+    // For swipe or tap the notification
+    application.applicationIconBadgeNumber = 0;
+//    [ShareObject shareObjectManager].jsonNotification = userInfo[@"aps"];
+//    [[NSNotificationCenter defaultCenter]  postNotificationName:@"notification" object:nil userInfo:nil];
+    NSLog(@"======> notification : %@",userInfo[@"aps"]);
+}
+
+-(void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    token = [[[[deviceToken description]
+               stringByReplacingOccurrencesOfString: @"<" withString: @""]
+              stringByReplacingOccurrencesOfString: @">" withString: @""]
+             stringByReplacingOccurrencesOfString: @" " withString: @""];
+    [self registerDeviceTokens:@"KF_CHECKTOKEN" withDeviceToken:token];
+}
+
+-(void)registerDeviceTokens:(NSString *)apiKey withDeviceToken:(NSString *)deviceToken {
+    NSMutableDictionary *reqDic = [[NSMutableDictionary alloc] init];
+    [reqDic setObject:apiKey forKey:@"API_KEY"];
+    
+    if ([apiKey isEqualToString:@"KF_CHECKTOKEN"]) {
+        [reqDic setObject:deviceToken forKey:@"TOKEN_NUMBER"];
+    } else if ([apiKey isEqualToString:@"KF_REGTOKEN"]) {
+        [reqDic setObject:deviceToken forKey:@"DEVICE_ID"];
+        [reqDic setObject:@"" forKey:@"USER_ID"];
+        [reqDic setObject:@"IOS" forKey:@"DEVICE_TYPE"];
+        [reqDic setObject:[AppUtils getDeviceType] forKey:@"PHN_MODEL"];
+    }
+    
+    ConnectionManager *con = [[ConnectionManager alloc] init];
+    con.delegate = self;
+    [con sendTranData:reqDic];
+}
+
+//return result
+-(void)returnResultWithData:(NSData *)data {
+    if (![AppUtils isNull:data]) {
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        
+        if ([[dic objectForKey:@"API_KEY"] isEqualToString:@"KF_CHECKTOKEN"]) { // check existed device token
+            if ([[dic objectForKey:@"STATUS"] integerValue] == 1) { // don't have
+                [self registerDeviceTokens:@"KF_REGTOKEN" withDeviceToken:token];
+            }
+        } else if ([[dic objectForKey:@"API_KEY"] isEqualToString:@"KF_REGTOKEN"]) {
+            if ([[dic objectForKey:@"STATUS"] integerValue] == 1) { // register successully
+                NSLog(@"kikilu ====> OK");
+            }
+        }
+    }
+}
+
+
 
 #pragma mark - Core Data stack
 

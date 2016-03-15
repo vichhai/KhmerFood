@@ -11,6 +11,7 @@
 #import <UIKit/UIKit.h>
 #import <Realm/Realm.h>
 #import "Constants.h"
+#import <sys/utsname.h>
 
 static UIView *wrapperView;
 static UIImageView *loadingImage;
@@ -115,4 +116,5 @@ static UIView *parentView;
 + (CGFloat)measureTextHeight:(NSString*)text constrainedToSize:(CGSize)constrainedToSize fontSize:(CGFloat)fontSize;
 +(void)showWaitingActivity:(id)anyView;
 +(void)hideWaitingActivity;
++(NSString *)getDeviceType;
 @end

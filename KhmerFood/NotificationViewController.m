@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *line1;
 @property (weak, nonatomic) IBOutlet UIImageView *line2;
 @property (weak, nonatomic) IBOutlet UITableView *myTableView;
+@property (weak, nonatomic) IBOutlet UIImageView *notFoundImage;
 
 
 @end
@@ -59,17 +60,20 @@
             break;
             
         default:
-            [AppUtils showWaitingActivity:self.view];
-            if (sender.selected == false) {
-                isFriend = true;
-                sender.selected = true;
-                _line1.backgroundColor = [UIColor lightGrayColor];
-                _line2.backgroundColor = NaviStandartColor;
-                _foodButton.selected = false;
+            if ([AppUtils isNull:[[NSUserDefaults standardUserDefaults] objectForKey:@"login_data"]]) {
+                [AppUtils showErrorMessage:@"សូមធ្វើការ login ដើម្បីប្រើប្រាស់មុខងារនេះ" anyView:self];
+                break;
+            } else {
+                [AppUtils showWaitingActivity:self.view];
+                if (sender.selected == false) {
+                    isFriend = true;
+                    sender.selected = true;
+                    _line1.backgroundColor = [UIColor lightGrayColor];
+                    _line2.backgroundColor = NaviStandartColor;
+                    _foodButton.selected = false;
+                }
+                [self requestToServer:@"KF_LSTPFRND"];
             }
-            
-            [self requestToServer:@"KF_LSTPFRND"];
-            
             break;
     }
 }
@@ -123,12 +127,16 @@
             [pendingFriendList addObjectsFromArray:[transaction objectForKey:@"RESP_DATA"]];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [_myTableView reloadData];
+                _myTableView.hidden = false;
+                _notFoundImage.hidden = true;
             });
-            
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                _myTableView.hidden = true;
+                _notFoundImage.hidden = false;
+            });
         }
     }
-    
-    
 }
 
 @end
